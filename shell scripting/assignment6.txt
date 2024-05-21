@@ -1,0 +1,7 @@
+//Extract and process log file errors
+
+#!/bin/bash
+
+LOGFILE="sample.log"
+
+grep "ERROR" "$LOGFILE" | awk '{print $1, $2, $3, $4, $5, $6, $7}'

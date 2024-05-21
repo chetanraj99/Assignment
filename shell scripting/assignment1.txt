@@ -1,0 +1,10 @@
+//checking weather a file exit or not
+#!/bin/bash
+
+FILE="myfile.txt"
+
+if [ -e "$FILE" ]; then
+    echo "File exists"
+else
+    echo "File not found"
+fi

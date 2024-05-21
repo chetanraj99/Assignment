@@ -1,0 +1,32 @@
+//Handle errors and add debugging mode
+
+#!/bin/bash
+
+DEBUG=false
+DIR="TestDir"
+
+# Enable debugging mode if passed as an argument
+if [ "$1" == "--debug" ]; then
+    DEBUG=true
+fi
+
+log_debug() {
+    if [ "$DEBUG" = true ]; then
+        echo "[DEBUG] $1"
+    fi
+}
+
+create_files() {
+    for i in {1..10}; do
+        FILE="$DIR/File$i.txt"
+        echo "File$i.txt" > "$FILE"
+        log_debug "Created $FILE"
+    done
+}
+
+if mkdir "$DIR" 2>/dev/null; then
+    log_debug "Directory $DIR created"
+    create_files
+else
+    echo "Directory $DIR already exists or cannot be created."
+fi

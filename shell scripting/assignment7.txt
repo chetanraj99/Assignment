@@ -1,0 +1,18 @@
+//Replace text using sed
+
+#!/bin/bash
+
+if [ "$#" -ne 3 ]; then
+    echo "Usage: $0 input_file old_text new_text"
+    exit 1
+fi
+
+INPUT_FILE=$1
+OLD_TEXT=$2
+NEW_TEXT=$3
+OUTPUT_FILE="output_$(basename "$INPUT_FILE")"
+
+sed "s/$OLD_TEXT/$NEW_TEXT/g" "$INPUT_FILE" > "$OUTPUT_FILE"
+
+echo "Replacements done. Check $OUTPUT_FILE for the result."
+

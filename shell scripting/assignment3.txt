@@ -1,0 +1,17 @@
+//Function to print the number of lines in a file
+
+#!/bin/bash
+
+count_lines() {
+    filename=$1
+    if [ -e "$filename" ]; then
+        LINES=$(wc -l < "$filename")
+        echo "The file '$filename' has $LINES lines."
+    else
+        echo "The file '$filename' does not exist."
+    fi
+}
+
+
+count_lines "file1.txt"
+count_lines "file2.txt"

@@ -1,0 +1,13 @@
+// Read numbers from the user until they enter '0' and print if they are odd or even
+#!/bin/bash
+
+while true; do
+    read -p "Enter a number (0 to quit): " number
+    if [ "$number" -eq 0 ]; then
+        break
+    elif [ $((number % 2)) -eq 0 ]; then
+        echo "$number is even"
+    else
+        echo "$number is odd"
+    fi
+done

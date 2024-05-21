@@ -1,0 +1,11 @@
+//Branch Creation and Switching
+Create a new branch named 'feature'
+	git branch feature
+
+Switch to the 'feature' branch
+	git checkout feature
+
+Make changes in the 'feature' branch and commit them
+	echo "This is a new feature" >> hello.txt
+	git add hello.txt
+	git commit -m "Added a new feature to hello.txt"
