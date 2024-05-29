@@ -1,0 +1,65 @@
+-- Table: Category
+CREATE TABLE Category (
+    CategoryID INT PRIMARY KEY,
+    CategoryName VARCHAR(100) NOT NULL UNIQUE
+);
+
+-- Table: Publisher
+CREATE TABLE Publisher (
+    PublisherID INT PRIMARY KEY,
+    PublisherName VARCHAR(100) NOT NULL UNIQUE,
+    Address VARCHAR(255) NOT NULL
+);
+
+-- Table: Book
+CREATE TABLE Book (
+    BookID INT PRIMARY KEY,
+    Title VARCHAR(255) NOT NULL,
+    ISBN VARCHAR(13) NOT NULL UNIQUE,
+    CategoryID INT NOT NULL,
+    PublisherID INT NOT NULL,
+    PublicationYear INT NOT NULL CHECK (PublicationYear >= 1440 AND PublicationYear <= YEAR(CURRENT_DATE)),
+    CopiesAvailable INT NOT NULL CHECK (CopiesAvailable >= 0),
+    FOREIGN KEY (CategoryID) REFERENCES Category(CategoryID),
+    FOREIGN KEY (PublisherID) REFERENCES Publisher(PublisherID)
+);
+
+-- Table: Author
+CREATE TABLE Author (
+    AuthorID INT PRIMARY KEY,
+    FirstName VARCHAR(100) NOT NULL,
+    LastName VARCHAR(100) NOT NULL,
+    DateOfBirth DATE NOT NULL CHECK (DateOfBirth <= CURRENT_DATE)
+);
+
+-- Table: BookAuthor
+CREATE TABLE BookAuthor (
+    BookID INT NOT NULL,
+    AuthorID INT NOT NULL,
+    PRIMARY KEY (BookID, AuthorID),
+    FOREIGN KEY (BookID) REFERENCES Book(BookID),
+    FOREIGN KEY (AuthorID) REFERENCES Author(AuthorID)
+);
+
+-- Table: Member
+CREATE TABLE Member (
+    MemberID INT PRIMARY KEY,
+    FirstName VARCHAR(100) NOT NULL,
+    LastName VARCHAR(100) NOT NULL,
+    DateOfBirth DATE NOT NULL CHECK (DateOfBirth <= CURRENT_DATE),
+    Email VARCHAR(100) NOT NULL UNIQUE,
+    PhoneNumber VARCHAR(15) NOT NULL CHECK (PhoneNumber REGEXP '^[0-9]{10,15}$'),
+    Address VARCHAR(255) NOT NULL
+);
+
+-- Table: Loan
+CREATE TABLE Loan (
+    LoanID INT PRIMARY KEY,
+    BookID INT NOT NULL,
+    MemberID INT NOT NULL,
+    LoanDate DATE NOT NULL,
+    DueDate DATE NOT NULL,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Book(BookID),
+    FOREIGN KEY (MemberID) REFERENCES Member(MemberID)
+);

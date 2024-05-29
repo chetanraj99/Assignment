@@ -1,0 +1,36 @@
+Steps of Test Driven Development
+
+Write Test Cases
+
+Illustration: Programmer writing test cases before writing actual code.
+Caption: "Write failing test cases based on desired behavior."
+Run Tests
+
+Illustration: Test automation tool executing the written test cases.
+Caption: "Run tests to ensure they fail as expected."
+Write Code
+
+Illustration: Programmer coding to make the failing test cases pass.
+Caption: "Write minimal code to make failing tests pass."
+Run Tests Again
+
+Illustration: Test automation tool running the tests again after code changes.
+Caption: "Ensure all tests pass after code modifications."
+Refactor Code
+
+Illustration: Programmer refactoring code to improve design without changing behavior.
+Caption: "Refactor code to improve clarity and maintainability."
+Repeat
+
+Illustration: Circular arrow indicating the iterative nature of the TDD process.
+Caption: "Repeat the cycle for each new feature or code change."
+Section 2: Benefits of Test Driven Development
+
+Bug Reduction
+
+Illustration: Graph showing a decrease in bugs over time with TDD.
+Caption: "TDD helps identify and fix bugs early in the development process."
+Improved Software Reliability
+
+Illustration: Strong fortress representing reliable software built through TDD.
+Caption: "By continuously testing code, TDD enhances software reliability."

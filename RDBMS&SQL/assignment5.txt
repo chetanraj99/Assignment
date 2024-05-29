@@ -1,0 +1,19 @@
+--How query performance can be improved by using index:
+Indexes improve query performance by allowing the database to find rows more quickly without scanning the entire table.
+in case of indexing binary search applied where time complexity goes upto O(logn).
+
+--creating index:
+CREATE INDEX idx_isbn ON Books(ISBN);
+
+--Improvement in Query Performance:
+SELECT * FROM Books WHERE ISBN = '978-3-16-148410-0';
+//With the index, the database quickly locates the row using the ISBN index rather than scanning the entire table.
+
+--droping index:
+DROP INDEX idx_isbn ON Books;
+
+--Without the index same query:
+SELECT * FROM Books WHERE ISBN = '978-3-16-148410-0';
+
+//will require a full table scan, significantly slowing down performance, especially for large tables.
+

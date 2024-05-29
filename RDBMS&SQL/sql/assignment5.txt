@@ -1,0 +1,17 @@
+BEGIN TRANSACTION;
+
+-- INSERT into 'orders' with SAVEPOINT 1
+INSERT INTO orders (customer_id, order_date, order_value)
+VALUES (1, '2024-05-27', 100);
+SAVEPOINT sp1;
+
+-- INSERT into 'orders' with SAVEPOINT 2
+INSERT INTO orders (customer_id, order_date, order_value)
+VALUES (2, '2024-05-28', 150);
+SAVEPOINT sp2;
+
+-- Rollback to SAVEPOINT 2
+ROLLBACK TO sp2;
+
+-- COMMIT the overall transaction
+COMMIT;

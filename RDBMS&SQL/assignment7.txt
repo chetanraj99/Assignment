@@ -1,0 +1,66 @@
+-- Insert New Records
+
+-- Authors
+INSERT INTO Authors (FirstName, LastName) VALUES ('J.K.', 'Rowling');
+INSERT INTO Authors (FirstName, LastName) VALUES ('George', 'Orwell');
+
+-- Categories
+INSERT INTO Categories (CategoryName) VALUES ('Fiction');
+INSERT INTO Categories (CategoryName) VALUES ('Science Fiction');
+
+-- Books
+INSERT INTO Books (Title, AuthorID, CategoryID, ISBN, Publisher, YearPublished, Pages) 
+VALUES ('Harry Potter and the Sorcerer''s Stone', 1, 1, '978-0439708180', 'Scholastic', 1997, 309);
+INSERT INTO Books (Title, AuthorID, CategoryID, ISBN, Publisher, YearPublished, Pages) 
+VALUES ('1984', 2, 2, '978-0451524935', 'Signet Classic', 1949, 328);
+
+-- Members
+INSERT INTO Members (FirstName, LastName, Address, PhoneNumber, Email) 
+VALUES ('John', 'Doe', '123 Main St', '555-1234', 'john.doe@example.com');
+INSERT INTO Members (FirstName, LastName, Address, PhoneNumber, Email) 
+VALUES ('Jane', 'Smith', '456 Elm St', '555-5678', 'jane.smith@example.com');
+
+-- Loans
+INSERT INTO Loans (BookID, MemberID, LoanDate, DueDate) 
+VALUES (1, 1, '2024-05-01', '2024-05-15');
+INSERT INTO Loans (BookID, MemberID, LoanDate, DueDate) 
+VALUES (2, 2, '2024-05-02', '2024-05-16');
+
+-- Update Existing Records
+
+-- Author's Last Name
+UPDATE Authors SET LastName = 'Rowling-New' WHERE AuthorID = 1;
+
+-- Book's YearPublished
+UPDATE Books SET YearPublished = 1998 WHERE BookID = 1;
+
+-- Member's Email
+UPDATE Members SET Email = 'john.doe-new@example.com' WHERE MemberID = 1;
+
+-- Delete Records
+
+-- Delete a Book by ISBN
+DELETE FROM Books WHERE ISBN = '978-0439708180';
+
+-- Delete a Member by Email
+DELETE FROM Members WHERE Email = 'jane.smith@example.com';
+
+-- Bulk Insert Operations
+
+-- Bulk Insert into Books Table
+LOAD DATA INFILE '/path/to/books.csv' 
+INTO TABLE Books 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS 
+(Title, AuthorID, CategoryID, ISBN, Publisher, YearPublished, Pages);
+
+-- Bulk Insert into Authors Table
+LOAD DATA INFILE '/path/to/authors.csv' 
+INTO TABLE Authors 
+FIELDS TERMINATED BY ',' 
+ENCLOSED BY '"' 
+LINES TERMINATED BY '\n' 
+IGNORE 1 ROWS 
+(FirstName, LastName);

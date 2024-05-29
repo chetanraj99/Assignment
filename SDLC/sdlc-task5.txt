@@ -1,0 +1,53 @@
+*******Test Driven Development (TDD)
+
+Approach:
+
+Illustration: Programmer writing test cases before coding.
+Brief description: "Write failing test cases based on desired behavior, then write code to make tests pass."
+Benefits:
+
+Reduced bugs
+Improved software reliability
+Faster development cycles
+Suitability:
+
+Illustration: Various software development scenarios (e.g., web development, mobile app development, embedded systems).
+Brief description: "Best suited for projects where requirements are clear and well-defined."
+
+
+
+Section 2: Behavior Driven Development (BDD)
+
+Approach:
+
+Illustration: Collaboration between developers, testers, and business stakeholders to define behavior through examples.
+Brief description: "Define behavior using natural language examples (given, when, then), then automate tests based on
+these scenarios."
+Benefits:
+
+Improved collaboration
+Enhanced understanding of requirements
+Focus on business value
+Suitability:
+
+Illustration: Teams collaborating in different business domains (e.g., finance, healthcare, e-commerce).
+Brief description: "Ideal for projects where business stakeholders need to be closely involved in the development 
+process."
+
+
+
+Section 3: Feature Driven Development (FDD)
+
+Approach:
+
+Illustration: Iterative development process focusing on features and their corresponding models.
+Brief description: "Divide development into manageable feature sets, then plan, design, and build features iteratively."
+Benefits:
+
+Emphasis on feature delivery
+Scalability for large projects
+Clear progress tracking
+Suitability:
+
+Illustration: Large-scale development projects with complex feature sets (e.g., enterprise software, ERP systems).
+Brief description: "Suited for projects with a large number of features and a need for structured development."

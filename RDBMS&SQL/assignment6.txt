@@ -1,0 +1,11 @@
+-- Create a New Database User
+CREATE USER 'library_user'@'localhost' IDENTIFIED BY 'password123';
+
+-- Grant Specific Privileges
+GRANT SELECT, INSERT, UPDATE ON LibraryDB.* TO 'library_user'@'localhost';
+
+-- Revoke Certain Privileges
+REVOKE INSERT ON LibraryDB.* FROM 'library_user'@'localhost';
+
+-- Drop the User
+DROP USER 'library_user'@'localhost';

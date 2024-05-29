@@ -1,0 +1,96 @@
+ACID is an acronym that stands for Atomicity, Consistency, Isolation, and Durability. 
+
+Atomicity:
+	Atomicity ensures that a transaction is all or none. 
+
+Consistency:
+	Consistency ensures that the sum of balance in both accounts will be same before and after transaction done.
+
+Isolation:
+	Isolation ensures that concurrent transactions execute as if they were run sequentially, without interfering with each other.
+
+Durability:
+	Durability ensures that once a transaction is committed, the changes are permanent, even in the case of a system failure.
+
+
+SQL Statements to Simulate a Transaction with Locking and Isolation Levels:
+
+--Creating table account and transaction :
+
+CREATE TABLE Accounts (
+    AccountID INT PRIMARY KEY,
+    Balance DECIMAL(10, 2) NOT NULL CHECK (Balance >= 0)
+);
+
+CREATE TABLE Transactions (
+    TransactionID INT PRIMARY KEY,
+    AccountID INT,
+    Amount DECIMAL(10, 2),
+    TransactionDate DATETIME DEFAULT CURRENT_TIMESTAMP,
+    FOREIGN KEY (AccountID) REFERENCES Accounts(AccountID)
+);
+
+-- Insert sample data
+INSERT INTO Accounts (AccountID, Balance) VALUES (1, 1000.00), (2, 1500.00);
+
+--Simulating a Transaction with Locking:
+
+BEGIN TRANSACTION;
+
+UPDATE Accounts
+SET Balance = Balance - 200.00
+WHERE AccountID = 1;
+
+UPDATE Accounts
+SET Balance = Balance + 200.00
+WHERE AccountID = 2;
+
+COMMIT;
+--Different Isolation Levels:
+--Read Uncommitted:
+SET TRANSACTION ISOLATION LEVEL READ UNCOMMITTED;
+
+BEGIN TRANSACTION;
+SELECT Balance FROM Accounts WHERE AccountID = 1;
+
+COMMIT;
+
+--Read Commited:
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+
+BEGIN TRANSACTION;
+SELECT Balance FROM Accounts WHERE AccountID = 1;
+COMMIT;
+
+--Repeatable Read:
+SET TRANSACTION ISOLATION LEVEL REPEATABLE READ;
+
+BEGIN TRANSACTION;
+SELECT Balance FROM Accounts WHERE AccountID = 1;
+COMMIT;
+
+--Serializable:
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+
+BEGIN TRANSACTION;
+SELECT Balance FROM Accounts WHERE AccountID = 1;
+COMMIT;
+
+--Demonstrating Concurrency Control:
+
+Transaction 1: Reading Account Balance
+
+SET TRANSACTION ISOLATION LEVEL READ COMMITTED;
+BEGIN TRANSACTION;
+SELECT Balance FROM Accounts WHERE AccountID = 1;
+WAITFOR DELAY '00:00:10'; -- Simulate delay
+COMMIT;
+
+Transaction 2: Updating Account Balance
+
+SET TRANSACTION ISOLATION LEVEL SERIALIZABLE;
+BEGIN TRANSACTION;
+UPDATE Accounts
+SET Balance = Balance - 50.00
+WHERE AccountID = 1;
+COMMIT;

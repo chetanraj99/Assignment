@@ -1,0 +1,74 @@
+-- Creating the Database
+CREATE DATABASE LibraryDB;
+
+--  Using the Database
+USE LibraryDB;
+
+-- Creating Tables
+
+-- Authors Table
+CREATE TABLE Authors (
+    AuthorID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50)
+);
+
+-- Categories Table
+CREATE TABLE Categories (
+    CategoryID INT AUTO_INCREMENT PRIMARY KEY,
+    CategoryName VARCHAR(50)
+);
+
+-- Books Table
+CREATE TABLE Books (
+    BookID INT AUTO_INCREMENT PRIMARY KEY,
+    Title VARCHAR(100),
+    AuthorID INT,
+    CategoryID INT,
+    ISBN VARCHAR(20),
+    Publisher VARCHAR(50),
+    YearPublished INT,
+    FOREIGN KEY (AuthorID) REFERENCES Authors(AuthorID),
+    FOREIGN KEY (CategoryID) REFERENCES Categories(CategoryID)
+);
+
+-- Members Table
+CREATE TABLE Members (
+    MemberID INT AUTO_INCREMENT PRIMARY KEY,
+    FirstName VARCHAR(50),
+    LastName VARCHAR(50),
+    Address VARCHAR(100),
+    PhoneNumber VARCHAR(15),
+    Email VARCHAR(50)
+);
+
+-- Loans Table
+CREATE TABLE Loans (
+    LoanID INT AUTO_INCREMENT PRIMARY KEY,
+    BookID INT,
+    MemberID INT,
+    LoanDate DATE,
+    DueDate DATE,
+    ReturnDate DATE,
+    FOREIGN KEY (BookID) REFERENCES Books(BookID),
+    FOREIGN KEY (MemberID) REFERENCES Members(MemberID)
+);
+
+-- Modifying Table Structures
+
+-- Add a New Column to the Books Table
+ALTER TABLE Books
+ADD COLUMN Pages INT;
+
+-- Modify the Data Type of a Column in the Members Table
+ALTER TABLE Members
+MODIFY COLUMN PhoneNumber VARCHAR(20);
+
+-- Add a New Column to the Loans Table
+ALTER TABLE Loans
+ADD COLUMN Renewals INT DEFAULT 0;
+
+-- Drop a Redundant Table
+
+-- Drop the OldMembers Table
+DROP TABLE OldMembers;

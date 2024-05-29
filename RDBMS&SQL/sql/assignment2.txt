@@ -1,0 +1,11 @@
+-- Combine 'orders' and 'customers' tables using INNER JOIN for customers in a specified region
+SELECT *
+FROM customers
+INNER JOIN orders ON customers.customer_id = orders.customer_id
+WHERE customers.region = 'specified_region';
+
+-- LEFT JOIN to display all customers including those without orders
+SELECT *
+FROM customers
+LEFT JOIN orders ON customers.customer_id = orders.customer_id
+WHERE customers.region = 'specified_region';

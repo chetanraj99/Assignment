@@ -1,0 +1,20 @@
+Assignment 1: Draw your Home Network Topology and explain how you are Unde accessing the RPS Lab environment
+Internet Gateway/Router: This is the device provided by your internet service provider (ISP) that connects your home network to the internet.
+
+Switch/Wi-Fi Router: This device provides local network connectivity to your various devices, both wired and wireless.
+Computers and Devices: These are your personal computers, smartphones, tablets, smart home devices, etc., connected to your local network.
+
+ 
+
+
+
+
+
+
+VPN (Virtual Private Network): Your organization may provide a VPN service that allows you to securely connect to their network from anywhere with internet access.
+ You would install VPN client software on your computer or device, then connect to the VPN using your credentials. This establishes a secure, encrypted connection 
+to your organization's network.
+
+Access Control: Once connected to the VPN, you may need to authenticate yourself further (e.g., with a username and password) 
+to access specific resources within your organization's network, such as the RPS Lab environment.
+

@@ -1,0 +1,6 @@
+Transaction logs are critical for data recovery in case of unexpected shutdowns or system failures.
+ They record all changes made to the database, providing a trail of actions that can be used to reconstruct data to a consistent state.
+
+Hypothetical Scenario:
+Imagine a scenario where a database system experiences a sudden power outage during a critical update operation. 
+Without transaction logs, the database might be left in an inconsistent state, leading to potential data loss or corruption.

@@ -1,0 +1,19 @@
+INFOGRAFIC TITLE---------
+		THE SOFTWARE DEVELOPEMENT LIFE CYCLE 
+
+PHASE-01
+	REQUIREMENTS----
+		This phase consist of analyzing the requirement from clients
+
+phase-02
+	Design----
+		This phase consist of dessign the blueprint for the application
+
+phase-03
+	Implimentation---
+		in this phase developers write a code according to the blueprints and requirement of users.
+phase-04
+	testing---
+		In this phase various testing method take places which help to convert the defect in the application .
+Phase-05
+	Deployment----

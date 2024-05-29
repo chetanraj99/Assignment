@@ -1,0 +1,16 @@
+BEGIN TRANSACTION;
+
+-- INSERT a new record into the 'orders' table
+INSERT INTO orders (customer_id, order_date, order_value)
+VALUES (1, '2024-05-27', 100);
+
+COMMIT;
+
+-- UPDATE the 'products' table
+BEGIN TRANSACTION;
+
+UPDATE products
+SET price = price * 1.1
+WHERE category = 'electronics';
+
+ROLLBACK;
