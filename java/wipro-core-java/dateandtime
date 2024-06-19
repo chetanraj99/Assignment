@@ -1,0 +1,24 @@
+Java 8 Date and Time API
+-------------------------
+1. Immutablity --New Date and Time is immutable and TheadSafe
+
+2. Clarity -- Distinct methods for all the operations
+
+3. Comprehensive -- All the Operations needed for a date and time
+
+4. Standardization -- Standardized ISO-8601
+
+
+Java 8 API
+----------
+
+1. LocalDate  -- Date
+2. LocalTime  -- Time
+3. LocalDateTime -- Date and Time
+4. ZonedDateTime -- Combines Date and time with zone
+5. Period -- Date based amount 
+6. Duration -- Time
+7. ZoneId -- Time zone Id
+8. DateTimeFormatter --- Gives diff formats of dates and time
+
+

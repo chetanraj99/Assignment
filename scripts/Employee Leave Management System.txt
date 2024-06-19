@@ -1,0 +1,33 @@
+Employee Leave Management System
+---------------------------------
+employee1 -----> employee2(Manager)------> employee3(His Manager)
+
+
+Employee (id,ename,role,dept,password,doj)
+1001,sunil,developer,quality,12345,12-05-2020
+1002,mahesh,manager,finance,12345,17-12-2019
+
+
+LeaveRequest(rid,empid,fromDate,toDate,typeOfLeave,nofddays,reason,mgr,status,remarks)
+
+9001,1001,15-05-2024,17-05-2024,casual,3,marriage,1010,approved,happy wedding
+
+
+LeaveBalances(empid,scl,pl,ml,pl,ol)
+1001,17,18,180,10,5
+
+Leaves(scl,pl,ml,ol,compoffleaves)
+lid,scl,pl,ml,ol
+1,18,10,180,20,5
+
+
+employee ---oneToMany---LeaveRequests
+employee --- oneToOne ---LeaveBalances
+
+Leaves ----OneToMany----LeaveBalances
+
+Normalized till BCNF
+
+
+
+

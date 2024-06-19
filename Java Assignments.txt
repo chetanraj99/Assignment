@@ -1,0 +1,29 @@
+Q1. Write a program to read a number , calculate the sum of odd digits (values) present in the given number.
+
+Include a class UserMainCode with a static method checkSum which accepts a positive integer . The return type should be 1 if the sum is odd . In case the sum is even return -1 as output.
+
+Input - 27891 (7+9+1=17 )
+ouput - 1
+
+
+Q2. Write a program to read a number , calculate the sum of squares of even digits (values) present in the given number.
+ 
+Include a class UserMainCode with a static method sumOfSquaresOfEvenDigits which accepts a positive integer . The return type (integer) should be the sum of squares of the even digits.
+
+
+Q3. Write a program to read a positive number as input and to get the reverse of the given number and return it as output.
+ 
+Include a class UserMainCode with a static method reverseNumber which accepts a positive integer .
+ 
+The return type is an integer value which is the reverse of the given number
+
+
+Q4. In a school management system, we can have different types of staff members such as teachers, administrative staff, and support staff. Each staff member has some common attributes like name, age, and contact information, but they also have specific roles and responsibilities.
+represent the above using java inheritance of classes.
+
+Q5. In a banking system, there are different types of accounts such as savings account, current account, and fixed deposit account. Although they all perform common operations like depositing and withdrawing money, the interest calculation may vary based on the type of account.
+Represent the above using java polymorphism.
+
+
+
+

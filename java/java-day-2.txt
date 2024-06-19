@@ -1,0 +1,330 @@
+Interface 
+
+1. default methods and static method
+
+default and static methods are complete methods in interface
+we will have the body also 
+
+1. default methods will be called on its inherited classes
+
+2. static methods should be called only on the interface
+
+All the methods are public 
+We cannot declare any constructors in interfaces
+we can 
+
+
+final 
+-----
+
+1. variable  --- variable becomes a constant
+2. method    --- that method cannot be overriden
+3. class     --- That class cannot be inherited
+
+
+Lambda Expressions
+------------------
+Lambda Expressions in Java are a way to express intances of a single method
+intefaces more concisely.
+
+Functional Programming paradigm
+
+public void test(){
+	System.out.println("Hello World");
+}
+
+Lambda expressions are unanimous expressions which doesnot have any
+method name, return type and access modifiers.
+
+()->{
+	System.out.println("Hello World");
+}
+
+if() {
+ s1;
+}
+else
+s2
+
+()->System.out.println("Hello World");
+
+
+public int sum(int a, int b)
+{
+	return a+b;
+}
+
+(int a, int b) -> return a+b;
+
+For a lambda expressions datatype is not required in the parameter list
+
+(a,b)->return a+b;
+
+In the body if there is only one return statement then return keyword 
+is also not required
+
+(a,b)->a+b;
+
+
+public boolean test(int a, int b)
+{
+	if(a<b)
+		return true;
+	else
+		return false;
+}
+
+
+(a,b)-> {
+
+	if(a<b)
+		return true;
+	else
+		return false;
+
+}
+
+
+(a,b)-> a<b;
+
+
+public int  test(int a, int b){
+	s1;
+	s2;
+	s3;
+        return value;
+}
+
+
+(a,b)->{
+   s1;
+   s2;
+   s3;
+   return value;
+}
+
+Lambda Expressions are used to implement functional interfaces
+An interface which has only one abstract method then it is functional interface
+
+public interface Maths{
+	public int add(int a, int b);
+}
+
+class Mathematics implements Maths{
+	public int add(int a, int b){
+		return a+b;
+	}
+}
+
+//(a,b)->a+b;
+Mathematics m = new Mathematics();
+m.add(10,20);
+
+Maths mt = (a,b)->a+b;
+mt.add(10,20);---> 30
+
+
+public interface Runnable{
+	public void run();
+}
+
+public interface Comparable<T>{
+	public int compareTo(O1, O2);
+}
+
+
+
+
+
+
+r -> 3.141 * r * r;
+
+if(a<b)
+  return false;
+else
+  return true;
+
+(a,b) -> a<b;
+
+which will take integer input and true
+
+i. if it is even else false
+ii. if the number is prime return true else false
+iii. if the number is multiple of 5 then return true else false
+iv. if the number is perfect number or armstrong or pallindrom return true
+   else false
+v. if the given string has all vowels, then return true else false
+
+
+class Tester{
+  public boolean checkPrime(int a){
+
+	// logic for checking prime or not
+	//return true if prime else false
+  }
+
+}
+
+Tester t = new Tester();
+t.checkPrime(10);-----> false
+
+
+
+1. If a number is given return its factorial
+2. if a radius is given return its circle area
+3. if a side is given return the area of squre
+
+
+Java8 some predefined utility functional interfaces
+
+1. Predicate
+2. Function
+3. consumer
+4. Supplier
+5. BiPredicate
+6. BiFunction
+7. BiConsumer
+
+Predicate -> It is a functional interface with only one method called
+test, it can take any single datatype as argument and returns only boolean
+value.
+
+@FunctionalInterface
+public interface Predicate<T> {
+	public boolean test(T t);
+}
+
+
+public boolean check(int n){
+	if(n%2==0)
+		return true;
+	else
+		return false;
+}
+ n-> n%2==0; 
+
+java.util.function;
+
+
+Predicate<Integer> p1 = n-> n%2==0;
+Predicate<String> p2 = str -> str.length()>=10;
+
+p1.test(10);----> true
+p1.test(5);-----> false
+p2.test("hello")--> false
+p2.test("programming");---> true
+
+
+public boolean checkPrime(int n){
+boolean isPrime=true;
+for(i=2;i<=n-1;i++)
+{
+	if(n%i==0){
+		isPrime=false;
+		break;
+	}
+}
+return isPrime;
+}
+
+n -> {
+boolean isPrime=true;
+for(i=2;i<=n-1;i++)
+{
+	if(n%i==0){
+		isPrime=false;
+		break;
+	}
+}
+return isPrime;
+}
+
+  Predicates can be joined together to find the combined result
+
+   .and()
+   .or()
+   .not()
+
+Function
+--------
+functional interface which consists of only one method called
+apply which will take one argument of any datatype and can return
+any datatype value
+
+@FunctionalInterface
+public interface Function<T,R>{
+	public R apply(T t);
+}
+
+
+Function<Integer,Integer> f1 = n -> n*n;
+Function<Integer,Integer> f2 = n -> n/2;
+Function<Integer,Integer> f3 = n ->{
+		int fact=1;
+		for(int i=2;i<=n;i++)
+			fact=fact*i;
+		return fact;
+};
+
+
+Consumer
+--------
+This is also a functional interface which has only one method called
+accept which will take one argument of any type and returns void
+
+@FunctionalInterface
+public interface Consumer<T>{
+	public void accept(T t);
+}
+
+
+Supplier - This is also a functional inteface with only one method
+called get which won't take any parameter but can return a value
+
+@FunctionalInterface
+public interface Supplier<R>{
+	public R get();
+}
+
+
+
+BiConsumer---> It can take two values and returns none
+BiFunction --> It can take two values of any datatype and can return
+a single value of any type
+BiPredicate --. It can take two values of any datatype and always
+returns a boolean value
+
+
+@FunctionalInterface
+public interface BiPredicate<T1,T2>{
+	public boolean test(T1 t1, T2 t2);
+}
+
+
+@FunctionalInteface
+public interface Function<T1,T2,R>{
+	public boolean apply(T1,T2);
+}
+
+@FunctionalInterface
+public interface Consumer<T1,T2>{
+	public void accept(T1,T2);
+}
+
+
+Method References
+------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+

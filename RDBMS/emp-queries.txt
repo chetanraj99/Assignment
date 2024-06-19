@@ -1,0 +1,58 @@
+1. "Retrieve the employee numbers, names, salaries, and department numbers of all employees whose salaries are lower than that of the employee with the employee number 7566."
+
+2. Fetch the employee numbers, names, and job titles of employees who hold the same job position as Ford
+
+3.Retrieve the employee number, name, hire date, salary, and job of employees who were hired after Miller, sorted by salary in ascending order.
+
+4. Retrieve the employee number, name, salary, and job of employees who work in the sales department.
+
+5. Retrieve the employee number, name, salary, and job of clerks working in the New York department
+
+6.Retrieve the employee number, name, salary, and job title of employees who work in the sales department
+
+7.Retrieve the employee number, name, salary, commission, and total compensation (salary + commission, considering commission as 0 if it's null) of employees working in the Chicago department.  	
+
+8. Retrieve all details of employees who work in the same department as Ford and have a job title that exists in the sales department.
+
+Applying GROUP functions in SUB QUERIES
+---------------------------------------
+
+1. Retrieve the names, job titles, and salaries of employees who have the highest salary among all employees
+
+2. Fetch the names, job titles, and salaries of employees who earn the minimum salary among all employees.
+
+3. Retrieve the names, job titles, and salaries of employees whose salaries are higher than the average salary of all employees
+
+4. Fetch the names, job titles, and salaries of employees whose salaries are less than the variance of salaries among all employees
+
+Appliying HAVING clause with Sub Queries
+----------------------------------------
+1. List the department numbers and the minimum salary within each department, but only display those departments where the minimum salary is greater than the minimum salary in department 20.
+
+2. Retrieve the job titles and the average salaries for each job title, but only display the job titles where the average salary matches the lowest average salary across all job titles
+
+3. Fetch the job titles and their corresponding average salaries. However, only include job titles where the average salary is less than the highest average salary across all job titles
+
+Sub Query returns more than one row:
+---------------------------------------
+
+1. Retrieve the names, salaries, and department numbers of employees whose salaries are equal to the maximum salary within their respective departments."
+
+2. Fetch the names, salaries, job titles, and department numbers of employees whose salaries are equal to the maximum salary for their respective job titles."
+
+3. Retrieve the names, salaries, and department numbers of employees whose salaries are equal to the minimum salary wi
+1. Retrieve the names, job titles, salaries, and department numbers of employees who earn a salary greater than the highest salary in department 20."thin their respective departments
+
+ALL OPerator
+-------------
+1. Retrieve the names, job titles, salaries, and department numbers of employees who earn a salary greater than the highest salary in department 20."
+
+2. Retrieve the names, job titles, salaries, and department numbers of employees whose salaries are higher than the average salary across all departments."
+
+
+
+
+
+
+
+

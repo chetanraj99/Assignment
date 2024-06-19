@@ -1,0 +1,16 @@
+1. "Retrieve the employee numbers, names, salaries, and department numbers of all employees whose salaries are lower than that of the employee with the employee number 7566."
+
+2. Fetch the employee numbers, names, and job titles of employees who hold the same job position as Ford
+
+3.Retrieve the employee number, name, hire date, salary, and job of employees who were hired after Miller, sorted by salary in ascending order.
+
+4. Retrieve the employee number, name, salary, and job of employees who work in the sales department.
+
+5. Retrieve the employee number, name, salary, and job of clerks working in the New York department
+
+6.Retrieve the employee number, name, salary, and job title of employees who work in the sales department
+
+7.Retrieve the employee number, name, salary, commission, and total compensation (salary + commission, considering commission as 0 if it's null) of employees working in the Chicago department.  	
+
+8. Retrieve all details of employees who work in the same department as Ford and have a job title that exists in the sales department.
+

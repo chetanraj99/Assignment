@@ -1,0 +1,71 @@
+version: '3.8'
+
+services:
+  config-server:
+    build:
+      context: ./configserver-service
+    #volumes:
+    #  - ./configserver:/configserver
+    ports:
+      - "8888:8888"
+    networks:
+      - microservices-network
+
+  eureka:
+    build:
+      context: ./eureka-service
+    #volumes:
+    #  - ./eurekaserver:/eurekaservice
+    ports:
+      - "8761:8761"
+    networks:
+      - microservices-network
+    depends_on:
+      - config-server
+
+  gateway:
+    build:
+      context: ./gateway-service
+    #volumes:
+    #  - ./gateway:/gateway
+    ports:
+      - "8765:8765"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka
+      - config-server
+
+  producer:
+    build:
+      context: ./producer-service
+    #volumes:
+    #  - ./producer:/producerservice
+    ports:
+      - "8081:8081"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka
+      - config-server
+      - gateway
+        
+
+  consumer:
+    build:
+      context: ./consumer-service
+    #volumes:
+    #  - ./consumer:/consumerservice
+    ports:
+      - "8082:8082"
+    networks:
+      - microservices-network
+    depends_on:
+      - eureka
+      - config-server
+      - gateway
+      - producer
+
+networks:
+  microservices-network:
+    driver: bridge

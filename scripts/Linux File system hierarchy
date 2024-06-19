@@ -1,0 +1,257 @@
+﻿#!/bin/bash
+
+# Prompt user to enter the first number
+echo "Enter the first number:"
+read num1
+
+# Prompt user to enter the second number
+echo "Enter the second number:"
+read num2
+
+# Calculate sum
+sum=$((num1 + num2))
+
+# Calculate difference
+diff=$((num1 - num2))
+
+# Calculate product
+product=$((num1 * num2))
+
+# Check if the second number is not zero to avoid division by zero error
+if [ $num2 -ne 0 ]; then
+    # Calculate quotient
+    quotient=$(echo "scale=2; $num1 / $num2" | bc)
+else
+    quotient="Division by zero"
+fi
+
+# Display results
+echo "Sum: $sum"
+echo "Difference: $diff"
+echo "Product: $product"
+echo "Quotient: $quotient"
+                     
+
+ Unit no -13 Manage Files from the Command Line
+                      ===============================================
+Objectivies
+============
+1. The linux File System Hierarchy
+2. Navigate with Absolute Path Names and Relative paths
+
+
+=> Linux file systems are organized into a hierarchy, organized like an inverted tree. 
+
+ /: -  This directory is called as the "root" directory 
+    -  This is where the whole tree starts.
+    -  All other directories are placed under it.
+                               
+                    LINUX FILE SYSTEM HIERARCHY
+                   =============================
+cd .. --> move one folder/ one level back
+
+
+user -------> normal user
+
+root user ---> admin
+
+Note: # man hier --> to see the manual page for file system hierarchy in linux   
+
+/root:(/)
+======
+       - This is the default home directory of the root user.
+       
+/home:
+======
+      - This is the home directory for all Normal/Standard users 
+      - When ever any normal user logs in he gets access to his home directory ( /home/<username> )
+  
+   #cd /home/
+   #ls 
+                
+  
+/boot:
+======
+    - It contains all the necessary files  related for booting the OS such as bootloader.
+    - It also contains the kernel which core of the OS.
+
+
+/sbin ,/usr/sbin:
+=================
+   -  stands for system binary
+   - /sbin & /usr/sbin will contains  all the essential commands which can only be executed by the   root user
+   
+   example:  fdisk , useradd, service, ifup, lvremove, lvcreate etc.
+
+             #which  useradd
+             #which  service
+             #which  ifup  
+             #which fdisk 
+
+/bin ,/usr/bin:
+===============
+          -  bin stands for binary. 
+          - /bin and /usr/bin directories will contains binaries/commands which be executed by all users. 
+   
+   example: ping, cat, vi, ls, pwd, hostname, passwd etc
+  
+             #which  cat
+             #which  pwd
+             #which  hostname
+             #which  ping
+/media:
+=======
+      -This  directory  contains  mount points  for removable media such as  CD  and  DVD  disks  or  
+USB sticks
+    
+/mnt:
+=====
+     - This  directory is a mount point for a temporarily  mounted  file systems.
+
+/etc:
+=====
+    - stands for et cetra
+    - It contains all the system configuration files of  local system
+
+exampls:
+======= 
+     vsftp -->  /etc/vsftpd/vsftpd.conf
+     samba -->  /etc/samba/smb.conf
+     nfs   -->  /etc/sysconig/nfs
+                /etc/exports
+/var:
+====
+     - var stands for variable
+     - This directory contains  files  which  may change  in  size,  such  as  spool and log files and  websites and ftp sites.
+
+example: #  cd /var/log      --> main logs directory
+         #  cat  /var/spool/mail/test  -->  mail db file for test user
+         #  cd /var/ftp/pub   -->  document root for ftp server 
+         #  cd /var/www/html  -->  document root for apache application.
+
+
+/tmp:
+=====
+     - stands for temporary
+     - This  directory  contains  temporary files which may be deleted with no notice,  such as  by a regular job or at system boot up
+     - default duration will be 10 days.
+     - /var/tmp  those files and directories will be deleted after 30 days.
+
+  #vim /etc/cron.daily/tmpwatch   --> to see script which will delete automactically.
+
+/net:
+=====
+    - /net is a virtual directory which will be created by the autofs deamon if it is running.
+    - /net/<nfs serverip> directoy give direct access to the NFS serve shares without mounting the NETWORK shares manually .
+
+#cd /net/192.168.0.254
+
+/dev:
+=====
+    - dev stands for devices
+    - It contains information about all Hardware Devices
+
+ examples:  /dev/sda (/dev/sda1, /dev/sda2 etc)
+          #tty
+
+/opt:
+=====
+    - opt stands for optional
+    - This  directory  should  contain  add-on  packages  that contain static files. 
+                            
+    - It generally contains thrid party softwares like openoffice, kaspersky Antivirus.
+
+/usr:
+=====
+   - stands for  Unix System Resources
+   - It contains the programs & applications which are available for users
+   - similar to programs files in Windows.
+
+#yum install  vsftp*  -y
+
+# firefox /usr/share/doc/vsftpd-2.2.2/ &
+
+#yum install samba* -y
+
+#firefox  /usr/share/doc/samba-common-3.5.10/ &
+
+The /proc File System
+
+The /proc file system is a special file system that is generated in system memory. It does
+not exist on any disk. /proc contains files that provide important information about the
+state of your system. For example, /proc/cpuinfo holds information about your computer’s
+CPU processor. /proc/devices lists those devices currently configured to run with your
+kernel. /proc/filesystems lists the file systems. /proc files are really interfaces to the kernel,obtaining information from the kernel about your system. Table 30-5 lists the /proc subdirectories and files. Like any file system, /proc has to be mounted. The /etc/fstab file will have a specialentry for /proc with a file system type of proc and no device specified.none /proc proc defaults 0 0
+
+#cat /proc/num :There is a directory for each process labeled by its number.
+ 
+example:   #cd     /proc/1 --> is the directory for process 1.
+
+#cat /proc/cpuinfo -->Contains information about the CPU, such as its type, make,
+             model, and performance.
+
+#cat /proc/devices --> Lists the device drivers configured for the currently running kernel.
+
+#cat /proc/loadavg -->Lists the system load average.
+
+#cat /proc/meminfo --> Displays memory usage.
+
+#cat /proc/modules -->Lists the kernel modules currently loaded.
+
+#cat /proc/uptime --> Displays the time the system has been up.
+
+#cat /proc/version --> Displays the kernel version
+
+/proc/partitions
+
+
+
+#cat > /tmp/file.txt
+#mkdir /tmp/test/
+#cat > /tmp/test/sample.txt
+#rm -f /tmp/test/sample.txt
+#rm -rf /tmp/test
+
+                 Absolute Paths  And Relative paths
+                 ===================================
+
+Absolute Path Names                                           Relative path Names
+=====================                                        ======================
+1. Path name begins with a slash (/)                       1. Doesn't begin with a slash
+
+2. Uses slashes to separate directories in                 2    --do--
+   the path names.                                  
+    
+3. Does not change unless the file is moved.               3. changes according to the present working 
+                                                              directory.
+example: For Absolute path
+======== 
+ #vim /usr/share/doc/samba-common-3.5.4/README 
+
+
+Absolute Path -----> /home/rps/linux.txt
+absolute path------? /home/rps/wipro/f2.txt
+
+
+Relative Path ----> linux.txt
+	      ---> wipro/f2.txt, wipro/f3.txt
+
+
+by default the path is relative, we have to explicitly mention the absolute path
+
+
+
+
+
+exaples: For Relative paths
+ #vim share/doc/samba-common-3.5.4/README
+ #vim doc/samba-common-3.5.4/README
+  
+
+
+
+
+
+
+
+

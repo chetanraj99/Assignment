@@ -1,0 +1,139 @@
+
+
+UCD ---> User Centric Design
+	--> UX
+	--> UI
+
+Persona ---> The target user for the application / product
+
+Empathy Maps
+Journey Maps
+Story Boards
+Wireframes
+
+
+Application Centric
+
+Software Engineering
+---------------------
+
+SDLC
+  --> Basic Principles
+  --> Process Models
+	--> Linear Waterfall Model
+	--> prototype models
+	--> Incremental Models
+	--> Agile Model
+		--> Scrum
+		--> Kanban
+  --> Quality Managment Aspects
+	--> TDD
+	--> BDD
+  --> Use Cases
+
+
+Second Hand Car purchase
+------------------------
+
+Do
+
+1. I will manually enquire about the cars with mechanics,vendors and relatives
+
+2. I will search in google for best resale car
+
+3. I will ask some of the car owners about their exp with the selected car
+
+
+Feels
+
+1. Frustrated in enquiring with diff modes
+
+Say
+
+I am not driver then how do I test my car
+I don't have funds is there any way to get finance
+
+Thought
+
+I want a car in budget less than 2L
+I want to purchase a car in the next 2 days / 2 weeks
+
+
+
+Are we developing a right product or 
+Are we developing a product right
+
+
+Software Engineering
+
+
+1. Product  --- General Purpose( Group of Target People)
+   Winows OS, ClearTrip.com, 
+
+2. Project  --- Specific Purpose (Specific customer)
+   icicbank.com 
+
+
+Software ---> Set of instructions written in a specific lang,to
+acheive a task/ goal
+
+
+Software Engineering by Roger S Pressman
+
+
+Characteristics of Software:
+
+1. Software is developed or engineered; 
+   it is not manufactured in the classical sense
+
+2. Software doesn’t “wear out.”
+
+3. Although the industry is moving toward component-based construction, 
+  most software continues to be custom built.
+
+4. 
+
+Software engineering
+encompasses a
+process, methods for
+managing and
+engineering software,
+and tools.
+
+
+A process is a collection of activities, actions, and tasks that are performed when
+some work product is to be created.
+
+
+A generic process framework for software engineering
+encompasses five activities:
+
+
+1. Analysis
+2. Design
+3. Coding
+4. Testing
+5. Implementation
+
+
+1. Communication
+2. Planning
+3. Modeling
+4. Construction
+5. Deployment
+
+
+Feasibility Study
+
+1. Technical Feasibility
+2. Operational Fesability
+3. Financial Feasibiltiy
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,81 @@
+steps to deploy image in Kubernetes
+===================================
+prerequisite: create docker image, in this case image used is : 
+sripraveen/restdemoimages
+
+
+1. start the docker desktop and enable the Kubernetes
+
+2. download the kubectl and install it
+
+3. download the minikube and install it
+
+4. minikube start (start the minikube server)
+
+5. kubectl get pods (to check is there any running pods are available)
+
+6. create a namespace called k8sdemo by using below command
+   
+   kubectl create namespace k8sdemo
+
+7. create a deploymen.yaml file and write the below deployment config
+
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restdemo-deployment
+  namespace: k8sdemo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: restdemo
+  template: 
+    metadata:
+      labels:
+        app: restdemo 
+    spec:
+      containers:
+      - name: restdemo
+        image: sripraveen/restdemoimages
+        ports:
+        - containerPort: 8081
+
+8. create a service.yaml file write below config
+apiVersion: v1
+kind: Service
+metadata:
+  name: restdemo-service
+  namespace: k8sdemo
+spec:
+  selector:
+    app: restdemo
+  ports:
+    - protocol: TCP
+      port: 8081
+      targetPort: 8081
+  type: LoadBalancer
+
+
+9. kubectl apply -f deployment.yaml
+10. kubectl apply -f service.yaml
+
+11. get the deployments info
+
+   kubectl get deployments -n k8sdemo
+
+12. check the pods created
+ 
+  kubectl get pods -n k8sdemo
+
+13. check the services available
+   kubectl get services -n k8sdemo
+
+14. get the external ip address for the service 
+   kubectl get service restdemo-service -n k8sdemo
+
+15. open the webbrowser and access the external ip address
+    http://<external-ip> 
+
+
+

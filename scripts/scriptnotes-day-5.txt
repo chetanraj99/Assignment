@@ -1,0 +1,350 @@
+For Loop  --> Entry Controlled loops
+
+While Loop --> Entry Controlled loops
+
+
+until ---> Exit controlled loop
+
+
+ls   --> list all the files and diectories
+ls -lrt
+
+cat
+
+mv
+
+cp
+
+rename
+
+clear
+
+chmod 
+
+
+nano 
+
+vi 
+
+
+grep -- search a specific text in the files or directories
+
+syntax:
+
+grep [options] pattern [file]
+
+Options
+
+-i :  ignore case
+-r : recursively
+-v : invert matching, displays non matching strings
+-l : display only the names of the files with matching lines
+-c : Display only a count of matching lines
+-w : Match whole word
+
+
+Pattern Matching
+----------------
+
+Regular Expressions
+
+grep "a.*b" file.txt --> a___b
+
+alphabet
+
+find
+----
+It is used to search for files and directories within a directory or within given hierarchy 
+
+syntax:
+
+find [path] [expression]
+
+Path = specifies the direcotires in or directory to search
+default if we dont provide path then it will look in the current directory only
+
+-name
+-size
+-mtime -- matches files modified exactly n days ago
+-mmin
+-user
+-group
+
+exec
+----
+To execute any valid another linux command
+
+wc
+---
+This is used for word count
+syntax:
+------
+
+wc [options] [file...]
+
+options:
+-l : display number of lines
+-w : display number of words
+-c : display the number of bytes
+-m : display the number of characters
+-L display the lenght of the longest line matched
+
+
+
+| ---> used to concatenate one output to another input
+
+cat file
+
+
+
+SELECT COMMAND
+--------------
+
+SWITCH -case COMMAND IN THE java, c++,c - it will select one block out of n number of blocks
+
+SELECT - SELECT one option from given n number of options
+
+SYNTAX:
+
+select variable in list
+do
+	#commands
+done
+
+
+IF-ELIF
+-------
+ if  [ $i = "Choice1" ] 
+     then
+         echo "Hellow world"
+elif [ $i == "Choice2" ]
+     then
+           echo "Goodbye world!"
+elif [ $i =  "Quit"  ] 
+     then
+       exit 
+else
+	st
+fi
+
+select command
+----------------
+
+#!/bin/bash
+
+PS3="Select your option: "  # Set the prompt text
+select choice in Option1 Option2 Option3 Quit; do
+    case $choice in
+        "Option1") echo "You selected Option1";;
+        "Option2") echo "You selected Option2";;
+        "Option3") echo "You selected Option3";;
+        "Quit") echo "Exiting the menu"; break;;
+        *) echo "Invalid choice";;
+    esac
+done
+
+
+Functions
+---------
+
+It is a program segment or sub program which performs a specific task
+
+Technically speaking, function is named set of commands / statements
+
+echo "hello world"  ---> monitors
+echo "bye"
+
+// 10 lines of code is associated 
+
+
+read n  ---> read the value from keyboard
+
+system defined functions  -- if the functionality is defined by lang developers
+who implemntation is given by lang
+
+read, echo
+
+user defined functions -- the functionality is given by the user
+
+syntax:
+
+[function] function_name(){
+	#statements 
+}
+
+display(){
+	echo "Welcome "
+}
+
+
+display praveen kumar
+
+ncr ---> n!/ (n-r)! * r!
+
+n! = 1 x 2 x 3 x4 .... x (n-1) x n
+3! = 1 x 2 x 3 = 6
+4! = 3! x 4 = 24
+5! = 4! x 5 = 120
+
+functions examples
+------------------
+
+function1.sh
+---------------
+
+#!/bin/bash
+
+greeting()
+{
+	echo "welcome to scripting"
+}
+
+greeting
+
+function2.sh
+------------
+#!/bin/bash
+
+greet(){
+	echo "welcome $1 to scripting"
+}
+
+greet kumar
+
+
+function3.sh
+-----------
+
+sum(){
+	result=$(($1+$2))
+	echo "The sum is $result"
+}
+
+diff(){
+	result=$(($1-$2))
+	echo "The sum is $result"
+}
+
+prod(){
+	result=$(($1*$2))
+	echo "$result"
+}
+
+
+sum 10 20
+diff 20 4
+
+p =$(prod 4 5)
+echo "The product is $p"
+
+
+function4.sh
+------------
+#!/bin/bash
+factorial(){
+  local f=1
+  local n=$1
+  if [ $n -eq 1 || $n -eq 0 ] ; then
+     f=1
+  elif [ $n -eq -1 ] ; then
+    echo  "not defined"
+  else
+    for(( i=2; i<=n; i++ ); do
+    	f= $((f*i))
+    done
+  fi
+ echo "$f"
+}
+
+read -p "enter a number" num
+echo "The factorial of $num is $(factorial $num)"
+
+
+Array's
+-------
+It is a collection of Homegenous elements or similar data items
+
+1. Indexed Arrays
+
+	a. They are sequential numerical indices to access the elements
+	b. Elements are accessed through the integers
+	c. order of elements are preserved
+	d. ordering is important
+
+	syntax:
+	
+	array_name = (values)
+	array_name=(v1,v2,v3,v4...vn)
+
+	arr=(10,20,30,40,50)
+	10<----$arr[0]
+	20<----$arr[1]
+	30<----$arr[2]
+	arr[3]=$arr[0]+$arr[2]
+	
+	${arr[@])}
+
+
+2. Associative Array's
+
+	b. they will use arbitarty keys to access elements rather than numerical indices
+	b. elements are accessed through strings or keys or any other data types
+	c. Order is not preserved
+	d. ordering is not important and value should be accessed in the form of key and value
+
+
+
+Operations
+--------
+
+1. Length of Array --> ${#arrayname[@]}"
+
+2. append one array to another array ---> array1+=(values)
+   array1+=array2 ===> array1= array1 + array2
+
+3. slicing an array ---> ${array[@]:start:length}
+
+
+program for linear search
+-------------------------
+
+#!/bin/bash
+nos=(10 20 30 40 50 60 70 80 90 100)
+read -p "enter number to search" x
+found="false"
+for (( i=0; i < ${#nos[@]}; i++ }; do
+	if [ ${nos[$i]} == $x ]; then
+		found="true"
+	fi
+done
+if [ $found == "true" ]; then
+echo "$x found"
+else
+echo "$x not found"
+fi
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

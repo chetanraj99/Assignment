@@ -1,0 +1,124 @@
+Primary Key - The key which is used to uniquely identify
+a record / tuple in the relation
+
+Satisfy two conditions
+
+1. No two values of key should be same
+
+2. There should not be null value
+
+student( htno, name, m1, m2, m3, total)
+
+1101,praveen,40,56,57
+1102,kumar,49,36,78
+1103,sunil,76,73,54
+null,satish,74,56,91
+
+
+customer (cid,cname,address,type)
+
+9001,praveen,hyderabad,gold
+9002,kumar,chennai,silver
+9003,sunil,bangalore,bronze
+cid in the customer table is primary key
+
+Orders(oid,odate,products,price)
+
+1001,13-05,mobile,laptio,50000,9001
+1002,12-05,tables,charis,12000,9003
+1003,11-05,chairs,laptops,35000,9004-- (discard this record)
+cid in the orders table is a foreign key
+
+Person (fname,lname,mname,address,mobile)
+sai ram krishna hyderabad,9502110230
+sai ram krishna hyderabad,9948121217
+
+
+fname+lname ----> composite key
+
+address ---> dno,street,city,pin
+
+
+Employee
+
+1,kumar,19-01-2020,lead,9011
+2,sunil,10-06-2007,manager,9011
+
+Department
+9011,finance,denver
+9012,quality,boston
+9013,operations,chicago
+
+
+Employee <-------------------> Employee  (unary)
+1				2
+1-1, 1-m 
+
+
+Employee works for Department
+1d ---mE
+
+1,kumar,19-01-2020,lead,9011 <----> 9011,finance,denver
+Emp,Dept <----Binary
+
+
+2. Customer,Order,Items
+ Min 3 entities are required to establish a relation
+
+Terenary
+
+
+
+Student --- Teacher  (relation is binary, cardinaity is 1-1)
+
+
+student - course (relation is binary, cardinality is m-m)
+
+1. student
+2. department
+3. instructor
+4. course
+
+Doctor
+D1001,Krishna,Surgen,10
+D1002,Ramesh,Cardiologist,20
+D1003,Mahesh,Peadiatrician,30
+
+Patient
+P1001,Anil,Hyderabad,40
+P1002,Rani,Chennai,34
+P1003,Raghava,Delhi,56
+
+Medicines
+M1001,Paracetmol,500,12-06-2025
+M1002,Citrizen,10,15-12-2026
+M1003,Zentamicin,5,20-03-2027
+
+
+
+Prescription
+-------------
+P1002,D1002,M1001,1,10
+P1002,D1002,M1002,2,10
+
+
+Normalization is the process to eliminate all the redundant and anomolies
+
+Normalization is the process of splitting a large redudant table with anomolies
+into smaller consituent tables without having redundancy and anomoly
+
+Normal Forms
+
+1. 1nf -- First Normal Form --A relation is said to be in first normal form
+iff it doesnot have any multivalued attributes
+
+2. 2nf -- Second Normal Form - A relation is said to be in second normal form
+iff it is in 1nf and every non key attribute is fully functionally dependent
+on primary key
+
+3. 3nf - Third normal form - A relation is said to be in third normal form
+iff it is in 2nf, and there are no transitive dependencies on the primary key
+
+c1(p), c2, c3, c4<----c5
+
+

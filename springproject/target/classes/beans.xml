@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd">
+
+	<!-- bean definitions here -->
+
+	<bean id="emp" class="springproject.model.Employee"
+		scope="singleton">
+		<property name="empid" value="1001" />
+		<property name="name" value="Anil" />
+		<property name="dept" value="Finance" />
+
+	</bean>
+	
+	<bean id="adr1" class="springproject.model.Address"
+		>
+		<property name="dno" value="302" />
+		<property name="street" value="Shanti Nagar" />
+		<property name="city" value="Hyderabad" />
+
+	</bean>
+	
+	<bean id="address" class="springproject.model.Address"
+		>
+		<property name="dno" value="678" />
+		<property name="street" value="T Nagar" />
+		<property name="city" value="Chennai" />
+
+	</bean>
+	
+	<bean id="stu" class="springproject.model.Student" 
+			init-method="init" destroy-method="destroy">
+			
+		<constructor-arg value="80001" />
+		<constructor-arg value="Kamal" />
+		<constructor-arg value="CSE" />
+
+	</bean>
+	
+	<bean id="person" class="springproject.model.Person" >
+	<property name="pid" value="5001" />
+	<property name="name" value="Manoj"/>
+	<property name="address" ref="adr1" />
+	</bean>
+	<!-- 
+	<bean id="stu" class="springproject.model.Student"
+		scope="singleton">
+		<property name="htno" value="9001" />
+		<property name="name" value="Balaji" />
+		<property name="branch" value="EEE" />
+
+	</bean>
+	-->
+</beans>

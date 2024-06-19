@@ -1,0 +1,406 @@
+Methods in Thread Class
+------------------------
+1. public void run(): 
+	is used to perform action for a thread. ---> Linear Execution, without any multithreading
+
+2. public void start(): 
+	starts the execution of the thread.JVM calls the run() method on the thread.
+	multithreading
+
+3. public void sleep(long miliseconds): 
+	Causes the currently executing thread to sleep (temporarily cease 			execution) for the specified number of milliseconds.
+
+4. public void join(): 
+	waits for a thread to die.
+
+5. public void join(long miliseconds): 
+	waits for a thread to die for the specified miliseconds.
+
+6. public int getPriority(): 
+	returns the priority of the thread.
+
+7. public int setPriority(int priority): 
+	changes the priority of the thread.
+	t2.setPriority(8);
+	t1.setPriority(1);
+
+8. public String getName(): 
+	returns the name of the thread.
+	Thread-0, Thread-1, Thread-2
+
+9. public void setName(String name): 
+	changes the name of the thread.
+	DbThread, UIThread,
+
+10. public Thread currentThread(): 
+	returns the reference of currently executing thread.
+
+11. public int getId(): 
+	returns the id of the thread.
+
+12. public Thread.State getState(): 
+	returns the state of the thread.
+
+13. public boolean isAlive(): 
+	tests if the thread is alive.
+
+14. public void yield(): 
+	causes the currently executing thread object to temporarily pause and 
+	allow other threads to execute.
+
+15. public void suspend(): 
+	is used to suspend the thread(depricated).
+
+16. public void resume(): 
+	is used to resume the suspended thread(depricated).
+
+17. public void stop(): 
+	is used to stop the thread(depricated).
+
+18. public boolean isDaemon(): 
+	tests if the thread is a daemon thread.
+
+19.public void setDaemon(boolean b): 
+	t.setDeamon(true);
+	t.isDeamon()-->true
+	marks the thread as daemon or user thread.
+
+20. public void interrupt(): 
+	interrupts the thread.
+
+21. public boolean isInterrupted(): 
+	tests if the thread has been interrupted.
+
+22. public static boolean interrupted(): 
+	tests if the current thread has been 	interrupted.
+
+
+
+
+
+
+
+
+
+class MyThread extends Thread{
+public void run(){
+
+	}
+	public void sleep(){
+	s.o.p("Hello");
+	}
+}
+MyThread t = new MyThread();
+t.sleep();
+
+
+
+class MyThread implements Runnable
+{
+	public void run(){
+
+	}
+}
+
+MyThread t1 = new MyThread();
+
+Thread t  = new Thread(t1);
+
+	t.start();
+
+
+
+
+	
+	synchronized{
+	
+	}
+
+
+	wait()
+
+
+	notify()
+
+	notifyAll()
+	
+Synchronization
+----------------
+It is the process of locking the threads
+
+1. at block level ( block level)
+2. at Method Level
+3. at resource level (data level)
+
+Synchronization is used in inter thread communication
+
+Wait, Notify and NotifyAll methods ----> Object class
+
+Producer - Consumer Problem
+
+Producer -- All produces the items
+Consumer -- Always consumes the items produced by producer
+
+Producer ----no sync -----consumer
+
+producer is producing 10 item/sec-------------> consumer is consuming 5 items /sec  (5 items were discorded)
+
+Proudcer is producing 10 items/sec -----------> consumer is consuming 20 items/sec (more idle time for
+consumer)
+
+Rate of producer ------in synch with ----------- Rate of consumer
+
+
+
+
+
+Ticket Reservation System
+
+Passenger1-------> Hyd to Chennai ---> 21/05/24 at 10 pm on SVR Tour MultiAxle Bus seat 10
+
+Passenger2-------> Hyd to Chennai ---> 21/05/24 at 10 pm on SVR Tour MultiAxle Bus seat 10
+
+Only one person will be able book the ticket
+
+
+On the database we have the concept of locking
+
+t1-----> 10  -----> 9
+
+
+T1
+
+class Reservation{
+
+	public void bookSeats(int seats){
+		// it will book the seats;
+		50 lines of code
+		Actual problem will be with only 10 lines
+
+	  synchrozied{
+		s1
+		s2;
+		s3;
+		;
+		;
+		s10;
+		a
+		b
+		c	
+		d
+	  }
+	
+	}
+	public void payment(int amount){
+		// process the payment for booking amount
+	}
+	public void sendTicket(String email, int phone){
+		// send the ticket to email and phone
+	}
+}
+
+T1.bookSeats();
+T2.bookSeats();---> T1 will be allowed only when T2 is completed
+
+
+communication between the threads
+
+
+
+Producer <-------> Consumer Problem
+
+
+Thread class to create the Thread
+
+2. Runnable Interface ----> Functional Interface
+
+	public void run();
+
+	public inteface Runnable{
+		public void run();
+	}
+
+	class MyData implements Runnable{
+		public void run(){
+			// write the code for run();
+		}
+	
+	}
+	Runnable r = ()-> for(int i=0;i<=100;i++) System.out.println(i);
+	Thread t1 = new Thread(r);
+
+
+	MyData d = new MyData();
+	Thread t1 = new Thread(d);
+	Thread t2 = new Thread(d);
+
+	t.start();-----> start the thread
+
+
+	class MyThread1 extends Thread{
+		public void run(){
+			for loop for 1 to 10;
+		}
+	}
+	MyThread1 t1 = new MyThread1();
+	t1.start();
+
+	class MyThread2 extends Thread{
+		public void run(){
+			for loop for 1 to 10;
+		}
+	}
+	MyThread2 t2 = new MyThread2();
+	t2.start();
+
+
+	Thread Pool
+	-----------
+	size = 3;
+
+	u1 ---->t3 -----> booking
+	u2------>----> booking
+	u3------->t2  ---> booking
+	u4-------> t1----->booking
+	
+
+	Callable -----> 
+	public void run()----> 
+
+	Future ----> 
+
+	Exeuctors ----> 
+
+	
+	Executors, Future, Callable
+
+
+Java provides powerful utilities for handling thread pools and concurrency tasks in a more efficient and manageable way through the java.util.concurrent package. This package includes classes and interfaces such as ExecutorService, Executors, Callable, Future, and others. Below is an example demonstrating the use of thread pools and concurrency utilities.
+
+
+import java.util.concurrent.*;
+
+class Task implements Callable<String> {
+    private final int taskId;
+
+    public Task(int taskId) {
+        this.taskId = taskId;
+    }
+
+    @Override
+    public String call() throws Exception {
+        System.out.println("Task " + taskId + " is starting.");
+        // Simulate some work with Thread.sleep
+        Thread.sleep(2000);
+        System.out.println("Task " + taskId + " is completed.");
+        return "Result of Task " + taskId;
+    }
+}
+
+public class ThreadPoolExample {
+    public static void main(String[] args) {
+        // Create a fixed thread pool with 3 threads
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        // Create a list to hold Future objects
+        List<Future<String>> futures = new ArrayList<>();
+
+        // Submit tasks to the executor service
+        for (int i = 1; i <= 5; i++) {
+            Task task = new Task(i);
+            Future<String> future = executorService.submit(task);
+            futures.add(future);
+        }
+
+        // Retrieve results from Future objects
+        for (Future<String> future : futures) {
+            try {
+                String result = future.get();
+                System.out.println(result);
+            } catch (InterruptedException | ExecutionException e) {
+                e.printStackTrace();
+            }
+        }
+
+        // Shutdown the executor service
+        executorService.shutdown();
+        try {
+            if (!executorService.awaitTermination(60, TimeUnit.SECONDS)) {
+                executorService.shutdownNow();
+            }
+        } catch (InterruptedException e) {
+            executorService.shutdownNow();
+        }
+
+        System.out.println("Main thread ending.");
+    }
+}
+
+
+Java's java.util.concurrent package provides several thread-safe collections, commonly referred to as concurrent collections. These collections are designed to handle concurrent access, allowing multiple threads to interact with them without causing inconsistent states or race conditions. Some of the commonly used concurrent collections include ConcurrentHashMap, CopyOnWriteArrayList, and BlockingQueue
+
+ConcurrentHashMap:
+
+A thread-safe version of HashMap where reads are non-blocking and updates are performed with fine-grained locking.
+CopyOnWriteArrayList:
+
+A thread-safe version of ArrayList where all mutative operations (add, set, remove) are implemented by making a fresh copy of the underlying array.
+
+import java.util.concurrent.ConcurrentHashMap;
+import java.util.concurrent.CopyOnWriteArrayList;
+import java.util.concurrent.ExecutorService;
+import java.util.concurrent.Executors;
+import java.util.concurrent.TimeUnit;
+
+public class ConcurrentCollectionsExample {
+
+    public static void main(String[] args) throws InterruptedException {
+        // Create a ConcurrentHashMap
+        ConcurrentHashMap<String, Integer> concurrentMap = new ConcurrentHashMap<>();
+        
+        // Create a CopyOnWriteArrayList
+        CopyOnWriteArrayList<String> concurrentList = new CopyOnWriteArrayList<>();
+        
+        // Create a thread pool
+        ExecutorService executorService = Executors.newFixedThreadPool(3);
+
+        // Submit tasks to update ConcurrentHashMap
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            executorService.submit(() -> {
+                concurrentMap.put("Key" + index, index);
+                System.out.println(Thread.currentThread().getName() + " added Key" + index + " to ConcurrentHashMap");
+            });
+        }
+
+        // Submit tasks to update CopyOnWriteArrayList
+        for (int i = 0; i < 10; i++) {
+            final int index = i;
+            executorService.submit(() -> {
+                concurrentList.add("Element" + index);
+                System.out.println(Thread.currentThread().getName() + " added Element" + index + " to CopyOnWriteArrayList");
+            });
+        }
+
+        // Shutdown the executor service and wait for tasks to complete
+        executorService.shutdown();
+        executorService.awaitTermination(1, TimeUnit.MINUTES);
+
+        // Print the contents of ConcurrentHashMap
+        System.out.println("ConcurrentHashMap contents:");
+        concurrentMap.forEach((key, value) -> System.out.println(key + " -> " + value));
+
+        // Print the contents of CopyOnWriteArrayList
+        System.out.println("CopyOnWriteArrayList contents:");
+        concurrentList.forEach(System.out::println);
+    }
+}
+
+
+		
+
+
+
+
+
+

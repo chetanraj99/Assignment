@@ -1,0 +1,133 @@
+JDBC
+----
+
+Java Database Connectivity
+
+API (Applicatin Program Inteface)---JDBC
+
+Java Classes and Intefaces
+
+JDBC program that you have written will be same with minor changes in properties
+for any kind of database
+
+
+Drivers
+-------
+
+Audio Driver----> digital data to physical data
+Video Drivers ----> digital data to light 
+
+
+JDBC API <------------------------> Database 
+Java              jdbc driver       Oracle
+
+
+4 types of drivers
+------------------
+1. Type1 Driver (JDBC-ODBC Bridge)
+
+		Java Program <------> JDBC <------> ODBC(MSC) <------> ODBC for Oracle <--------> Oracle
+		Java Program <------> JDBC <------> ODBC <------> ODBC for MySQL  <--------> MySQL
+
+
+
+2. Type2 Driver (Partly Java and Partly Native API)
+	
+	Java Program <------> JDBC <------> Native API For Oracle <----------> Oralce
+	Java Program <------  JDBC <------> Native API for MySQL <-----------> MySQL
+
+3. Pure Net Protocol
+	Net Protocol purely a network communication protocol for java 
+
+4. Pure Java (Thin Client)
+         
+	Java Program <----> JDBC <----> Oracle
+	Java Program <-----> JDBC <----> MySQL
+
+InterruptedException  ----- Threads
+
+steps for JDBC Program to connect to any database
+-------------------------------------------------
+
+1. Load the Driver
+	Class.forName("driver");
+
+
+2. Establish the connection
+
+Connection con = DriverManager.getConnection(url,username,pwd); 
+
+
+ class Maths{
+	public static int fact(int n){
+		return fact;
+	}
+}
+
+int k = Math.fact(4);
+
+// url--> host:port://sid localhost:1521/orcl
+
+3. create the statement object
+    Statement st = con.createStatement();
+   
+
+4. write the query and execute it
+	String qry ="select * from emp";
+	
+	ResultSet rs= st.executeQuery(qry)------> when the query is select statement
+	int k = st.executeUpdate(qry)------> When the query is dml statement
+	//st. execute(qry) ------------> when the query is batchprocessing or any normal sql query
+	
+   
+
+5. fetch the results and process it
+  fetch the values from result set and display on console
+
+6. close the connection 
+    rs.close();
+    st.close();
+    con.close();
+	
+
+
+java.sql.*;
+
+SQLException
+
+classes and Interfaces used in JDBC from java.sql package
+----------------------------------------------------------
+
+1. DriverManager
+
+2. Connection
+
+3. Statement
+
+4. ResultSet
+
+5. PreparedStatement
+
+7. CallableStatement
+
+
+
+Layered Architecture
+--------------------
+
+
+Loose coupling of the services
+
+KISS -- Keep It Short and Simple
+
+
+
+
+
+
+
+
+
+
+
+

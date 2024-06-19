@@ -1,0 +1,45 @@
+Multithreading
+--------------
+It is the process of simultenously executing the parts of the same program
+The part of the program which is executing is called a Thread
+
+s1
+s2----> interrupt --->i/o
+s3
+------------>
+s4
+s5
+s6
+
+s7
+s8
+s9
+
+
+Multi Tasking
+--------------
+The ability of an entity to perform / execute more than one task at a time.
+
+
+Thread Class
+Runnable Interface
+
+Thread life cycle-----> 
+
+Methods in Thread class
+------------------------
+
+1. public void run()---> will contain the actual task of the thread
+2. public void start()---> to start the thread
+3. public int getPriority()---> returns the priority of thread
+4. public void setPriority(int prirority)--> change the default 
+priority
+
+
+
+0-10 ---> Thread priorities
+by default thread proprity is 5
+
+
+
+

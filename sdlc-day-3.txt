@@ -1,0 +1,172 @@
+Agile Methodology
+------------------
+
+12 point formula or also Agile Principles
+
+Scrum ----> Incremental and Iterative
+------
+
+1. Epic --  The Functionalities or the project to develop (Online banking system)
+
+
+2. User Stories --- An user story represent a small executable task
+
+us1 -- Small Production ready feature delivered to customer
+us2
+us3
+us4
+us5
+us6
+us7
+us8
+
+
+3. Sprint Planning  -- No of Sprints
+
+   Sprint-1  - us1,us2,u5,u8 ----> Scrum team sprintbacklog(us2,us8)
+   Sprint-2  - us3,us4,u7,u6
+
+Product Backlog --> us1 to us8
+
+   Sprint-3  - us2,us4,us9
+   Backlog sheet --> us3,us5,us8, us2,us4,us9
+  Team 
+  d1  - us8
+  d2  - us2
+  d3  - 	
+
+Every day scrum master conducts a standup call
+
+
+At the sprint-2
+
+     Sprint-1  - us1,us6, us10  ----> Scrum team
+   
+   Backlog sheet --> us3,us5,us8, us2,us4,us9, us7, u11
+
+   Sprint-2  - u7,us3,us5
+   Sprint-3  - us2,us4,us9,us8
+
+
+Definition of Done  (DoD) 
+-------------------------
+us1 ---> Product Inventory
+
+
+Acceptance Criteria
+
+
+
+
+Not Important	Not Urgent
+Important       Not Urgent
+Important 	urgent  ---most prirority
+Not Important   urgent
+
+Expense Management System - Expense Management is a system for submiting, approval and tracking of
+all the expenses incured by the employee. It should allow the employees to submit the expenses of
+various categories along with some attachments, edit the request, delete the request and see all 
+his previous submitted requests. A manager should be able to see all the expenses submitted by all
+his team members and should be able to approve or reject, he can also view the statistics on various
+grounds and also able to submit his own request.
+
+
+Agile Planning and Estimation
+-----------------------------
+Agile planning and estimation are crucial aspects of Agile methodologies, focusing on how teams organize their work, set priorities, and forecast project timelines
+
+
+Agile Planning:
+
+Agile planning is iterative and flexible, allowing teams to adapt to changing requirements and priorities throughout the project. 
+
+It typically involves the following key activities:
+
+
+1. Product Backlog Refinement: 
+   Agile planning begins with creating and refining the product backlog, which is a prioritized list of features, 
+   user stories, and tasks that need to be completed. 
+
+2. Release Planning: Release planning involves determining the scope and timeline for delivering a set of features or 
+   functionalities, often referred to as a release or a milestone.
+
+3. Sprint Planning: Sprint planning occurs at the beginning of each sprint, which is a fixed time period (usually 1-4 
+   weeks) during which the team works to deliver a potentially shippable product increment.  
+
+4. Daily Planning: In addition to sprint planning, Agile teams engage in daily planning activities during daily 
+   stand-up meetings.
+
+5. Adaptive Planning: Agile planning is adaptive and iterative, meaning that plans are continuously refined and 
+   adjusted based on feedback, changes in priorities, and new information that emerges throughout the project.
+
+Agile Estimation:
+
+Agile estimation involves estimating the effort required to complete tasks, user stories, or features in the product backlog. Rather than providing precise estimates, Agile estimation focuses on providing relative estimates based on the complexity, uncertainty, and effort involved. 
+
+Here are some common Agile estimation techniques:
+
+1. Story Points
+
+2. Ideal Days
+
+3. Planning Poker
+
+4. Relative Estimation
+
+5. Velocity
+
+Common challenges and solutions in Daily Standup communication
+
+
+
+Common Challenges:
+
+Lack of Focus: 
+	Daily stand-ups can sometimes lose focus, with team members going off-topic or discussing issues that are not 	relevant to everyone.
+
+Uneven Participation: 
+	In some stand-ups, certain team members may dominate the conversation, while others remain 	quiet or 	disengaged.
+
+Status Updates Only: 
+	Some teams treat stand-ups as mere status updates, where team members report their progress without 	discussing obstacles or collaborating on solutions.
+
+Long Meetings: 
+	Stand-up meetings can become too long if discussions are not kept concise and focused.
+	Remote Communication Challenges: In distributed teams, remote stand-up meetings may face additional 	challenges, such as technical issues, time zone differences, or difficulty reading non-verbal cues.
+
+Solutions:
+
+Set Clear Objectives: 
+	Start each stand-up meeting by reminding everyone of its purpose: to provide a brief update on progress, 	discuss any obstacles, and align on priorities for the day.
+
+Time-Boxed Updates: 
+	Encourage team members to keep their updates concise and time-boxed, focusing on what they accomplished since 	the last stand-up, what they plan to work on next, and any obstacles they're facing.
+	Follow the Three Questions Format: Stick to the three questions commonly used in Agile stand-ups: What did 	you do yesterday? What will you do today? Are there any obstacles or blockers?
+
+Rotate Speaking Order: 
+	To ensure equal participation, consider rotating the speaking order in each stand-up. This encourages all 	team members to actively engage and share updates.
+
+Address Obstacles Collaboratively: 
+	If a team member raises an obstacle during the stand-up, encourage the team to collaborate on finding 	solutions rather than just reporting the issue. This fosters a problem-solving mindset and promotes teamwork.
+
+Limit the Meeting Duration: 
+	Set a time limit for the stand-up meeting and stick to it. This encourages brevity and helps prevent 	discussions from dragging on.
+
+Use Visual Aids: 
+	If possible, use visual aids such as virtual whiteboards or Kanban boards to make it easier for team members 	to follow along and stay focused, especially in remote settings.
+
+Encourage Active Listening: 
+	Remind team members to actively listen to their colleagues' updates and to ask clarifying questions if 	needed. This promotes engagement and understanding within the team.
+
+Provide Feedback: 
+	After each stand-up, gather feedback from team members on how the meeting went and identify any areas for 	improvement. This continuous feedback loop helps refine the stand-up process over time.
+
+
+
+
+
+
+
+
+
+

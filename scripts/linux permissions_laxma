@@ -1,0 +1,316 @@
+                     Secure Linux File Access
+                    =========================
+
+
+OBJECTIVES:
+===========
+1. User,Group,Other (UGO) Concepts
+2. Manage permissions  from the command line
+
+=> In this unit you will learn how to manage the ownership and permissions of files and directories from command line. 
+
+
+Why is file security important on multiuser system?
+
+1. Prevent unauthorized access and modification by unauthorized users. 
+2. Permit collaboration among users working on a common task. 
+
+
+
+#key points
+there are also three basic permissions for files and directories; read , write, execute. 
+
+   absolute mode/numeric mode            symbolic mode
+UGO permissions
+===============
+FIle Permissions                   Directory Permissions
+----------------                  -----------------------
+r,4 = read, view                     r = list contents
+w,2 = write, update                  w = create/delete contents
+x,1 = execute.                       x = access(enter into the directory)
+- = a permission isn't set         - = a permission isn't set
+
+# ls -l <file name>   --> to see any file attributes/properties
+#ls -ld <dir name>    --> to see any directory attributes/properties
+
+#ls -l install.log
+-------------------------------------------------------------------------------------
+-rw-r--r--. 1 root root 42048 Oct 26 10:36 install.log
+-------------------------------------------------------------------------------------
+- --> indicates type of file
+there are total 7 types of files
+================================
+1. -  --> indicates Regular file
+2. d  --> indicates directory
+3. c  --> indicates character file
+4. b  --> indicates block speical file
+5. l  --> indicates link file
+
+6. s  --> indicates socket file }
+7. p  --> indicates named pipe  }  IPC ( inter process communication) 
+
+
+
+Link files:
+===========
+link file are like short cuts in windows, to access the same file in multiple locations we use link files. It is also called as "soft link" or "symbolic link"
+
+#ln -s laxma.txt  /opt
+#ls -l /opt/laxma.txt   ( to see type of file )
+
+     IN GUI
+     ======
+#ctrl+shift+drag&drop  
+     OR
+right click and makelink 
+
+BLOCK FILE: Device files can be classified as "character special" or "block special files"
+
+Character special:
+=================
+character special files represent devices that interact with linux character-by-character
+
+ex: terminal, printers
+#tty
+#ls -l /dev/pts/1
+
+Block special files:
+===================
+Block speical files represent devices such as hard disk or pendrives which interact with linux using bloks of data.
+
+#ls -l /dev/sda
+#ls -l /dev/sdb1
+
+
+
+NAMED PIPE FILE:
+================
+A named pipe allows two unrelated processes running on the same system or on two different systems to communicate with each other and exchange data. Named pipes are uni-directional. They are also referred to as FIFO because they use First in First Out mechanism. Named pipes make inter process communication(IPC).
+
+#find / -type p  --> to find the named pipe files
+#
+#mknod -m -t p p  --> to create a named pipe
+#mv p laxman
+ 
+     OR 
+#mkfifo laxma
+#ls -l laxma
+
+Socket Files:
+============
+A socket is a named pipe that works in both directions. IN Other words, a socket is a two-way named pipe. It is also a type of  IPC. Sockets are used by client/server programs. 
+rw-r--r--
+=========
+ rw-   --> permissions belongs    "owner" of the file
+ r--   --> permissions belongs to "group" owner of the file
+ r--   --> permissions belongs to "others"
+
+. --> means no acl
++ --> means acl is applied
+
+#ls -ld <dirname>  --> to see attributes of  a directory.
+
+Permission can be edited in two ways 
+1. absolute mode
+2. symbolic mode
+
+
+  rwxr-xr-x = 755
+  rw-r--r-- = 644
+
+==>chmod is the command line tool available to change the file/directory permissions
+   chown  --> to change the ownership of a file/directory         
+   chgrp  --> to change the group ownership of a file
+
+
+chmod syntax:
+=============
+
+#chmod whowhatwhich file|directory
+
+who   =u,g,o,a
+what  =+,-,=
+which =r,w,x
+
+         symbolic mode
+         -------------
+NOTE: u --> owner, g--> group, o --> others ( student,visitor etc)
+
+#chmod u-w,g+w,o+w install.log 
+#chmod u=rw,g=r,o=r install.log
+#chmod a=w install.log
+------------------------------------------------------
+--w--w--w- 1 root root 13 Feb 19 11:23 install.log
+------------------------------------------------------
+#chmod a+rwx install.log
+------------------------------------------------------
+-rwxrwxrwx 1 root root 13 Feb 19 11:23 install.log
+------------------------------------------------------
+           
+        absolute mode/Numeric mode
+        -------------------------
+#chmod 466 install.log
+#chmod 666 install.log
+
+
+
+
+Note: + --> add
+      - --> remove
+      = --> override
+
+
+#chown  --> to change the ownership of a file/directory
+
+#chown student install.log
+#cat > /test.txt
+#chown student /test.txt          --> ownership of file to student
+#chgrp student /redhat
+#chown student:student /test.txt  --> owner&group ownership to student
+##
+
+#chgrp -R student /redhat
+#chown student:student /redhat/
+#chown -R student:student /redhat --> recursively changes owner and group owner of the directory.
+
+
+ NOTE : IF ROOT CREATES A FILE & DIRECTORY
+                           644    755 
+        IF NORMAL USER CREATES A FILE & DIRECTORY  DEFAULT PEMISSIONS WILL BE
+                                 664    775 
+
+REASON:  deafault permission = full permissions - umask
+         
+to change umask temporarly #umask 0002 
+                           # vim /etc/bashrc ( to change permanently )
+                           #vim /etc/profile
+
+                                   PRACTICE QUIZ
+                                   =============
+
+
+Practice Quiz
+
+Linux User, Group, Other Concepts
+
+Answer the True/False Questions based on the following user and file congfigurations.
+-------------------------------------------------------------------------------------------------------
+users and their  groups
+
+lucy     lucy,ricardo
+ricky    ricky,ricardo
+ethel    ethel,mertz
+fred     fred,mertz
+
+File attributes (permissions, user & group ownership, name):
+
+drwxrwxr-x  ricky   ricardo    dir (which contains the following files)
+ -rw-rw-r--  lucy  lucy        lfile1
+ -rw-r--rw-  lucy  ricardo     lfile2
+ -rw-rw-r--  ricky  ricardo    rfile1
+ -rw-r-----  ricky  ricardo    rfile2
+
+Questions regarding the lfile1 file.
+
+1.  lucy can change the contents of lfile1
+    (select one of the following)
+    a. True
+    b. False
+
+2. fred can change the contents of lfile1
+    (select one of the following)
+   a. True
+   b. False
+ 
+3. fred can delete lfile1
+   (select one of the following)
+   a. True
+   b. False 
+
+4. ricky can change the contents of lfile1
+   (select one of the following)
+   a.True
+   b.False
+
+5. ricky can delete lfile1
+   (select one of the follwing)
+   a.True
+   b.False
+
+
+
+Users and their groups:
+
+lucy   lucy,ricardo
+ricky  ricky,ricardo
+ethel  ethel,mertz
+fred   fred,mertz
+
+File attributes( permissions, user & group ownership, name):
+
+drwxrwxr-x  ricky  ricardo   dir(which contains the following files)
+ -rw-rw-r--  lucy  lucy      lfile1
+ -rw-r--rw-  lucy  ricardo   lfile2
+ -rw-rw-r--  ricky ricardo   rfile1
+ -rw-r-----  ricky ricardo   rfile2
+
+Questions regarding the lfile2 file:
+
+1. ricky can view the contents of lfile2
+   (select one of the following)
+   a. True
+   b. False
+
+2. ricky can change the contents of lfile2
+   (select one of the following)
+   a.True
+   b.False
+
+3. ricky can delete lfile2
+   (select one of the following)
+   a.True
+   b.False
+4. ethel can view the contents of lfile2
+   (select one of the following)
+   a. True
+   b.False
+5. ethel can chage the contents of lfile2
+   (select one of the following...)
+   a. True
+   b. False
+
+
+Users and their groups:
+
+lucy   lucy,ricardo
+ricky  ricky,ricardo
+ethel  ethel,mertz
+fred   fred,mertz
+
+File attributes (permissions, user & group ownership, name):
+ drwxrwxr-x  rikcy  ricardo   dir(which contains the following files)
+ -rw-rw-r--  lucy    lucy      lfile1
+ -rw-r--rw-  lucy    ricardo   lfile2
+ -rw-rw-r--  rikcy   ricardo   rfile1
+ -rw-r-----  ricky   ricardo   rfile2
+
+Questions regarding the rfile1 file:
+
+1. Lucy can view the contents of rfile1
+   (select one of the following...)
+   a.True
+   b.False
+2. lucy can change the contents of rfile1
+   (select one of the following ...)
+   a.True
+   b.False
+3. fred can view the contents of rfile1
+   (select one of the following...)
+    a.True
+    b.False
+4. fred can change the contents of rfile1
+   (select one of the following...)
+   a.True
+   b.Flase
+
+

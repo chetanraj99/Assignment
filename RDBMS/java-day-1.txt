@@ -1,0 +1,550 @@
+Java Full Stack
+
+Java ---> Spring ---> Springboot ---> DevOps
+
+
+Standalone ----> It will run only in one machine at a time and only one user can access the
+application
+
+Client-Server---> It can run on local network where a limited number of people can access the
+application
+
+Enterprise Applications---> Can run on internet and any number of users can access the application
+
+Distributed Applications ---> An Enterprise application with functionalities spread over the multiple servers
+
+
+
+C, C++, Cobol -----> standalone, some extent of Client-server
+
+Microsoft  ----> DotNet
+Sun Microsystems  -->Java ---> (Oracle)----> 1994
+
+Java
+----
+
+1995 --> Jdk1.0
+
+
+Jdk4.0
+
+JDK7 ----> Java is Object Oriented only
+Jdk8-----> 70  Functional Program lang also (Lambda Expressions)
+
+Jdk11----> 20  ----> 
+
+Jdk17----> 10
+
+
+2024--> Jdk21
+
+PPL
+---
+24--->Recog Lang
+100---> 
+
+1. Procedure Oriented
+2. Object Oriented
+3. Functional Langugage-----> Functions are considerd as objects
+4. Logic Oriented
+5. Scpriting Lang
+
+
+
+Object Oriented Features
+------------------------
+Object Oriented Programming is making the programmable element as if it behaves like a 
+real time entity.
+
+Every thing in the real world is considered as objects
+
+
+everything that exists in real is called an object
+
+
+we will identify the object based on its behaviour
+
+
+1. class  -- A collection of objects which are exhibiting the same behaviour
+
+2. Object  -- An element which has some specific behaviour or an instance of the class
+              is called an object
+
+classes are logical entities and objects are real time entities
+classes will specify the properites for a group whereas the object will specify for a single entity
+
+classes cannot exists on its own, but it will exists in the form of objects
+
+class <classname>
+{
+
+	variables
+	methods
+}
+
+Encapsulation- Wrapping / Binding the data and methods into a single entity
+it is for the security for your data
+
+
+3. Encapsulation
+
+4. Polymorphism -- The ability of an entity to exists in more than one form
+	a. Compiletime Polymorphism-- The behaviour is identified at compilation time itself
+		eg>	 Method Overloading
+			 Operator Overloading
+		
+			public int sample(int a, int b)
+			{
+				// some task
+			}
+			
+			sample(10,20);-----> valid
+		        sample("praveen","kumar")----> Invalid
+			System.out.println("Hello") ;----> Hello
+			System.out.println(3+4);---------> 7
+			System.out.println("Hello" +" Hai");---> Hello Hai
+			System.out.println(true);---------> 1
+			System.out.println("true");-------> true
+			System.out.println(3.141+5.678)---->9.168
+
+			When two or more methods are having the same name and if they differe
+			in any one of the following:
+
+			1. number of parameters
+			2. type of parameters
+				
+			
+			
+		
+	b. Runtime Polymorphism -- The behaviour is identified only at runtime time
+	   			   Method Overirding
+
+	class Shape1{
+		pubilic int area(){
+			sop("from shape1");
+		}
+	}
+	class Shape2 extends Shape1{
+		public int area(){
+			sop("from shape2");
+		}
+	}
+	Shape2 s2 = new Shape2();
+	s2.area();----> //from shape2
+
+	THe process of supressing the base class method in the derived class when
+	both the methods are having the same signature
+
+	
+
+
+
+
+
+5. Inheritance  -- Acquiring the properties from one class to another class
+      A class which is giving properties to another class is called base class / Parent class
+      A class with is acquiring the properties from the base / parent is called derived / child class
+ 
+	base -----> derived (single inheritance)
+	class1 -----> class2 -----> class3 (multilevel inheritance)
+	class1--
+		|------class3 (multiple inheritance) (interfaces)
+	class2--	
+
+		
+
+6. Data Abstraction -- Selective hiding and selective display of the data is called
+   
+
+Standars and Naming conventions to be followed in writing java programs
+-----------------------------------------------------------------------
+
+1. every class name must be a noun and it should always start with capital letter
+  Ex> Student, Employee, Department, Fruits, Books, Mathematics
+      DriverManager, PreparedStatment
+
+
+2. All variables must be in lower case and its name should depict its use.
+  int length, breadth,height
+  float area, volume;
+  int marks1, marks2;
+
+3. All method names must be in lower case and should be verb. If it is a two word then
+   camel case must be followed.
+
+   public void calculateArea();  getDetails(), showDetails()
+  performOperation();
+
+
+4. public static void main should not contain any other classes
+
+
+
+
+public class Hello{
+
+	public static void main(String args[])
+	{
+		Mathematics m = new Mathematics();
+	}
+	
+}
+
+
+
+classname objname = new classname();
+
+Rectangle rect1 = new Rectangle();
+Rectangle rect2 = new Rectangle();
+
+When an object is created, internally three step process will happen
+--------------------------------------------------------------------
+
+1. .class file is loaded into memory(Primary memory)
+2. Allocating the memory to variables ---> Instantiation
+3. Assiging the default values to varibales---> Intailization
+
+
+.java ----> compiled----> .class (Byte code) ----> executed by jvm 
+
+When object is created, the individual memory is created only to variables, but all the objects
+will share the same method space
+
+static
+------
+can be applied on 3 levels
+
+1. variable level  --- All the objects will share the same memory space
+2. method level ----- Can be called without creating a object
+3. block------------- this block will be automatically called when the .class is loaded
+into memory
+
+All static variables / Methods can be called directly on the classname
+
+A non static method can access the static variable
+A static method cannot access any non static variable
+
+Constructor
+------------
+1. constructor is a special method which will be automatically called when the object
+   is created
+
+2. Every constructor will have the same name as that of class name, without having any
+   return type
+
+3. Constructor can be used to intialize the variables
+
+constructors are used to declare the functionality which is mandatorly to be executed
+when the object is just created.
+
+public ----> access everywhere
+private-----> accessed within the class only
+protected----> accessed by all the classes with the package and inherited classes anywhere
+         -----> accessed within the package
+
+         
+
+class FileOperations{
+
+	private FileOperations(){
+		// open the file
+		// change persmisions to execute
+	}
+
+
+	public void readData(){
+		// reading the contents
+	}
+	public void processData(){
+		// processing the contents
+	}
+
+	finalize(){
+		// code for closing the file
+		// code changing the permisisons
+	}
+
+	
+}
+
+FileOperations fp = new FileOperations();
+fp.readData();
+fp.processData();
+
+
+constructor can be public ,protected, default
+
+private -----> singleton class ---> you cannot create objects for private constr classes
+
+this is a constant which will contain the current object instance
+
+
+
+this---> object which stores the current object reference
+
+this() ---> this method is used to call one constructor reference in another constructor
+
+1. this() method call must be the first line 
+2. this() method cannot form a cycle
+3. this () method cannot call recursive
+4. this() method cannot be called from userdefined methods
+
+
+Inheritance is the process of acquring the properties from one class to another class
+
+
+In Java 3 relation
+
+1. Composition--This represents a Has-a Relationship where one class
+contains an instance of another class as a memeber.
+
+class Engine{
+	int engineNo;
+	int strokes;
+	String make;
+	
+}
+
+class Car{
+	int model;
+	int make;
+	String color;
+	String fuel;
+	Engine engine;
+}
+
+
+
+	
+2. Association - This represents a relatioship where two are classes are related in some way. but neither of the class owns the other, if one class
+method is taking the another class object as parameter.
+
+
+class Car{
+	int model;
+	int make;
+	String color;
+	String fuel;
+	public void getEngineData(Engine engine){
+		
+	}
+}
+
+
+3. Inheritance - is-a relationship
+where the code of one class will be used in another class.
+
+properties of one class will be used / acquired in the another class
+
+Main purpose of all three is reusablity
+---------------------------------------
+
+3 Types of employees - PermanentEmployees, TemporaryEmployees, HourlyBased
+
+name,dept,desg,doj,dob,exp,spec
+basic,hra,da,ded,gross,net
+
+class PermanentEmployee{
+
+name,dept,desg,doj,dob,exp,spec
+basic,hra,da,ded,gross,net
+
+public void calculateSalary(){
+// cal as per perm rule
+}
+
+}
+
+
+class HourlyEmployee{
+
+name,dept,desg,doj,dob,exp,spec
+consolidateAmount
+
+public void calculateSalary(){
+// cal as per temp rule
+}
+
+}
+
+class HourlyEmployee{
+
+name,dept,desg,doj,dob,exp,spec
+noh,rph,total
+
+public void calculateSalary(){
+// cal as per hourly rule
+}
+
+}
+
+
+name,dept,desg,doj,dob,exp,spec
+consolidated
+
+
+name,dept,desg,doj,dob,exp,spec
+noh,rph,total(noh*rph)
+
+
+class Employee{
+	name,dept,desg,doj,dob,exp,spec
+
+
+}
+
+
+class PermanentEmployee extends Employee{
+	//basic,hra,da,ded,gross,net
+
+	public void calSal(){
+	
+	}
+	
+
+}
+
+PermanentEmployee pe = new PermanentEmployee();
+
+pe = Employee + PermanentEmployee
+
+
+
+Method Overriding - It is the process of supressing the base class
+method in the derived class when both are having the same signature
+
+Affiliated Colleges-----> University
+Exam Pass percentage ---> min 40% and above 70% is distinction
+6 Papers ---> some content
+
+Autonomous colleges-----> self goverened
+Exam pass percentage---> 10% and above 40% is distinction
+2 papers ---> half of the content with univ is given to aff clgs
+
+30- 40% 
+
+some rules from the univesity should be common---> they cannot
+change those rules
+
+class OnlineShop{
+
+	public void selectGoods(){ 
+		// for selecting the goods manually
+	}
+	public void payment(){
+		// cash payment is accepted
+	}
+	public void shipment(){
+		// customer should carry on their own
+	}
+}
+
+S1---> Urban with semi polish location
+S2---> rural
+S3---> Metro's with highly rich people
+
+
+Abstract Classes--> an abstract class is a class with atleast one abstract
+method
+
+An abstract method is one which doesnot have any body.
+
+abstract class College{
+	public void admissions(){
+		sop("Admissions are goverened by govt");
+	}
+	public void attendance(){
+		sop("attendance is govered by govt");
+	}
+	public abstract void syllabus();
+}
+
+all abstract classes are incomplete classes, so objects cannot
+be created for abstract classes
+
+class MGIT extends College{
+
+	public void syllabus(){
+		sop("ds,co,webtech,ds,ai");
+	}
+
+}
+
+class RGPV extends College{
+	public void syllabus(){
+		sop("ds,co,ds,ppl,os");
+	}
+}
+
+MGIT mgit = new MGIT();
+mgit.admissions();
+mgit.attendance();
+mgit.syllabus();
+
+From Java8 onwards, this abstract classes are not suggested
+instead the interfaces are alone used
+
+interface:
+----------
+
+Template, blue print, what ?
+
+interface is java entity which has all abstract methods (java 7)
+from java8 an interface can contain method with definition also
+
+
+public interface Bank{
+
+	void savings();
+	void loans();
+	void creditCards();
+}
+
+SBI--->
+	savings----> 100/-
+	loans -----> agri,personal,mortage,gold,home,vechicles,travel
+	creditcard---> 10 types
+DBS
+	savings-----> 10000/-
+	loans-------> personl,gold,home,vechicle
+	creditcards--->5
+HDFC
+	savings-----> 1000/-
+	loans--------> home,2w,4w,gold
+	creditcards----> 3
+
+
+in interface all the methods access modifiers are public
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

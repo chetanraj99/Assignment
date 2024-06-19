@@ -1,0 +1,89 @@
+Types of Version Control Systems
+---------------------------------
+1. Centralized Version Control Systems  ---> there will only one repo location
+
+2. distributed version control systems  ---> A copy of repo will be maintained locally
+
+
+
+
+1. Intialize the empty repository in your client
+
+    git init
+
+2. add the files to the staging directory
+    git add <listoffielsname> / . (All files)
+ 	
+    git add .
+    git add f1,f2
+
+
+3. Select the branch (later this is not required unless to change the branch)
+   git branch -M <branchname>
+   git branch -M main
+
+
+4. push the add into your local repository
+   
+   git commit -m "message"
+   git commit -m "this is my first commit"
+   
+
+url  : https://github.com/praveen-rps/wipro-batch-may2024.git
+
+
+5. Assign a remote url shortcut (later times this is not required)
+
+   git remote add <shortcut> <url>
+   git remote add origin https://github.com/praveen-rps/wipro-batch-may2024.git
+
+
+6. push the data from local repository to github 
+
+  	git push -u <urlshortcut> <branch>
+	git push -u origin main
+
+
+7. to merge contents from one branch to other branch
+
+   7.1 you should be in the brach to be merge
+
+Steps to Merge contents from one branch to another branch
+--------------------------------------------------------
+1. Be in the main branch
+
+   git checkout main  ( make the reference to main branch)
+
+2. make the main upto date with local repo
+   git pull origin main
+
+3. change local branch to destinated branch
+   git checkout uat
+
+4. make the uat branch upto date with local repo
+   git pull origin uat
+
+
+5. go back to main branch
+
+   git checkout main
+
+6. merge the uat to main
+   git merge uat ----> main = main +uat
+
+7. git commit -m "contents are merged"
+   
+
+8. git push origin main
+
+
+
+git push ---> push the contents from local machine to github
+
+git pull ---> pull the contents from github to local machine
+
+
+
+
+	
+

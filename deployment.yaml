@@ -1,0 +1,20 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: restdemo-deployment
+  namespace: k8sdemo
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: restdemo
+  template: 
+    metadata:
+      labels:
+        app: restdemo 
+    spec:
+      containers:
+      - name: restdemo
+        image: sripraveen/restdemoimages
+        ports:
+        - containerPort: 8081

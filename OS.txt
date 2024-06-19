@@ -1,0 +1,142 @@
+Operating System
+----------------
+
+It is the interface or bridge between the hardware and user
+
+types of OS
+
+1. Single User and Single Task OS --> MS DOS
+2. Single User and Multitask OS-----> Windows
+3. Multi User Operating System -----> Linux, Rhel, Mac, Ubuntu
+4. Network Operating System
+5. Distributed Operating System
+6. Embedded Operating System
+
+
+Responsibilities of OS
+----------------------
+
+1. Process Management --- 
+2. Memory Management
+3.File Management
+4. Device Management
+5. User Management
+6. Security
+
+
+Features of Linux Operating
+--------------------------
+It is the oldest OS ---> 1960's
+1991 ---> Standard Format of Linux / Commerical linux released developed and mantained
+ by GPL (General Public License)
+
+1 Generation --- Vaccum Tubes
+2 Generation ---> Transistor
+3 Generation --> IC's---> high level programing lang came into existence
+4. Generation ---> IC's and circuits
+5. Generation --> Data
+6. Generation--> AI
+
+Features of Linux Operating System Architecture
+-----------------------------------------------
+
+1. Open Source
+
+2. Stability and Reliability
+
+3. Customizability
+
+4. Security
+
+5. Scalability ( increasing or decreasing the machines on demand)
+
+6. CLI  (Command Line Interface)
+
+Linux Distribution
+------------------
+1. Ubuntu
+2. Debian
+3. RHEL
+4. Fedora
+5. CentOS
+
+
+Different Components of Linux Operating System Architecture
+-----------------------------------------------------------
+1. Kernel 
+    It is the central part of linux which will manages the hardward
+    Memory Management, Process scheduling, networking
+
+2. System Libraries
+   C - Lang (gLibc)-- c standard library
+   C++ lib support
+
+3. System Utilities
+
+  
+Shell-----> Is a small command line interpreter that allows users to interact with  
+              OS
+
+  Core Utilities --Linux distributions come with a set of core utilities for managing files, processes, users, and system configurations. Examples include ls, cp, mv, rm, ps, grep, and systemctl.
+
+
+  Package Management --  update, modify or delete the software packages required by linux
+
+ex> yum (yellowdog updater, Modifier) 
+
+4. File System
+
+   Hierarchical File System  ---> where data is arranged in the form of a tree
+
+   root ---> elements ---> sub elements
+
+Diff formats for file system are:
+
+NTFS --(
+ext4
+XFS
+Brtfs 
+
+
+5. User Interace 
+
+  CLI
+  GUI
+
+6. Device Drivers
+    kernal Modules
+    Loadable Kernal Modules
+    
+
+7. Networking
+    default Network Stack
+    Default network configuration
+    TCP/IP, IPv4 and IPv6, UDP, 
+
+8. Security
+    It will mandate creation of users to access the system
+     User Permissions 
+    Firewalls and security Tools
+
+
+9. Virtual Memory Management
+
+10. System Intialization
+    Boot loader
+    Init System
+
+  
+     
+
+
+
+
+   
+
+
+
+
+
+
+
+

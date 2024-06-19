@@ -1,0 +1,90 @@
+Day- 1
+------
+1. Software and Software Engineering
+2. Process Models
+3. Agile Model  
+4. Understanding the Requirements and Requirements Modelling
+5. Design Concepts: Architectural Design and Component Level Design
+6. Design: Userinterface, WebApp and Pattern-Based
+
+
+Monolithic Vs Microservices
+---------------------------
+for past 5 -7 years all applications are developed by using monolithic arch.
+
+Most of the applications are developed using microservice arch.
+
+
+Project Vs Product
+------------------
+Project is a specific to an individual or organization.
+
+Product is a generic one, there is on one intented person for it.
+
+Windows OS,  
+
+
+1. Waterfall model
+	Requirements Gathering
+    High and Low level desing
+    Testing and Implentation
+	Deployment and Maintenance
+
+when customer requirements are not changing and the complexity is very high.
+
+2. RAD  (Rapid Application Development)  --- For an existing applications, which require some addon's
+
+3. Incremental Model:
+   
+      Small production deployable software or we will get one working model in each iteration.
+      When the customer requiremnts are frequently changing over period of time.
+
+     Agile  ---  teams work env has been changed.
+     Scrum, Kanabn, Xp
+
+     
+
+   
+
+	
+
+
+Day - 2
+-------
+7. Software Quality Assurance
+8. Software Testing Strategies
+9. Testing Web Applications
+10. Project Management Concepts
+11. Process and Project Metrics
+12. Estimation for project projects
+13. Project Scheduling
+14. Risk Management
+15. Basic Introduction to UML
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+		
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,116 @@
+Window functions in SQL allow you to perform calculations across a set of rows related to the current row within a query result set. They operate on a "window" of rows defined by a set of rows that are somehow related to the current row, typically based on the ordering of rows or a partitioning scheme.
+
+Here are some key points about window functions:
+
+Operate on a Window of Rows: Window functions compute a value for each row in a result set based on a window of rows defined by the OVER() clause. This window can be defined by an ORDER BY clause, a PARTITION BY clause, or both.
+
+Partitioning: Partitioning divides the result set into groups or partitions, and the window function operates on each partition separately. Within each partition, the window function calculates values independently.
+
+Ordering: Ordering defines the order of rows within the window. It determines which rows are included in the window for each row being evaluated by the window function.
+
+Aggregation and Ranking: Window functions can perform various types of calculations, including aggregations (SUM, AVG, COUNT, etc.), ranking (ROW_NUMBER, RANK, DENSE_RANK), and analytical calculations (LAG, LEAD, FIRST_VALUE, LAST_VALUE).
+
+No Group By Required: Unlike traditional aggregate functions, window functions do not require a GROUP BY clause to group rows. They can compute values for each row individually while still considering the context of related rows.
+
+Syntax: Window functions are typically written in the SELECT clause and use the OVER() clause to specify the window definition. The OVER() clause includes the PARTITION BY and ORDER BY clauses to define the window.
+
+Here's a simple example to illustrate the concept:
+
+Let's say we have a table called sales with columns date, region, and revenue. We want to calculate the total revenue for each region and also include a column showing the average revenue per day within each region.
+
+SELECT 
+    date,
+    region,
+    revenue,
+    SUM(revenue) OVER (PARTITION BY region) AS total_region_revenue,
+    AVG(revenue) OVER (PARTITION BY region) AS avg_daily_revenue
+FROM 
+    sales
+ORDER BY 
+    region, date;
+
+
+10-05-23,west,45
+10-05-23,east,50
+10-05-23,north,10
+10-05-23,south,40
+11-05-23,west,45
+11-05-23,east,50
+11-05-23,north,10
+11-05-23,south,40
+12-05-23,west,45
+12-05-23,east,50
+12-05-23,north,10
+12-05-23,south,40
+
+group on day first and then on region
+
+west---> 
+
+
+
+Row_number()
+-------------
+This function assigns a unique incremental integer to each row in the result set, starting from 1. If there are ties in the ORDER BY criteria, ROW_NUMBER() will break the tie arbitrarily.
+
+
+SELECT 
+    student_id, 
+    name, 
+    score, 
+    ROW_NUMBER() OVER (ORDER BY score DESC) AS row_num
+FROM 
+    students;
+
+Rank()
+------
+
+assigns a unique rank to each distinct row in the result set, starting from 1. If there are ties in the ORDER BY criteria, RANK() will assign the same rank to tied rows, and the next rank will skip the number of tied rows.
+
+
+SELECT 
+    student_id, 
+    name, 
+    score, 
+    RANK() OVER (ORDER BY score DESC) AS rank
+FROM 
+    students;
+
+
+S1---> 100 --> 1
+S2--->99---->2
+S3--->99--->2
+S4---->99--->2
+S4--->98--->5
+
+3. Dense_Rank()
+---------------
+
+RANK(), DENSE_RANK() assigns a unique rank to each distinct row in the result set, starting from 1. However, it does not skip ranks for tied rows. Instead, it assigns consecutive ranks to tied rows, so there are no gaps in the ranking sequence.
+
+
+SELECT 
+    student_id, 
+    name, 
+    score, 
+    DENSE_RANK() OVER (ORDER BY score DESC) AS dense_rank
+FROM 
+    students;
+
+
+4. NTile()
+-----------
+
+This function divides the result set into a specified number of roughly equal-sized groups, assigning a group number to each row based on the specified partition and order. For example, if you use NTILE(4), it will divide the result set into four groups and assign a group number from 1 to 4 to each row.
+
+
+SELECT 
+    student_id, 
+    name, 
+    score, 
+    NTILE(4) OVER (ORDER BY score DESC) AS quartile
+FROM 
+    students;
+
+
+

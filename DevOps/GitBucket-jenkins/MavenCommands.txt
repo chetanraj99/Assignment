@@ -1,0 +1,71 @@
+Maven Commands
+--------------
+
+1. mvn --version	- To check the version of maven installed.
+
+2. mvn archetype:generate -DgroupId=<group_id_name> -DartifactId=<artificat_id_name> 
+   -DarchetypeArtifactId=maven-archetype-quickstart -DarchetypeVersion=1.4 
+   -DinteractiveMode=false
+
+3. mvn package   - This command is used to execute all Maven phases until the package phase. 
+				   It does the job of compiling, verifying and building the project. 
+                   It builds the jar file and places it in the specified folder under the specified project
+
+4. mvn clean install -  This maven command helps in executing a clean build life cycle and installs build 
+						phase in the default build cycle. 
+
+5. mvn compile		-    This command is used to compile the source code. 
+						 It also compiles the classes that are stored at a particular target or class
+
+6. mvn test			-    Maven also provides the facility of unit testing particular codes
+
+7. mvn deploy
+
+
+
+Intermediate Commands
+---------------------
+
+    mvn help: describe	This command helps in getting the attributes of the plugin. All information regarding 
+						the plugin can be found by this maven command.
+
+
+    mvn help:effective-pom 		– By making use of this command a user can get an effective POM as an XML. 
+								  This XML can be used for current build and for active profiles which are 
+								  present in the project.
+
+
+    mvn dependency: analyze 	– To analyze the dependencies that are present in the project in respect 
+								  to prints that are unused, outdated dependencies and so on this command can 
+								  be used.
+
+
+    mvn dependency: tree 		– This command prints the complete tree of dependencies of the complete 
+								  project. This is useful in getting all the transitive dependencies and gets 
+								  all conflicts if there are any due to version. 
+								  This command brings all the different dependencies.
+
+    source. skip: 				  This maven command skips the complete packaging of source jars in the project.
+	
+    maven.test. skip 			– If a user wants to skip a particular test script from compilation and the 
+								  execution of all tests then this command can be used. 
+								  It can skip both unit and integration for the test for any application
+
+
+    groups={TestNG Group Name(s)} – This command specifies the TestNG group of unit tests that are present and 
+									which will be executed in the current build. 
+									It runs the entire group of the test. 
+									If there is no group specified then all the unit tests will be executed.
+
+    prepare-package 			– Using this maven command all activities are performed for any operation 
+								  which is required to prepare any package.
+
+    pre-integration-test 		– It performs all activities which are necessary for the integration tests 
+								  which will be executed. It may also clean up the environment.
+
+
+    mvn help:effective-pom 		– Run this command to get the most minimal Maven project pom.xml.
+
+
+
+

@@ -1,0 +1,251 @@
+                              BASIC COMMANDS
+                            ===================
+#ls    
+    --> will display contents of the present working directory
+
+#ls -l  (l for long list)
+   --> will display properties/attributes of all contents
+
+#ls -l  install.log  --> to see a single file properties
+#ls -ld Desktop      --> to see a directory properties
+
+#ls -lt
+   --> will all contents according to time stamp ( date and time)
+
+#ls -ltr
+  --> reverse time stamp 
+
+#ls -iltr
+
+#ls -R /root  --> list the subdirectories recursively
+
+
+Visual Classification of Files With Special Characters Using ls -F
+-------------------------------------------------------------------
+
+Instead of doing the ‘ls -l’ and then the checking for the first character to determine the type of file. You can use -F which classifies the file with different special character for different kind of files.
+
+$ ls -F
+Desktop/  Documents/  Ubuntu-App@  firstfile  Music/  Public/  Templates/
+
+Thus in the above output,
+
+  	
+
+Visual Classification of Files With Colors Using ls --color=auto
+----------------------------------------------------------------
+
+Recognizing the file type by the color in which it gets displayed is an another kind in classification of file. In the above output directories get displayed in blue, soft links get displayed in green, and ordinary files gets displayed in default color.
+
+$ ls --color=auto
+Desktop  Documents Examples firstfile Music  Pictures  Public  Templates  Videos
+
+clear - to clear the screen
+
+#pwd
+   or 
+#echo $PWD     
+
+#cd
+#cd ..
+#cd -
+
+#date // full date ---> 
+
+#date -s "25 Nov 2012 10:12:16"
+
+#date +%Y%m%d -s " 2012-12-23  "
+
+#cal      -->  displays present month calender
+#cal -j   --> Display Julian dates (days one-based, numbered from January 1)
+#cal -y   -->  Display a calendar for the current year.
+#cal -m   --> Display Monday as the first day of the week.
+
+#cal -s   -->  Display Sunday as the first day of the week.
+
+#cal -3   --> Display prev/current/next month output.
+
+#cal 9 2040  --> displays 9th month of 2040 year.
+
+
+
+TOUCH COMMAND:
+=============
+We use touch command for 
+1. To create empty(zero size) files
+2. To create multiple zero size files in the single command
+3. To change the "time stamp" of a file/dir
+
+NOTE: normal users also can change the time stamp of a files.
+
+CAT COMMAND:
+===========
+we use cat command for 
+1. To create files
+2. To read already created files
+3. to append some text to a already created file
+4. To copy multiple files contents into a single file
+
+echo "hello text" / display the contents on the output console
+
+echo "hello text" >> notes.txt / contents will be written to notes.txt file
+
+ 
+#cat > <filename>
+--> enter and ctrl+d to save
+#cat <filename>  --> to read a file
+#
+#cat  > /etc/laxma
+#touch /tmp/file{1..6}
+
+#cat >> <filename>
+    --> to append into already created file.
+
+#cat file1 file2 > file3   ( to copy file1, file2 contents  into file3 )
+
+ => if file3 is already existing it will overwrite , otherwise it will create a file with the name file3 and copy the contents of file1 file3 into file3
+ 
+#rm    <filename>    --> to remove a file interactively
+#rm -f <filename>    --> to remove a file forcefully
+
+#mkdir <dirname>    --> to create a directory
+#rmdir <dirname>    --> to delete a empty direcotry.
+#cd /redhat
+#touch file{1..6}
+#rm -r  <diranme>    --> to remove a directory contents in a interactive mode.
+#rm -rf <dirname>    --> to remove a directory forcefully which is having contents 
+
+rm -r     file1 dir1 Delete file1 and dir1 and its contents.
+rm -rf    file1 dir1 Same as above, except that if either file1 or dir1 does not exist, rm will continue silently.
+
+
+
+*              All files
+
+g*             Any file begining with g
+
+b*.txt         Any file begining with b followd by any characters and ending with .txt 
+
+data???        Any file begining with data followd by exactly three characters
+
+[abc]*         Any file begining with either a, b, or c
+
+backup.[0-9][0-9][0-9]  Any file begining with backup followed by exactly three numerals
+
+[[:upper:]]*            Any file begining with an uppercase letter
+[![:digit:]]*           Any file not begining with a numeral
+
+
+rm  *.html  
+
+                        COLLABORATIVE DIRECTORIES
+                        ==========================
+
+#mkdir dir1  dir2  dir3
+
+#mkdir /nfs/root/directory
+
+Note: if /nfs/root is already existing then above command gets execute otherwise it throws "mkdir: cannot create directory `/nfs/root/directory': No such file or directory"  error.
+
+#mkdir -p /nfs/root/directory
+
+#mkdir -p  COSS/{RHCE/{rhcsa,rhce},RHCVA{111,222},RHCSS/{rh423,rhs429,rhs333}}
+
+NOTE: -p is the option to create the collaboratvie directories 
+#yum install tree* -y
+#tree COSS
+    OR
+#ls -R COSS
+
+
+#cp file1  file2  --> copy file to file2  , if file2 exists, it is overwritten with the contents of file1. if file2 done not exist, it is created.
+
+#cp -i file1  file2 --> Same a above, except that if file2 exists, the user is prompted before it is overwritten
+
+#cp  file1  file2  dir1  --> Copy file1 and file2 into directory dir1. dir1 must already exist.
+
+
+
+
+#cp fruits.sort  backup
+#cp -p fruits.sort backup.1 --> it will copy along with the time stamp 
+#cp -rfvp <directory>  <backupdirname>
+
+ NOTE: r --> recursively , 
+       f --> forcefully , 
+       v --> verbose,  
+       p --> preserve
+
+
+
+                          MV COMMAND:
+                          ==========
+
+#mv   file1  file2    --> move file1  to file2  . If file2 exists, it is overwritten with the contents of file1 . If file2 doesn't exist. it is created . 
+
+
+#mv file1 file2 dir1 -->  Move file1 and file2 into directory dir1. dir1 must already exist.
+
+#mv dir1 dir2        --> Move directory dir1 (and its contents) into directory dir2. If directory dir2 does not exist, create directory dir2, move the contents of directory dir1 into dir2, and
+delete directory dir1.
+
+
+#mv  fruits fruits.main
+#mv  fruits.main  marchsalesreport  ( it will overwrite )
+             or
+#rename <oldname> newname <oldname>
+
+#nl install.log   --> to open a file with line numbers
+#more install.log  --> if any file is size of more than one page , then if you want to open that file page wise 
+
+#nl install.log | more 
+#nl install.log | less  ( provides the facility to come back to the previous pages which is not possible in more command )
+
+#pr  install.log   --> shows the number of pages are there in the install.log file. 
+#
+# tail /etc/passwd --> prints/shows last ten lines
+# head /etc/passwd -->              first 
+#tail -3 /etc/passwd   --> prints last 3 lines
+#head -3 /etc/passwd   --> prints first 3 lines
+#
+#sort filename
+#sort filename > filename.sort
+#
+
+#touch laxma ; mv laxma  laxma.renamed
+
+--> the above command creates laxma file and renames it as laxma.renamed, onething we have to notice here that is we are running multiple command is single command. 
+
+
+#shutdown -h  30      --> shutdowns after 30 mins 
+to cancel the shutdown process
+#ctrl+c
+
+#ps -ef | grep shutdown
+#kill <pid of shutdown>
+
+#shutdown -s -t 3000  --> shutdowns windows 3000 secons
+
+#tput setf 2
+#tput setf 3
+#tput setf 4
+
+#tput reset 
+
+how to find when a linux system is last rebooted? who rebooted?
+#last reboot
+   or 
+#who -b
+#last   --> to see the user name who rebooted lastly.
+
+#logname -->   the logname(login name) command show the name of the real user who logs in initially. If that user uses the su command to switch identity, the logname command, unlike the whoami command, whill still show the real username. 
+
+#uname --> the uname command produces basic information about the system. without any options , this command displays the operating system name only. 
+
+#cat /etc/redhat-release
+
+#clear 
+       --> the clear command clears the terminal screen and places the cursor at the begining of the screen. 
+
+
+ 

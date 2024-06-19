@@ -1,0 +1,1754 @@
+Shell
+-----
+A Command-Line Interpretor that connects a user to Operating System and allows 
+to execute the commands or by creating text script.
+
+Bash Shell Scripting
+--------------------
+What is Shell Script ?
+
+Normally shells are interactive. It means shell accept command from you (via
+keyboard) and execute them. But if you use commands one by one (sequence of 'n'
+number of commands) ,then you can store this sequence of commands to text file and 
+tell the shell to execute this text file instead of entering the commands. 
+This is know as shell script.
+
+ 
+Why to Write Shell Script ?
+
+==>Useful to create our own commands.
+==>Save lots of time.
+==>To automate some task of day-to-day life.
+==>System Administration part can be also automated.
+
+Other popular scripting language are perl, python, ruby along with bash. 
+
+                
+Execute your script as
+---------------------
+syntax: 
+------
+#bash  your-script-name
+             or
+#sh  your-script-name
+            or
+#./your-script-name
+
+-------------------
+UTF-8 format 
+                                              BASH VARIABLES
+                                             ================
+Generally you can find  two types of variables 
+
+1. Environment variables----> USER----> current user name
+2. User defined variables.
+
+=>simply we can say Environment variables are predefined  system variables
+=>when a user logins a bunch of environment variables are set  for user. These variables control some basic functionality of your interaction with the shell.
+
+#env        --> env displays all envirnment variables for that user.
+
+EXAMPELS:
+=========
+#echo $PWD
+#echo $HOME      
+
+-->PWD,HOME both are predefined Environment Variable so when we use them with echo, we are saying go and get the value of HOME & PWD and print the output 
+on to the terminal, which are storing some value/text.
+
+#cd /tmp 
+#echo $PWD    --> here this command output will be /tmp"since we are using /tmp directory
+
+#su - student   --> this is to switch to "student" user form current user.
+#echo $USER     -->o/p will be student
+
+                                        to define our own ENV variables 
+                                        ================================
+#vim /etc/profile
+----------------------------------------
+/export   --> searching for "export" 
+
+LINUX=opensource     --> here we are creating LINUX  variable which is storing "opensource" value in it
+
+export  LINUX    
+----------------------------------------
+
+#source   /etc/profile  --> to update  the changes  in /etc/profile file
+
+#env  | grep  LINUX
+
+#echo $LINUX
+
+                                          User defined variables:
+                                         =========================
+=> The below are used defined variables 
+
+#echo $sri   --> o/p will be empty line bc "sri" is not a already defined variable
+
+#sri=infotech
+#echo $sri
+
+#firstname=SRIinfotech
+#secondname=offshore
+
+scanf("%d",&a); ---> read a value to variable a from keyboard
+
+read <variablename> ---> read the value from keyboard and assign to variable
+echo "enter first value"
+read a
+echo "enter second value"
+read b
+c=$a+$b
+
+
+
+#echo $firstname$secondname
+---------------------------
+SRIinfotech offshore
+----------------------------
+
+#read a             --> Using "read" command we can take user inputs and assign that values to the variales to which we want.
+#echo $a   
+
+to unset defined user variables
+------------------------------
+#unset  a   --> here a is a user defined variable name
+
+to define  variable persistently
+--------------------------------
+
+#vim /etc/profile
+-----------------------
+a=10
+-----------------------
+
+Double quotes(") and single quotes(') behave differently 
+
+Double quotes(" "):
+===================
+=>Double quotes tells the bash shell go and get the value of the variables.
+
+example:
+
+root]#echo " The current user present working directory is $PWD "
+
+o/p will be:
+------------
+The current user present working directory is /root 
+
+root ~]#echo " Presently loggedin user is $USER "
+
+o/p will be:
+------------ 
+"Presently loggedin user is root"
+
+Single quotes ('):
+=================
+=>single quotes tells the bash shell NOT to get the value of the variable.
+=>single quotes are commonly used to allow a special characters to be part of a string.
+ so as a result it prints whatever is in between single quotes on to the terminal.
+
+
+root#echo 'The current user present working directory is $PWD '
+
+o/p will be:
+------------
+The current user present working directory is $PWD
+
+
+Don't get confuse with backtick(`) it is differen from single quotes(')
+=======================================================================
+=>backtick allows us to store any command output into a string , and then when you use it with $string, it prints the output of that command.
+
+#space_used=`du -sh /home/student | awk '{ print $1}'`
+
+#echo "student  using $space_used of space "
+------------------------------------------------------
+ student is using using 40K  of space
+------------------------------------------------------
+
+                                        wc command usage
+                                        ----------------
+wc  displays  number of lines, words and characters 
+---------------------------------------------------
+[root@desktop57 ~]# wc /etc/fstab 
+ 19  90 913 /etc/fstab                     --> here   19 is the number of lines, 90 is the number of words, 913 is the number of characters of /etc/fstab file
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# wc -l   /etc/fstab 
+19 /etc/fstab
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# wc  -w  /etc/fstab 
+90 /etc/fstab
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# wc  -c   /etc/fstab 
+913 /etc/fstab
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# wc  -c   /etc/fstab 
+913 /etc/fstab
+                                           COMMAND SUBSTITUTION
+                                           ====================
+We can user  `` or $()  to store a command output into a variable
+
+[root@desktop57 ~]# linuecount=`wc  -l   /etc/fstab`
+[root@desktop57 ~]# 
+[root@desktop57 ~]# 
+[root@desktop57 ~]# echo $linuecount 
+19 /etc/fstab
+[root@desktop57 ~]# 
+              or 
+#linecount=$(ls -l  /root)
+
+$echo "$linecount"
+                                              ALIASES
+                                             =========
+Using command aliases we can create costomized commands, aliases can be created for existing commands of non-existing commands.
+
+#alias   --> displays already existing alias commands
+
+#sri     --> you will get o/p as command not found.
+
+#alias sri='ls -iltr'
+#sri    --> sri will display the output of "ls -iltr" , since sri is a alias command for   ls -iltr
+
+Note: above  one is temporary, if you want to make it permanent to user specific , define it in ".bashrc" file
+
+to remove it 
+
+#unalias sri
+
+# to make it permanent/persistent for all users define it in /etc/bashrc   
+----------------------------------
+alias sri='ls -iltr'                 
+---------------------------------
+
+                                                  Understanding read command usage
+                                                  ================================
+#read NAME            --> here read command takes user input in interactive way.
+laxmareddy
+
+#echo $NAME
+laxmareddy
+
+#read -p "Enter the user name:" NAME
+---------
+Enter the user name: laxmareddy              "laxmareddy is user input" 
+#echo $NAME
+laxmareddy
+
+
+#vim addingnos.sh
+---------------------------------------------------------------------------
+#!/bin/bash
+
+###A sample script which add two values and assigns it to another variable in non-interactivly.
+
+a=10
+echo "the value of a is $a"
+b=20
+echo "the value of b is $b"
+c=$[ $a + $b ]
+
+echo "the sum of a and b is $c"
+----------------------------------------------------------------------------
+            OR
+
+----------------------------------------------------------------------------
+#!/bin/bash
+## this script takes a and b variables values interactively and assigns it to another variable.
+## -p with read means whatever  is given in b/w "" will be displayed while script execution, just for user unserstanding.
+read -p "Enter the value of a :" a
+read -p "Enter the value of b :" b
+
+c=$[$a+$b]
+echo "the sum of two nos is $c"
+-----------------------------------------------------------------------------
+
+#chmod a+x addingos.sh   (a for all users)
+
+#./addingnos.sh ( to execute)
+                                               DEBUGING THE BASH SHELL SCRIPT 
+                                               ==============================
+#bash -xv  ./script-name              --> debuging is very important , to findout in which line of the script  error has occured , so that we can fix it quickly.
+
+#echo $PATH
+
+#addingnos.sh
+
+=> if the above command "ays no such file or directory".  if you want ,  the script should get executed even if we just give script name ,with out the absolute path.  
+ for this move this "addingnos.sh " script to any one of the directories in $PATH,  or create the addingno.sh script in a direcotry and add that directory to the
+ $PATH , then we can execute the script just by giving only script name.
+
+#export PATH=$PATH:/root
+
+#addingnos.sh     --> now this script should get execute becuase /root has been included to $PATH 
+       OR
+#sh addingnos.sh
+       OR
+#bash addingnos.sh
+
+Conditional Execution
+======================
+
+||   =    logical or
+
+&&   =   logical and
+
+logical operators
+-----------------
+
+< - -lt
+> - -gt
+== - -eq
+>= -gte
+<= -lte
+
+EXAMPLES:
+--------
+#id student && touch  sample1
+      --> if first condition is true then it will execute 1st condition and it will go to 2nd command , executes it.
+
+      --> if 1st condition is false then it will not even check 2nd command.
+
+syntax:
+
+  if [conditon]; then
+  	true_block statement
+  else
+	false_block statements
+  fi
+
+ if [($a -gt $b) && ()]; then
+ 	echo "a is bigger"
+else
+	echo "b is bigger"
+fi
+
+if(cond)
+{
+
+}
+else
+{
+
+}
+
+if [cond] then
+
+
+else
+
+s1
+
+s2
+
+fi
+
+
+s3
+
+
+
+
+
+
+#id student || touch sample2
+#id laxma || touch laxma 
+     --> if 1st condition is ture it will execute the 1st condition and it will skip 2nd
+     --> if 1nd condition is false it will omit the 1st  condition and it will execute the 2nd condition.
+
+Loop - Is a statement which will iterate the given set of instructions for a fixed number of times.
+
+1. For Loop
+
+	for var in list
+	do
+		commands
+	done
+
+	for i in {1..5}
+	do
+		echo $i
+	done
+	
+	for ((i=1;i<=10;i++))
+	do
+           commands
+	done
+
+
+
+2. while loop
+
+	while [cond]
+	do
+		commands
+	done
+
+	count=1
+	while [ $count -le 10 ]
+	do
+		echo "$count"
+		((count++))
+	done
+
+
+3. until loop
+
+
+
+
+                                                            FOR LOOP
+                                                            =========
+_________________________________________________________________________
+
+SYNTAX:   for  <variable> in  list  
+          do 
+          command1
+          command2 
+          ....
+          done
+_______________________________________________________________________
+                                            
+                                            Adding multiple user using  FOR LOOP
+                                            ====================================
+#vim addingusers
+---------------------------------------
+#!/bin/bash
+
+#purpose  to add multiple users into the system using for loop 
+
+for name in john max  dax alice natasha 
+do 
+useradd $name
+echo "redhat" | passwd --stdin $name
+done
+----------------------------------------
+
+                     ADDING THE USERS WHOSE NAMES ARE IN A FILE
+                     ==========================================
+#vim /opt/file
+------------------------
+dax
+max
+jack
+alice
+natasha
+--------------------------
+
+#vim useraddscript3
+-------------------------
+for user in `cat /opt/file`
+do
+useradd $user
+read -sp  "Enter the password for $name:" P
+echo "$P" | passwd --stdin $user
+
+echo "The user $user has been added successfuly"
+done
+----------------------------------------------------
+
+
+
+#adding users with userinput :
+=============================
+# vim addinguser2
+---------------------------------------------
+#adding the user and giving hiden passwd with read command.
+
+read -p "Enter User's NAME: " u
+useradd $u
+read -sp " Enter user's passwd: " p
+echo $p | passwd --stdin $u
+echo "user $u added "
+---------------------------------------------
+                                  ###IF ELSE CONDITION SYNTAX###
+                                   ==============================
+_________________________________________________________
+
+###ifesle  syntax
+
+if <condition1>
+then
+command1   
+command2
+.......
+elif <condition2>
+then
+command1
+command2
+....
+
+else
+
+ command1
+ ....
+
+fi
+_________________________________________________________
+
+
+
+               TEST COMMAND [] 
+               ===============
+=> test command checks the truthfulness of  a command.
+
+Options:
+-------
+-d  - FILE exists and is a directory 
+-e  - FILE  exists
+-f  - FILE exists and is a Regular file
+-s  - FILE exists and has a size greater than zero
+-h  - FILE exists and is a symbolic link
+-r  - FILE exists and read permission is granted
+-w  - FILE exists and write permission is granted
+-x  - FILE exists and execute( or search) permission granted.
+-a  - and 
+-o  - or
+-b  - FILE exists and is block special
+-c  - FILE exists and is character special
+
+!   - not 
+
+Numeric equality:                           STRING comparision
+==================                         ====================
+  -eq - equls to                         ==
+  -ne - not equls to                     !=
+  -lt - less than                         <
+  -gt - greater than                      >
+  -le - less than or equals to            <=
+  -ge - greater than or equls to          >=
+
+(EXPRESSION)   --> expression is true
+! EXPRESSION   --> expression is false
+EXPRESSION1 -a EXPRESSION2  --> Both   EXPRESSION1  and EXPRESSION2 are true
+EXPRESSION1 -o EXPRESSION2  --> either EXPRESSION1 or EXPRESSION2 is true
+
+                        EXAMPLES OF TEST
+                        ================
+
+#test -d /tmp  or  [ -d /tmp]   --> it checks whether /tmp is a directory or not
+#echo $?           --> for checking exit status
+
+NOTE:  If exit status value is 0  , that means above command output is "successful/standard output"  , if  exit status is >0 , then the above command 
+output is "unsuccessful/error/"standard error""
+
+#test -f laxma    or [ -f laxma ]
+#echo $?
+
+#test -w laxma 
+#test  -x laxma 
+
+==>write a shell script , which should prompt for user name , and take the user name interactively  And script should check for wheather this user 
+alreay existing or not , if existing ,script should come out , if user is not existing it should create the user with the password given by the user.
+
+#vim laxmalinuxpro
+-------------------------
+read -p "Enter the  user name:" U
+id $U
+if test $? -gt 0
+then
+useradd $U
+read -sp "Enter the user passwd:" P
+echo "$P" | passwd --stdin $U
+echo "the user $U has been added successfully"
+else
+echo "the user is already existing"
+fi
+---------------------------------------------------------------------
+
+
+                                                            UNDERSTANDING SEQ
+                                                            =================
+==> seq  bydefault  lists starting number to endnumber
+
+  example: #   seq   1  10 
+-----------------------------------------------------------
+
+o/p:   1 2 3 4 5 6 7 8 9 10
+
+-----------------------------------------------------------
+
+#seq   5  10  
+------------------------
+o/p:   5 6 7 8 9 10 
+------------------------
+
+#seq  10
+----------------------------------
+1 2 3 4 5 6 7  8 9 10
+-----------------------------------
+
+#seq   1000  > junk1.data     --> We can create a new file with some size
+
+#ls -lh   junk1.data
+
+to show background running job example
+--------------------------------------
+
+#seq   10000000000  > junk1.data  &    
+
+--> this command creates a file called "junk1.data" and keeps on increasing file size in the background. to view background running jobs 
+run below command
+#jobs
+#jobs -l
+
+#watch  -n 1  ls  -lh  junk1.data    --> to view  progress of the junk1.data  file  for each one second
+
+#watch -n  1  df -TH       --> refreshes df -TH output for every one second
+
+
+The below script is useful to check how many systems are in network/pingable out of 1-15.
+
+#vim   networkcheck
+-------------------------------------------------------------
+#!/bin/bash
+
+###this is the script  to check the network
+
+for ip in  $(seq 1 15)
+do
+
+        ping  -c 1 192.168.0.$ip &> /dev/null
+        if test $? -eq 0
+        then
+        echo "the ip 192.168.0.$ip is in network"
+        else
+        echo "the ip 192.168.0.$ip is not in network" >&2
+        fi
+ done
+
+#/root/script7   >> cop     2>>  eop
+#cat cop  
+#cat  eop    
+---------------------------------------------------------------------------------------------------
+
+#jobs
+
+#jobs -l 
+
+#ls  -lh  junk1.data
+
+# watch  -ls -lh  junk1.data
+
+ #df -TH
+ # watch -n 1  df -TH                    ( show this with pendrive)
+
+#vim testuser.sh
+------------------------------------------
+#!/bin/bash
+# -o means or
+# -eq means ==
+
+if test "$USER" == "root" -o $(id -u) -eq 0
+then
+echo " the currently working user is root "
+else 
+echo "the currently working user is  $USER "
+fi
+---------------------------------------------
+
+#sh testuser.sh
+------------------------------
+the user is root
+------------------------------
+
+
+#cp -p testuser.sh  /     --> here we are copying testuser.sh script to /  becuase on /root standdard users don't have excute access.
+
+$su - student
+$sh testuser.sh
+---------------------------------------------
+the user is not root
+---------------------------------------------
+
+[root@station1]# vi ifscript2
+-------------------------------------------------------------------------------------
+echo -n  Enter your no.: 
+read N
+
+if [ $N -lt 50 ]
+
+then echo  The No. you entered is less than 50?
+
+elif [ $N -ge 50 -a $N -lt 60 ]
+
+then
+
+echo  The No. you entered is between 50 and 60?
+
+elif [ $N -ge 60 -a $N -le 100 ]
+
+then
+
+echo  The No. you entered is between 60 and 100?
+
+else
+
+echo  The No. you entered out of range 
+	
+fi
+
+-----------------------------------------------------------------------------------------
+
+                             USER HOME DIRECTORY BACKUP (WITH USER I/P)
+                            ==========================================
+vim userbackup
+-----------------------------------------------------------------
+#!/bin/bash
+##taking  users home dir backup ##
+
+read -p "Enter user name to take home dir backup : " u
+
+if [ $u  != root ]
+then 
+homedir=/home/$u
+else
+homedir=/root
+fi
+
+tar cvzf /tmp/$u-`date +%F`.tar.gz $homedir
+------------------------------------------------------------------
+                         WITHOUT USER INPUT HOMEDIR BACKUP
+                        ======================================
+#vim userbackup.sh
+
+----------------------------------------
+#!/bin/bash
+
+if [ $USER  != root ]
+then
+homedir=/home/$USER
+else
+homedir=/root
+fi
+
+tar cvzf /tmp/$USER-`date +%F`.tar.gz $homedir
+
+------------------------------------------------------
+
+
+
+
+                                   UPLOADING FILES TO FTP SERVER
+                                   ==============================
+
+------------------------------------------------------------------------------------------------------
+#configure ftp server(192.168.0.11) with upload feature and ftp user should have passwd "redhat" 
+#vim /etc/vsftpd/vsftpd.conf  in 27 uncomment
+
+SERVER=192.168.0.11
+USER=ftp
+PASSW=redhat
+
+tar czf /root/install.tar.gz  install.log
+lftp -u $USER:$PASSW $SERVER -e  "cd pub; put install.tar.gz; exit"
+------------------------------------------------------------------------------------------------------
+
+
+                                     POSITIONAL PARAMETERS
+                                    ========================
+
+==>positional parameters: $0,$1,$2,$3,$#,$@
+
+=>the two primary ways to pass data to a shell script are either through command-line arguments ( positional parameters ) or via standard input
+ ( user's keyboard or via redirection )
+=> $# the variabele returns the number of arguments to a shell script. 
+=> $1,$2,$3 are the first , second , third arguments passed to the shell script.
+
+=> $0 refers to the name of the executable 
+
+Wirte a shell script which should print "python" if the user is passing first argument as "perl" ,  and script should print "perl" if the user first argument is 
+"python" , And if the number of arguments are zero  , script should comeout with 0 exit status. else  script should print error message as 
+"Err: perl|python" with exit status 1.
+
+
+#vim exampscript
+----------------------------------
+if [ "$1" == "perl" ]
+ then
+  echo "python"
+elif [ "$1" == "python" ]
+ then
+  echo "perl"
+elif [ $# == 0 ]
+ then
+  exit 0
+else 
+ echo "Err: perl | python" 
+exit 1
+fi
+--------------------------------------
+
+FEW MORE SIMILAR EXAMPLES:
+=========================
+#vim examscript1
+-----------------------------------------------------
+#!/bin/bash
+if [ "$1" == "perl" ]
+ then
+  echo "python"
+elif [ "$1" == "python" ]
+ then
+  echo "perl"
+elif [ $# == 0 ]
+ then
+ echo "Err: perl | python" >&2 
+ exit 1
+else 
+  exit 0
+fi
+-----------------------------------------------------
+
+#vim examscript2
+----------------------------------------------------
+#!/bin/bash
+if [ "$1" == "perl" ]
+ then
+  echo "python"
+elif [ "$1" == "python" ]
+ then
+  echo "perl"
+else 
+ echo "Err: perl | python"  >&2 
+exit 1
+fi
+-----------------------------------------------------
+
+#vim examscript3
+------------------------------------------------------
+#!/bin/bash
+if [ "$1" == "perl" ]
+ then
+  echo "python"
+elif [ "$1" == "python" ]
+ then
+  echo "perl"
+else 
+  exit 0
+fi
+-------------------------------------------------------
+
+
+                                                    Understanding uniq command usage
+                                                   =================================
+
+uniq  eleminates duplicates 
+
+#cat  junk2.data
+--------------------
+Linux
+Debian
+Redhat
+Debian
+Redhat
+-----------------------
+
+#sort  junk2.data  | uniq 
+
+cut  command
+------------
+in a file if there are multiple colums/fields  using cut we can list only the required fields/columns. but 
+need to specify the delimeter(field separator)
+
+#cat /etc/passwd  | cut -d:  -f3  
+-d:  --> is to specify field separator
+              or  
+
+#cat  /etc/passwd  | cut -d:  -f 3
+
+              or  
+#cat  /etc/passwd  | cut -d ':'  -f3
+               or 
+
+#cat  /etc/passwd  | cut -d':'  -f3
+
+create a file with test name
+----------------------------
+#cat >  test
+------------------------------------
+linux  redhat
+redhat linux
+laxma  mensah
+sriinfotech  off_shore
+------------------------------------
+
+#cat  test  | cut -d ' '  -f2    or   #cat  test  | cut -d' '  -f2     
+
+----------------------------------
+o/p will be
+
+redhat 
+linux
+mensah
+off_shore
+--------------------------------------
+
+note: make sure  in test file  space in between   fields are separated with eqaul space that too only
+one spacebar
+
+if field seaparator is  "," then 
+
+#cat  test  | cut -d ','  -f2 
+
+                                                      tr command
+                                                      ==========
+==>tr character translation command , which is very useful
+
+example:  ]#  echo  FILE1  | tr  A-Z a-z    
+-----------------------------------------------
+o/p will be:
+
+file1
+------------------------------------------------
+
+#tr  --help
+
+-s,  --squeeze-repeats
+
+
+# echo  FILEE1  | tr  -s  A-Z
+-----------------------------------
+o/p will be
+
+FILE1
+-----------------------------------
+
+
+#echo  FILEE1  | tr  -s  A-Z | tr  A-Z  a-z
+-------------------------------------------
+o/p will be:
+
+file1
+--------------------------------------------
+                        OR
+
+#echo FILEE1   |  tr -s  A-Z | tr  [:upper:] [:lower:]
+------------------------------------------------------------
+o/p will be:
+
+file1
+------------------------------------------------------------
+
+Note: in between  upper  and lower sets there is space & use --help page don't memorize
+
+ONE EXAMPLE:
+------------
+#mkdir /tmp2
+#cd  /tmp2
+# touch  FILE{1..10}
+
+#vim  script3
+--------------------------------------------------
+#!/bin/bash
+
+#Date  8 aug 2014
+#Purpose: Illustrate  using tr in a script  to convert upper to lower filenames
+
+for i  in  `ls -A`
+do 
+newname=`echo $i  | tr  A-Z a-z `
+mv  $i  $newname    # otherwise it will just print not rename
+done
+----------------------------------------------------------------
+
+#chmod +x script3
+#./script3
+
+#ls 
+
+you can notice that all files in /tmp2 directory wich were in upper case got translated to lower case. after script3 execution. including script3 too.
+
+
+to include if and elif  syntax
+-----------------------------
+
+Here what we want is ,  all files which are present /tmp2 should be renamed from UPPER CASE to lower case except script3 
+
+#vim  script3
+-------------------------------------
+myscript=script3
+
+for i  in  `ls -A`
+do
+if [ $i == $myscript ]
+  then
+  echo "i can't rename myself"
+elif  [ $i != $myscript ]
+  then
+  newname=`echo $i | tr A-Z a-z`
+  mv $i  $newname
+fi
+done
+------------------------------------------------------
+#./script3   
+
+
+read command
+-------------
+#read  a
+
+#echo $a
+
+#read -p  "Enter the value of a:"  a
+
+#echo $a
+
+
+# read  -p  "Enter the user name :" U
+
+#read -sp   "Enter the password for U:"  P
+
+#echo $P
+
+#read  firstname  lastname
+
+#echo $firname $lastname
+
+
+#read -n 3   answere    ==> read number of character 3  before existing,  output will stored in variable
+answere
+
+
+yes
+
+#echo $answere
+
+yes
+
+set command usage:
+------------------
+
+#TESTVAR=1000
+#set | grep TEST
+
+#unset TEST    --> to remove temporarly defined variable 
+
+#mkdir  test1 test2  test3
+#rm -rf  test*
+
+$mkdir  test{1,2,3}
+#rm -rf  test*
+[
+#mkdir test{1,2,3}{4,5,6}
+----------------------------
+o/p will be like
+
+test14   test24   test34
+test15   test25   test35
+test16   test26   test36
+----------------------------
+
+command substitution:
+---------------------
+command substitution allows us to store a command o/p into a variables
+      
+ for command substitution we can go for either  ``  or  $()        #(  openparanthesis  ) close paranthesis
+
+#etcdir=`ls -l  /etc/`
+
+#echo $etcdir     ==>o/p will be ugly so we can fix it 
+
+#echo  "$etcdir"  ==> currect o/p
+
+             OR
+#ectdir1=$(ls -l /etc)
+
+#echo $etcdir1
+
+#echo  "$etcdir1"     
+
+
+one more example:
+-----------------
+
+#etclinecount=`ls -A  /etc/ | wc -l`
+
+#echo $etclinecount
+
+EXAMPELS:
+---------
+
+Write a shell script which should tell whether  apache is running or not
+
+# vim     script4
+----------------------------------------------------
+#purpose usage of command substitution
+
+netstat  -ant  | grep :80  &>  /dev/null
+
+APACHESTATUS=`echo $?`
+
+if [ "$APACHESTATUS" -eq  0 ]
+then
+    echo  "Apache is Up and Running"
+    else
+    echo  "Apache is not Running"
+fi
+
+-------------------------------------------------------
+#chmod +x  script4
+#./script4 
+
+example2 
+#vi script44
+------------------------------------------------------------------
+netstat  -ant  | grep   :80 >  /dev/null
+APACHESTATUS=$(echo $? )
+
+if  [ "$APACHESTATUS" -eq 0 ]
+then
+    echo "Apache is Up and Running"
+    
+    #testing SSH
+    netstat  -ant  | grep  :22  &>/dev/null
+    SSHSTATUS="$?"
+    if [  "$SSHSTATUS" != 0 ]
+    then
+        echo "SSH is not Running"
+        else
+        echo "SSH is running"
+    fi
+    else
+    echo "Apache is not Running"
+fi
+
+---------------------------------------------------------------------------
+#service sshd stop
+
+#./script44
+
+#service sshd restart
+
+#./script4
+
+Create a shell script which will tell us how many user are created in the system. 
+
+#vim  script5
+------------------------------------------------
+
+#!/bin/bash
+
+#purpose  to know how many users are created / registered on this system by running a script
+
+PASSFILE="/etc/passwd"
+COUNT=0
+
+for user  in  `cat  $PASSFILE |cut  -f1 -d ':' `
+do
+echo $user  &> /dev/null
+let  "COUNT +=1"
+done
+
+echo "there are $COUNT users registered on this system"
+--------------------------------------------------------------------------------
+
+                                        SED command with few examples
+                                        -----------------------------
+###SED##########
+#sed is a stream editor
+#performs search/replace operations on  a stream of text.
+#normally does not alter source file
+#use -i.bak to backup the file with .bak extension and alter the source file
+
+
+Note: Sed accept instructon based on '/pattern_to_match/action'
+
+###Print Specific Lines of a File####
+
+#cp  /etc/passwd    /etc/passwdbk    --> here we are taking the backup of /etc/passwd file with /etc/passwdbk name,so that we can perform sed operations on this 
+backup file
+
+Note: '-e' is Optional if there is only 1 instruction to execute.
+
+sed -ne '1p' /etc/passwdbk             - prints first line of the file
+sed -ne '2p' /etc/passwdbk             - prints second line of the file
+sed -ne '$p' /etc/passwdbk             - prints last line of file
+sed -ne '2,4p' /etc/passwdbk           - prints 2-4 liines from file
+sed -ne '10,$p' /etc/passwdbk          - prints 10th line to last line of file
+sed -ne '1!p'   /etc/passwdbk          - prints all lines of the file except 1st line.
+sed -ne '1,4!p' /etc/passwdbk          - prints all lines of the file except 1-4 lines
+sed -ne '/dog/p' /etc/passwdbk         - prints all line containing dog, case sensetive
+sed -ne '/dog/Ip' /etc/passwdbk        - prints all line containing dog, case insensitive
+sed -ne '/[0-9]/p' /etc/passwdbk       - prints the lines with at least one number in them
+sed -ne '/gdm/,/purab/p' /etc/passwdbk - print all line in between these two words
+sed -ne '/deer/,+2p' animal- print line containing deer and next two line after each match
+	
+Delete lines using sed:--
+----------------------
+==> create your own file with some lines , let say file name is animals.txt 
+
+#sed -e '2d' animals.txt    - to delete 2nd line of the file.
+#sed -e '/^$/d' animals.txt - delete blank lines from a file
+
+Note : Drop '-n' to see new output
+Save Sed's changes using Output redirection
+
+#sed -e '/^$/d'  - animal.txt > animals2.txt  --> this command redirects the output to another file called aninals2.txt
+#sed -e '1~2d'   - animals.txt - deletes every 2nd line beginning with line 1 -- 1,3,5,...
+
+Find and Replace using sed: --
+--------------------------
+#sed -e 's/cat/rat/g' animals.txt       - searches for cat  and replace with rat in animals.txt
+#sed -e '2s/bin/bash/' /etc/passwdbk    - 'searches for bin  and replaces with bash in /etc/passwdbk file
+        '1,2s/bin/bash/'                - similarly searches for bin in 1&2 lines of the file replaces with bash.
+#sed -e "1,34s/sri/off_shore/g"  test	- searches for sri and replaces with off_shore in 1-34 lines of the test file.
+             multiple search and replaces
+#sed -e "s/cat/dog/g" -e "s/rat/cat/g" -e "s/elephant/tiger/g"  animals.txt
+
+#sed -i '/^ONBOOT=/d' /etc/sysconfig/network-scripts/ifcfg-eth0   -->  searches for lines which are begining with 'ONBOOT=' and removes those lines in 
+/etc/sysconfig/network-scripts/ifcfg-eth0
+
+sed -i 's/^HOSTNAME=.*/HOSTNAME=localhost.localdamin/' /etc/sysconfig/network  --> searches for any lines ^HOSTNAME=.*(begining with HOSTNAME and assinged
+ with some value to it) , and replace with  HOSTNAME=localhost.localdomain in /etc/sysconfig/network file
+
+sed -e 's/Windows/Linux/g' file.txt - replaces 'Windows' with 'Linux' , case sensitive
+sed -e 's/Windows/Linux/gI' file.txt - replaces 'Windows' with 'Linux' , case insensitive
+
+#sed -i 's/ErrorLog "logs\/error_log"/ErrorLog "\/clo\/logs\/error_log"/'  /etc/httpd/conf/httpd.conf
+#sed -i 's/CustomLogs "logs\/access_log combined"/CustomLogs "\/clo\/logs\/access_log" combined/'  /etc/httpd/conf/httpd.conf
+
+
+Note: Whenever using '-n' option, you must specify the print modifier 'p'
+
+Task:                  
+1. Remove ALL blank lines
+2. Substitute 'cat', regardless of case, with 'Tiger'.
+# sed -ne '/^$/d' -e 's/cat/Tiger/Igp' animals.txt
+ or 
+# sed -ne '/^$/d; s/cat/Tiger/Igp' animals.txt
+
+###Update Source File - Backup Source File###
+# sed -i.bak  '/^$/d; s/cat/Tiger/Igp' animals.txt - performs as above , but also replaces the source and creates a backup file with extention .bak
+                               
+                                 AWK command with examples
+                                 ===========================
+
+Features:
+========
+1. field/column processor
+2. Supports grep-style regular expressions
+3. Default field-delimiter is whitespace.
+
+syntax:           #awk  <instructions>    <filename>
+------- 
+
+
+#awk -F ":" '{ print $0 }'  /etc/passwd
+
+                               ==> prints contents of the  /etc/passwd like cat
+
+# awk -F ":" '{ print $1 }'  /etc/passwd
+                              ==> prints column 1 from each line of the file
+
+#awk  -F ":" '{print $2,$3}' /etc/passwd
+                              ==> prints column 2,3 from each line
+
+# awk '/student/ { print $0 }' /etc/passwd
+                             ==> prints all columns where line includes 'student'
+#awk -F ":" '/student/ { print $1}' /etc/passwd
+                             ==> prints 1st column of all lines includes student
+
+#useradd Student
+
+#awk 'tolower($0)~/student/ {print $1,"-",$2,"-",$3}' /etc/passwd    --> case insensitive search
+
+
+#awk '/student/ { print $1,"-",$2,"-",$3 }' /etc/passwd
+                          ==> prints all columns with transformations where line includes 'student'
+
+# awk ' { if ($7 ~ /bash/) print $0 }' /etc/passwd
+                         ==> prints all columns of records containing 'bash' in the seventh column
+
+#awk -F ":" '{ if ( $1 ~ /root/) print $2,"-",$1 }' /etc/passwd
+            ==> 
+#awk '/2011$/ { print $0 }' grep.test.txt 
+                       ==> prints all lines which are ending with 2011
+
+#   grep 2011 grep.test.txt | awk ' /2011$/ {print $2 }'  --> accepts a pipe
+
+#awk '{ if ($2 ~ /14/) print $3,$4,$5,$6}' /var/log/messages
+ 
+                           ==> prints columns $3-$6 where column 2="9"
+#
+#awk '{ if ($2~ /[89]/) print $2,$3,$4,$5,$6 }' /var/log/messages >messages-20110108-09
+
+#ps -ef | awk '{ print$1,":",$2,":",$8}'
+
+#ls -l /etc/ | grep ^- | awk '{ print $9}'  > /tmp/filelist
+#ls -l /etc/ | grep ^d | awk '{ print $9}'  > /tmp/dirlist
+#                   ^l                      > /tmp/linklist
+
+
+The below example, checks if the user home directory is under /home , if user home direcotory found in /home, for each found COUNT will be increase with +1, and
+at the end it will print how many users are there in the system.
+
+#vim /root/users
+------------------------------------------------------------------------------------------------------------------------------------------------
+awk -F ":" 'BEGIN {count=0;} $6 ~ /home/ { count++; } END { print "Number of normal users in /etc/passwd file = ", count;}' /etc/passwd
+-----------------------------------------------------------------------------------------------------------------------------------------------
+#chmod +x /root/users
+#/root/users
+
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44
+Find the users who has user id greater than 200
+
+#awk -F ":" '$3 >200' /etc/passwd
+
+Find the employees who has employee id greater than 200
+$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$$44
+Print the lines which matches with the pattern.
+
+# awk '/student/
+> /visitor/' /etc/passwd
+student:x:500:500::/home/student:/bin/bash
+visitor:x:501:501::/home/visitor:/bin/bash
+
+
+Syntax: 
+
+BEGIN { Actions}
+{ACTION} # Action for everyline in a file
+END { Actions }
+
+# is for comments in Awk
+
+Actions specified in the BEGIN section will be executed before starts reading the lines from the input.
+END actions will be performed after completing the reading and processing the lines from the input.
+
+
+
+to monitor disk space utilization with a script 
+===============================================
+#chmod +x diskspace
+----------------------------------------------------------------------------------------------------
+#!/bin/sh
+df -P | grep -vE '^Filesystem|tmpfs|cdrom' | awk '{ print $5 " " $1 }' | while read output;
+do
+  echo $output
+  usep=$(echo $output | awk '{ print $1}' | cut -d'%' -f1  )
+  partition=$(echo $output | awk '{ print $2 }' )
+  if [ $usep -ge 90 ]; then
+  echo "Running out of space \"$partition ($usep%)\" on $(hostname) as on $(date)" | mail -s "Alert: Almost out of disk space $usep%" root@desktop59.example.com 
+  fi
+done
+-----------------------------------------------------------------------------------------------------
+                           WHILE LOOP EXAMPLES
+                        =========================
+
+Syntax:
+--------
+
+********************
+while  condition
+do
+
+command1
+command2
+...
+
+done
+*********************
+
+--------------------------------------------------------------------------------------
+#1*7=7
+
+#  vim   whilescript
+-------------------------------------------------------------------
+#purpose is to write a script for multiplicaton table using while
+
+#  $#   number of arguments
+#   $0   script name 
+#   $1   first argument
+if [ $# -eq 0 ]
+then
+echo "Error - Please enter some argument "
+echo "syntax: $0 number"
+exit 0
+fi
+i=1
+n=$1
+while [ $i -le 10 ]
+do
+
+echo "$n * $i =`expr $i \* $n`"
+
+i=`expr $i + 1`
+done
+
+----------------------------------------------------------------------------------------
+
+
+#chmod  +x  whilescript
+
+#whilescript   7
+
+
+
+
+----------------------------------------------------------------------------------------------------------
+#purpose  to write a script which will display whether  
+#!/bin/bash
+
+netstat -tulnp | grep :22  &>  /dev/null
+
+sshdstatus=`echo $?`
+
+servicename=sshd
+count=0
+if  [  $? != 0 ]
+then
+     while [ $count -le 2 ]
+     do
+     service  $servicename restart
+     if [ $? != 0 ]
+     then
+     let  "count +=1"
+     else
+     exit 0
+     fi
+     done
+     echo "the $servicename is having problem to start " | mail -s  "$servicename failed"     root
+
+else
+echo "$servicename  is already up and running"
+fi
+-----------------------------------------------------------------------------------------------------------
+
+
+
+#!/bin/bash
+
+#set | grep PS
+
+                                    "SELECT" COMMAND USAGE AND EXAMPLES
+                                    =================================      
+#vim scriptname
+----------------------------------------------------
+PS3='Please select the choce: '
+select  var  in "Choice1 Choce2"
+      do
+      echo "Hellow world"
+      break
+      done 
+----------------------------------------------------------------
+ #./scriptname
+
+o\p will be: 
+-----------
+1) Choice1 Choice2
+Please select the choice: 1   --> Choice1
+---------------
+Hellow world
+--------------
+
+
+#vim scriptname2
+-----------------------------------------------------------------------
+PS3='Please select the choce: '
+
+LIST="Choice1  Choice2 Quit"
+select  i  in $LIST
+     do
+     if  [ $i = "Choice1" ] 
+     then
+         echo "Hellow world"
+     elif [ $i == "Choice2" ]
+     then
+           echo "Goodbye world!"
+     elif [ $i =  "Quit"  ] 
+     then
+       exit 
+    fi
+       break
+done 
+--------------------------------------------
+#./scriptname2
+
+
+#vi scriptname3
+-----------------------------------------------------------------------------------
+PS3='Please select the choce: '
+LIST="ssh system Quit"
+select  i  in $LIST
+    do
+     if  [ "$i" = "ssh" ] 
+      then
+         watch  tail  /var/log/secure
+     elif [ "$i" = "system" ]
+      then
+           watch  tail  /var/log/messages
+      elif [ "$i" =  "Quit"  ] 
+      then
+       exit 
+     fi
+      #break
+   done 
+
+----------------------------------------------------------------------------------------
+
+
+#vi ftpsync.sh
+-----------------------------------------------------------------------
+#!/bin/bash
+open  -u  ftp,redhat 192.168.0.253
+cd pub/tmp
+
+lcd  /tmp2
+mirror -Rn
+-----------------------------------------
+
+#!/bin/bash
+
+scripthome=/tmp2/ftpsync.sh
+lftp  -f   $scripthome
+
+Bash Case Example 4. Prompt User with Yes or No
+==============================================
+
+In most of the software installation, during license agreement, it will ask yes or no input from user. The following code snippet is one of the way to get the yes or no input from user.
+
+$ vim yorno.sh
+-----------------------------------------------------------------------
+#!/bin/bash
+
+echo -n "Do you agree with this? [yes or no]: "
+read yno
+case $yno in
+
+        [yY] | [yY][Ee][Ss] )
+                echo "Agreed"
+                ;;
+
+        [nN] | [n|N][O|o] )
+                echo "Not agreed, you can't proceed the installation";
+                exit 1
+                ;;
+        *) echo "Invalid input"
+            ;;
+esac
+---------------------------------------------------------------------------------
+
+# ./yorno.sh
+
+Do you agree with this? [yes or no]: YES
+Agreed
+                                 Another example for case to start/stop/restart tomcat service
+                                ===============================================================
+#cd /etc/init.d/
+
+#vi tomcat 
+-----------------------------------------------------------------------------------------
+#!/bin/bash  
+# description: Tomcat Start Stop Restart  
+# processname: tomcat  
+# chkconfig: 234 20 80  
+JAVA_HOME=/usr/java/jdk1.7.0_05  
+export JAVA_HOME  
+PATH=$JAVA_HOME/bin:$PATH  
+export PATH  
+CATALINA_HOME=/usr/share/apache-tomcat-7.0.29  
+  
+case $1 in  
+start)  
+sh $CATALINA_HOME/bin/startup.sh  
+;;   
+stop)     
+sh $CATALINA_HOME/bin/shutdown.sh  
+;;   
+restart)  
+sh $CATALINA_HOME/bin/shutdown.sh  
+sh $CATALINA_HOME/bin/startup.sh  
+;;   
+esac      
+exit 0  
+---------------------------------------------------------------------------------------------
+
+#chmod +x /etc/init.d/tomcat
+#service tomcat start/restart
+#chkconfig tomcat on
+                                                         SS ENVIRONMENT SCRIPTS OF NAGIOS
+							===================================
+
+VIM  tomcat_stat.sh
+-------------------------------------------------------------
+#!/bin/bash
+
+#Description  :Nagios plugin (script) to start/stop tomcat
+
+#USAGE:  ./tomcat_stat.sh -s "start or stop"
+
+#Nagios return codes
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3
+
+#Parse parameters 
+
+while [ $# -gt 0] ; do 
+             case "$1" in    
+			     -s | --start_stop_tomcat)
+				   shift
+				   TOM_STAT=$1
+				   ;;
+				 *) echo "Unknown argument: $1"
+				 #print_usage 
+				 exit $STATE_UNKONWN
+				 ;;
+	shift
+	done
+	
+	#Funtions plugin usage
+	print_release() {
+	echo "$RELEASE $AUTHOR"
+	}
+	
+	echo $TOM_STAT;
+	if [ "$TOM_STAT" == "start" -o "$TOM_STAT"== "start" ]; then
+	echo "starting tomcat service"
+	sudo -u ccms  /sbin/service tomcatccms start;
+	elif [ "$TOM_STAT" == "stop" -o  "$TOM_STAT" == "stop" ];then
+	echo "stopping tomcat";
+	sudo -u ccms /sbin/service tomcatccms stop;
+	fi
+	
+-----------------------------------------------------------------
+
+#./tomcat_stat.sh -s  stop  
+                      start
+					  
+vim  /etc/init.d/tomcatccms
+-----------------------------------------------------------------------
+#!/bin/sh
+#http service
+export JAVA_HOME=/opt/jdk1.7.0
+start() {
+        echo "starting tomcat service"
+        . ~ccms/.bash_profile}
+        export LD_LIBRARY_PATH=/opt/jboss-ews-2.1/tomcat6/lib:$LD_LIBRARY_PATH
+        cd /opt/jboss-ews-2.1/tomcat6/bin
+        ./startup.sh
+       }
+
+stop() {
+    echo "Stopping tomcat service..."
+	export JAVA_TMCT_MAX_MEM=700M
+	export LD_LIBRARY_PATH=/opt/jboss-ews-2.1/tomcat6/lib:$LD_LIBRARY_PATH
+	cd /opt/jboss-ews-2.1/tomcat6/bin
+	./shutdown.sh
+	echo "Sleeping 20"; sleep 20
+	ps -ef | grep tomcat | grep jboss-ews | grep org.apache.catalina.startup.Bootstrap | awk '{print $2}' |xargs -i kill {} ; echo "sleeping 5";sleep 5
+	ps -ef | grep tomcat | grep jboss-ews | grep org.apache.catalina.startup.Bootstrap | awk '{print $2}' | xargs -i kill -9 {} 
+	}
+	
+restart() {
+	echo "Tomcat server restarting" 
+	export LD_LIBRARY_PATH=/opt/jboss-ews-2.1/tomcat6/lib:$LD_LIBRARY_PATH
+	cd /opt/jboss-ews-2.1/tomcat6/bin
+	stop 
+	start
+	}
+	
+	case "$1" in
+	    start)
+		     start
+			 ;;
+	    stop) 
+		     stop 
+			 ;;
+		restart)
+		     restart
+			 ;;
+		*) 
+		 echo "Usage: tomcat {start|stop|restart}"
+		 exit 1
+	esac
+	exit 0
+	------------------------------------------------------------------------------------------------------------------------------------------------------
+
+	
+	+ '[' 2 -gt 0 ']'
+	+ case "$1" in
+	+ shift
+	+ TOM_STAT=start
+	+ shift
+	+ '[' 0 -gt 0 ']'
+	
+#vim tomcat_restart.sh
+-----------------------------------------------------------------------------------------------------
+#!/bin/bash
+
+Description: Nagios plugin (script) to restart tomcat
+
+#USAGE:  ./check_restart.sh
+
+#Nagios return codes 
+STATE_OK=0
+STATE_WARNING=1
+STATE_CRITICAL=2
+STATE_UNKNOWN=3
+
+#Plugin variable description
+PROGRAME=$(basename $0)  #PROGNAME=tomcat_restart.sh
+RELEASE="Revision 1.1"
+AUTHOR="abc"
+START_TIME=
+END_TIME=
+
+
+#Functions plugin usage
+print_release() {
+   echo "$RELEASE $AUTHOR"
+   }
+   
+   sudo -u ccms  /sbin/service tomcatccms restart
+   
+ -------------------------------------------------------------------------------------------------
+ 
+ #./tomcat_restart.sh
+ 
+ #vim tomcat_cleanup.sh
+ ----------------------------------------------------------------------------------
+ #!/bin/bash
+ 
+ #usage:  ./tomcat_cleanup.sh
+ 
+ #Nagios return codes
+ STATE_OK=0
+ STATE_WARNING=1
+ STATE_CRITICAL=2
+ STATE_UNKNOWN=3
+ 
+ #Plugin variable description
+ PROGNAME=$(basename $0 )
+ RELEASE="Revision 1.1"
+ AUTHOR="Anuj"
+ START_TIME=
+ END_TIME=
+ 
+ #Funtions plugin usage
+ print_release () {
+   echo "$RELEASE $AUTHOR"
+   }
+   
+   #Parse paramters
+    echo "Stop cleanup start"
+	sudo -u ccms /sbin/service tomcatccms stop 
+	echo "tomcat log cleanup start"
+	sudo -u ccms rm -f /opt/jboss-ews-1.0/tomcat6/logs/*.out*
+	echo "application log cleanup started"
+	sudo -u ccms find /opt/jboos-ews-1.0/tomcat6/webapps/*/WEB-INF/logs/FAW_l4j.log.* -mtime +0 -exec rm {} \; 
+	echo "cache cleanup started"
+	sudo -u ccms rm -f /opt/jboss-ews-1.0/tomcat6/webapps/*/WEB-INF/cache/*
+	echo "Finally starting tomcat"
+	sudo -u ccms /sbin/service tomcatccms start 
+	echo "completed the process'
+-----------------------------------------------------------------------------------------------------------------------
+
+#./tomcat_cleanup.sh

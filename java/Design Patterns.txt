@@ -1,0 +1,733 @@
+Design Patterns
+---------------
+
+Design patterns are reusable solutions to common software design problems that occur frequently during software development. They provide a structured approach to solving specific design problems in a way that promotes code reusability, flexibility, and maintainability. Design patterns encapsulate best practices, proven solutions, and design principles distilled from the collective experience of software developers over time.
+
+Here are some key reasons why design patterns are needed:
+-----------------------------------------------------------
+1. Promote Reusability: Design patterns encapsulate reusable solutions to common problems. They provide a 
+   template or blueprint that can be applied to different contexts and scenarios within a software system.
+
+2. Encourage Best Practices: Design patterns embody best practices and principles of software design, such as 
+   separation of concerns, loose coupling, and high cohesion. By following these patterns, developers can 
+   produce high-quality, maintainable code.
+
+3. Provide a Common Vocabulary: Design patterns provide a common vocabulary and shared understanding among 
+   developers. They enable developers to communicate design ideas and solutions effectively, fostering 
+   collaboration and teamwork.
+
+4. Accelerate Development: Design patterns can speed up the development process by providing well-defined 
+   solutions to recurring problems. Developers don't need to reinvent the wheel each time they encounter a 
+   common problem but can leverage existing patterns.
+
+5. Improve Maintainability: By promoting modularity, flexibility, and separation of concerns, design patterns      
+   make software systems easier to understand, maintain, and extend. They help manage complexity and reduce     
+   the risk of introducing bugs during maintenance.
+
+6. Facilitate Design Evolution: Design patterns provide a foundation for building scalable and adaptable 
+   software systems. They make it easier to accommodate changes and enhancements over time without requiring 
+   major rewrites.
+
+7. Cross-Platform Compatibility: Many design patterns are platform-independent and can be applied in various 
+   programming languages and environments. They provide solutions that are not tied to specific technologies 
+   or platforms.
+
+Types of Design Patterns
+------------------------
+a. Creational 
+	eg> Singleton, Factory, Builder
+b. Structural
+	eg> Adapter, Proxy, Bridge,Composite, Decorator,FlyWeight
+
+c. Behavioural Patterns
+	eg> Observer, Strategy, Command etc.,
+
+
+Singleton desgin pattern ensures that a class has only one instance and provides a global point of access
+UseCase: 
+
+
+class DbConnection{
+	public static int getConnection(){
+		// conecting and performing some tasks
+	}
+}
+
+
+DbConnection db = new Dbconnection();
+db.getConnection()
+
+
+
+Singleton
+---------
+class Singleton {
+    // Private constructor to prevent instantiation
+    private Singleton() {
+        // Initialization code here
+    }
+
+    // Inner static helper class responsible for holding the Singleton instance
+    private static class SingletonHelper {
+        // The Singleton instance is created when this class is loaded
+        private static final Singleton INSTANCE = new Singleton();
+    }
+
+    // Public method to provide access to the Singleton instance
+    public static Singleton getInstance() {
+        return SingletonHelper.INSTANCE;
+    }
+
+    // Example method to demonstrate the Singleton functionality
+    public void showMessage() {
+        System.out.println("Hello from Singleton instance!");
+    }
+}
+
+public class SingletonPatternDemo {
+    public static void main(String[] args) {
+        // Get the only instance of Singleton
+        Singleton singletonInstance = Singleton.getInstance();
+
+        // Show the message from the Singleton instance
+        singletonInstance.showMessage();
+    }
+}
+
+
+
+Factory method defines an inteface for creating objects,but lets subclasses alter the type of objects
+that will be created
+
+
+
+Factory Method
+--------------
+interface Shape {
+    void draw();
+}
+
+class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Circle.");
+    }
+}
+
+class Rectangle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Rectangle.");
+    }
+}
+
+class Square implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing a Square.");
+    }
+}
+
+
+class ShapeFactory {
+    // Use getShape method to get an object of type Shape
+    public Shape getShape(String shapeType) {
+        if (shapeType == null) {
+            return null;
+        }
+        if (shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle();
+        } else if (shapeType.equalsIgnoreCase("RECTANGLE")) {
+            return new Rectangle();
+        } else if (shapeType.equalsIgnoreCase("SQUARE")) {
+            return new Square();
+        }
+        return null;
+    }
+}
+
+public class FactoryPatternDemo {
+    public static void main(String[] args) {
+        ShapeFactory shapeFactory = new ShapeFactory();
+
+        // Get an object of Circle and call its draw method
+        Shape shape1 = shapeFactory.getShape("CIRCLE");
+        shape1.draw();
+
+        // Get an object of Rectangle and call its draw method
+        Shape shape2 = shapeFactory.getShape("RECTANGLE");
+        shape2.draw();
+
+        // Get an object of Square and call its draw method
+        Shape shape3 = shapeFactory.getShape("SQUARE");
+        shape3.draw();
+    }
+}
+
+
+
+Builder
+------
+The Builder Design Pattern is a creational pattern that separates the construction of a complex object from its representation, allowing the same construction process to create different representations. It simplifies the creation of complex objects by providing a step-by-step approach.
+
+
+Step-by-Step Implementation:
+---------------------------
+1. Define the Pizza Class: Define the class for the complex object we want to build.
+2. Create the Builder Class: Define a builder class to construct the Pizza object step by step.
+3. Use Method Chaining: Implement methods in the builder class to set properties of the Pizza, allowing method   
+   chaining.
+4. Build the Pizza Object: Create a method in the builder class to build the Pizza object with all the 
+   specified properties.
+
+public class Pizza {
+    private String size;
+    private boolean cheese;
+    private boolean pepperoni;
+    private boolean mushrooms;
+
+    public Pizza(Builder builder) {
+        this.size = builder.size;
+        this.cheese = builder.cheese;
+        this.pepperoni = builder.pepperoni;
+        this.mushrooms = builder.mushrooms;
+    }
+
+    // Getters
+    public String getSize() {
+        return size;
+    }
+
+    public boolean hasCheese() {
+        return cheese;
+    }
+
+    public boolean hasPepperoni() {
+        return pepperoni;
+    }
+
+    public boolean hasMushrooms() {
+        return mushrooms;
+    }
+
+    // Builder class
+    public static class Builder {
+        private String size;
+        private boolean cheese = false;
+        private boolean pepperoni = false;
+        private boolean mushrooms = false;
+
+        // Constructor with required parameters
+        public Builder(String size) {
+            this.size = size;
+        }
+
+        // Methods to set optional parameters and return the builder instance
+        public Builder addCheese() {
+            this.cheese = true;
+            return this;
+        }
+
+        public Builder addPepperoni() {
+            this.pepperoni = true;
+            return this;
+        }
+
+        public Builder addMushrooms() {
+            this.mushrooms = true;
+            return this;
+        }
+
+        // Method to build the Pizza object
+        public Pizza build() {
+            return new Pizza(this);
+        }
+    }
+}
+public class BuilderPatternDemo {
+    public static void main(String[] args) {
+        // Create a pizza with cheese and pepperoni
+        Pizza pizza1 = new Pizza.Builder("Large")
+                            .addCheese()
+                            .addPepperoni()
+                            .build();
+
+        // Create a vegetarian pizza with mushrooms
+        Pizza pizza2 = new Pizza.Builder("Medium")
+                            .addMushrooms()
+                            .build();
+
+        // Print the details of the pizzas
+        System.out.println("Pizza 1:");
+        System.out.println("Size: " + pizza1.getSize());
+        System.out.println("Cheese: " + pizza1.hasCheese());
+        System.out.println("Pepperoni: " + pizza1.hasPepperoni());
+        System.out.println("Mushrooms: " + pizza1.hasMushrooms());
+
+        System.out.println("\nPizza 2:");
+        System.out.println("Size: " + pizza2.getSize());
+        System.out.println("Cheese: " + pizza2.hasCheese());
+        System.out.println("Pepperoni: " + pizza2.hasPepperoni());
+        System.out.println("Mushrooms: " + pizza2.hasMushrooms());
+    }
+}
+
+Adapter
+-------
+
+The Adapter Design Pattern is a structural pattern that allows objects with incompatible interfaces to work together. 
+
+It acts as a bridge between two incompatible interfaces by converting the interface of one class into another interface that a client expects. 
+
+This pattern is useful when the client expects a certain interface but the provided class does not conform to it.
+
+
+
+Example Scenario:
+-----------------
+Consider a scenario where we have an existing interface MediaPlayer to play audio files, but we want to play video files using the same interface. We'll create a VideoPlayer class that can play video files, and we'll use the Adapter pattern to adapt the VideoPlayer to the MediaPlayer interface.
+
+Step-by-Step Implementation:
+-------------------------------
+1. Define the MediaPlayer Interface: Define the target interface expected by the client.
+2. Create the AudioPlayer Class: Implement the MediaPlayer interface for playing audio files.
+3. Create the VideoPlayer Class: Implement a class that can play video files.
+4. Create the MediaAdapter Class: Implement an adapter class that adapts the VideoPlayer to the MediaPlayer interface.
+
+Demonstrate the Adapter Pattern: Use the MediaAdapter to play both audio and video files using the MediaPlayer interface.
+
+
+// MediaPlayer.java
+public interface MediaPlayer {
+    void play(String fileName);
+}
+
+
+// AudioPlayer.java
+public class AudioPlayer implements MediaPlayer {
+    @Override
+    public void play(String fileName) {
+        System.out.println("Playing audio file: " + fileName);
+    }
+}
+
+
+// VideoPlayer.java
+public class VideoPlayer {
+    public void playVideo(String fileName) {
+        System.out.println("Playing video file: " + fileName);
+    }
+}
+
+
+// MediaAdapter.java
+public class MediaAdapter implements MediaPlayer {
+    private VideoPlayer videoPlayer;
+
+    public MediaAdapter(VideoPlayer videoPlayer) {
+        this.videoPlayer = videoPlayer;
+    }
+
+    @Override
+    public void play(String fileName) {
+        videoPlayer.playVideo(fileName);
+    }
+}
+
+
+// AdapterPatternDemo.java
+public class AdapterPatternDemo {
+    public static void main(String[] args) {
+        // Create an AudioPlayer
+        AudioPlayer audioPlayer = new AudioPlayer();
+        audioPlayer.play("song.mp3");
+
+        // Create a VideoPlayer
+        VideoPlayer videoPlayer = new VideoPlayer();
+
+        // Use the MediaAdapter to play video using the MediaPlayer interface
+        MediaPlayer mediaAdapter = new MediaAdapter(videoPlayer);
+        mediaAdapter.play("movie.mp4");
+    }
+}
+
+
+Proxy
+-----
+Provides a surrogate or placeholder for another object to control access it.
+
+The Proxy Design Pattern is a structural pattern that provides a surrogate or placeholder for another object to control access to it. 
+
+It acts as an intermediary between the client and the real object, allowing the proxy to add additional functionality such as logging, caching, or access control without changing the original object's code.
+
+usecase -- > virtual proxy for image loading
+
+
+
+Example Scenario:
+-------------------
+Consider a scenario where we have a costly or remote object that we want to control access to. We'll create a proxy class to represent this object and control access to it. This proxy will provide access to the real object only if certain conditions are met.
+
+Step-by-Step Implementation:
+-----------------------------
+1. Define the Subject Interface: Define an interface that both the real object and proxy will implement.
+2. Create the RealSubject Class: Implement the real object that performs the actual work.
+3. Create the Proxy Class: Implement the proxy class that controls access to the real object.
+4. Use the Proxy: Demonstrate the use of the proxy to control access to the real object.
+
+// Subject.java
+public interface Subject {
+    void request();
+}
+
+
+// RealSubject.java
+public class RealSubject implements Subject {
+    @Override
+    public void request() {
+        System.out.println("RealSubject: Handling request.");
+    }
+}
+
+
+// Proxy.java
+public class Proxy implements Subject {
+    private RealSubject realSubject;
+
+    @Override
+    public void request() {
+        // Check access control or other conditions before granting access to the real object
+        if (checkAccess()) {
+            if (realSubject == null) {
+                realSubject = new RealSubject();
+            }
+            realSubject.request();
+        } else {
+            System.out.println("Proxy: Access denied.");
+        }
+    }
+
+    private boolean checkAccess() {
+        // Simulate access control logic
+        return true;
+    }
+}
+
+
+// ProxyPatternDemo.java
+public class ProxyPatternDemo {
+    public static void main(String[] args) {
+        // Create a proxy
+        Proxy proxy = new Proxy();
+
+        // Perform request through the proxy
+        proxy.request();
+    }
+}
+
+communication system
+
+1. Pub Sub
+
+2. sender and receiver
+
+
+Observer
+--------
+The Observer Design Pattern is a behavioral pattern that defines a one-to-many dependency between objects so that when one object changes state, all its dependents are notified and updated automatically. 
+
+It is often used to implement distributed event handling systems, where the state change of one object triggers actions in other objects.
+
+Example Scenario:
+------------------
+Consider a scenario where we have a subject (also known as the Observable) that represents a newspaper publisher, and we have multiple observers (subscribers) who are interested in receiving updates whenever a new issue is published. We'll implement the Observer pattern to notify all subscribers whenever a new issue is available.
+
+Step-by-Step Implementation:
+----------------------------
+1. Define the Subject Interface: Define an interface that allows observers to subscribe, unsubscribe, and 
+   receive updates.
+2. Create the ConcreteSubject Class: Implement the subject interface and maintain a list of observers. Notify 
+   observers whenever there is a state change.
+3. Create the Observer Interface: Define an interface that allows observers to receive updates.
+4. Create the ConcreteObserver Classes: Implement the observer interface in concrete observer classes.
+5. Register Observers with the Subject: Register observers with the subject to receive updates.
+6. Trigger State Changes: Trigger state changes in the subject and notify observers.
+
+
+// Subject.java
+public interface ObserverSubject {
+    void registerObserver(Observer observer);
+    void removeObserver(Observer observer);
+    void notifyObservers();
+}
+
+
+// NewspaperPublisher.java
+import java.util.ArrayList;
+import java.util.List;
+
+public class NewspaperPublisher implements Subject {
+    private List<Observer> observers = new ArrayList<>();
+
+    public void publishNewIssue() {
+        // Publish a new issue
+        System.out.println("New issue published!");
+
+        // Notify all subscribers
+        notifyObservers();
+    }
+
+    @Override
+    public void registerObserver(Observer observer) {
+        observers.add(observer);
+    }
+
+    @Override
+    public void removeObserver(Observer observer) {
+        observers.remove(observer);
+    }
+
+    @Override
+    public void notifyObservers() {
+        for (Observer observer : observers) {
+            observer.update();
+        }
+    }
+}
+
+
+// Observer.java
+public interface Observer {
+    void update();
+}
+
+
+// Subscriber.java
+public class Subscriber implements Observer {
+    private String name;
+
+    public Subscriber(String name) {
+        this.name = name;
+    }
+
+    @Override
+    public void update() {
+        System.out.println(name + ": Received new issue.");
+    }
+}
+
+
+// ObserverPatternDemo.java
+public class ObserverPatternDemo {
+    public static void main(String[] args) {
+        // Create the subject
+        NewspaperPublisher newspaperPublisher = new NewspaperPublisher();
+
+        // Create subscribers
+        Subscriber subscriber1 = new Subscriber("Subscriber 1");
+        Subscriber subscriber2 = new Subscriber("Subscriber 2");
+        Subscriber subscriber3 = new Subscriber("Subscriber 3");
+
+        // Register subscribers with the subject
+        newspaperPublisher.registerObserver(subscriber1);
+        newspaperPublisher.registerObserver(subscriber2);
+        newspaperPublisher.registerObserver(subscriber3);
+
+        // Publish a new issue
+        newspaperPublisher.publishNewIssue();
+    }
+}
+
+Strategy
+--------
+
+The Strategy Design Pattern is a behavioral pattern that defines a family of algorithms, encapsulates each one, and makes them interchangeable. It allows the algorithm to vary independently from the clients that use it, enabling clients to choose the appropriate algorithm at runtime. This pattern is useful when you have multiple algorithms that can be used interchangeably or when you need to switch between algorithms dynamically.
+
+Example Scenario:
+-------------------
+Consider a scenario where we have a sorting algorithm that we want to use in different contexts. We'll implement the Strategy pattern to encapsulate different sorting algorithms (e.g., bubble sort, quick sort, merge sort) and allow the client to choose the appropriate algorithm dynamically.
+
+Step-by-Step Implementation:
+---------------------------
+1. Define the Strategy Interface: Define an interface that represents the strategy (sorting algorithm).
+2. Create Concrete Strategy Classes: Implement different sorting algorithms by implementing the strategy 
+   interface.
+3. Create the Context Class: Contains a reference to the strategy interface and allows clients to switch 
+   between strategies dynamically.
+
+// SortingStrategy.java
+public interface SortingStrategy {
+    void sort(int[] array);
+}
+
+
+// BubbleSortStrategy.java
+public class BubbleSortStrategy implements SortingStrategy {
+    @Override
+    public void sort(int[] array) {
+        // Implement bubble sort algorithm
+        System.out.println("Sorting using Bubble Sort");
+    }
+}
+
+// QuickSortStrategy.java
+public class QuickSortStrategy implements SortingStrategy {
+    @Override
+    public void sort(int[] array) {
+        // Implement quick sort algorithm
+        System.out.println("Sorting using Quick Sort");
+    }
+}
+
+// MergeSortStrategy.java
+public class MergeSortStrategy implements SortingStrategy {
+    @Override
+    public void sort(int[] array) {
+        // Implement merge sort algorithm
+        System.out.println("Sorting using Merge Sort");
+    }
+}
+
+
+// SortingContext.java
+public class SortingContext {
+    private SortingStrategy sortingStrategy;
+
+    public void setSortingStrategy(SortingStrategy sortingStrategy) {
+        this.sortingStrategy = sortingStrategy;
+    }
+
+    public void executeStrategy(int[] array) {
+        sortingStrategy.sort(array);
+    }
+}
+
+
+// StrategyPatternDemo.java
+public class StrategyPatternDemo {
+    public static void main(String[] args) {
+        int[] array = {5, 2, 7, 1, 9};
+
+        SortingContext context = new SortingContext();
+
+        // Use Bubble Sort
+        context.setSortingStrategy(new BubbleSortStrategy());
+        context.executeStrategy(array);
+
+        // Use Quick Sort
+        context.setSortingStrategy(new QuickSortStrategy());
+        context.executeStrategy(array);
+
+        // Use Merge Sort
+        context.setSortingStrategy(new MergeSortStrategy());
+        context.executeStrategy(array);
+    }
+}
+
+Command
+-------
+The Command Design Pattern is a behavioral pattern that encapsulates a request as an object, thereby allowing for parameterization of clients with queues, requests, and operations. It allows for the separation of a sender and receiver of a command, enabling us to issue commands without knowing anything about the actions being performed or the receiver of the action.
+
+Example Scenario:
+------------------
+Consider a scenario where we have a remote control with multiple buttons, each controlling different electronic devices (e.g., a light, a fan, a television). We'll implement the Command pattern to encapsulate the requests as objects, allowing us to issue commands to various devices without knowing the specifics of how each device works.
+
+Step-by-Step Implementation:
+----------------------------
+1. Define the Command Interface: Define an interface for all commands to implement.
+2. Create Concrete Command Classes: Implement different commands by implementing the command interface.
+3. Create the Receiver Classes: Implement the classes that perform the actual actions.
+4. Create the Invoker Class: Contains a list of commands and executes them.
+5. Client Code: Create commands, receivers, and invoker, and associate commands with receivers.
+
+// Command.java
+public interface Command {
+    void execute();
+}
+
+// LightOnCommand.java
+public class LightOnCommand implements Command {
+    private Light light;
+
+    public LightOnCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOn();
+    }
+}
+
+// LightOffCommand.java
+public class LightOffCommand implements Command {
+    private Light light;
+
+    public LightOffCommand(Light light) {
+        this.light = light;
+    }
+
+    @Override
+    public void execute() {
+        light.turnOff();
+    }
+}
+
+// Light.java
+public class Light {
+    public void turnOn() {
+        System.out.println("Light is turned on");
+    }
+
+    public void turnOff() {
+        System.out.println("Light is turned off");
+    }
+}
+
+
+// RemoteControl.java
+import java.util.ArrayList;
+import java.util.List;
+
+public class RemoteControl {
+    private List<Command> commands = new ArrayList<>();
+
+    public void addCommand(Command command) {
+        commands.add(command);
+    }
+
+    public void pressButton(int index) {
+        if (index >= 0 && index < commands.size()) {
+            commands.get(index).execute();
+        }
+    }
+}
+
+// CommandPatternDemo.java
+public class CommandPatternDemo {
+    public static void main(String[] args) {
+        // Create the receiver
+        Light light = new Light();
+
+        // Create the commands
+        Command lightOnCommand = new LightOnCommand(light);
+        Command lightOffCommand = new LightOffCommand(light);
+
+        // Create the invoker
+        RemoteControl remoteControl = new RemoteControl();
+        remoteControl.addCommand(lightOnCommand);
+        remoteControl.addCommand(lightOffCommand);
+
+        // Press buttons on the remote control
+        remoteControl.pressButton(0); // Turn on the light
+        remoteControl.pressButton(1); // Turn off the light
+    }
+}
+
+
+
+
+
+
+
+

@@ -1,0 +1,146 @@
+Disadvantages or limitations
+----------------------------
+
+1. Total Presentation and bussiness logic are merged together
+
+2. Data and Presentation are meged, if we change the data, then we need to
+   change the presentation
+
+3. Presentation canot be directly written with html, it should be give
+   with java based code only.
+
+4. There is no clear implemntation for MVC arch
+
+Model
+View
+Controller
+
+5. There are no implicit objects 
+
+6. Exception handling is also difficult
+
+
+RequestDispatcher ---> can forward the requests from one servlet to anther servlet
+
+include---> will incldue all the data in the same servlet
+forward--->forwards the request to another servlet along with data
+
+
+
+JSP
+---
+Extension to Servlet -- JSP
+
+Java Server Pages
+
+JSP is a server side web component written in Java, used to create the dynamic web
+pages
+
+in jsp presentations can be written directly by using html tags
+
+
+
+Servlet and JSP to clearly seperate the Bussiness Logic with Presentation
+and Presentation with data
+
+
+9 Implicit Objects in JSP
+
+request, response, out, exception, session, config, page,pageContext, application
+
+
+
+JSP has its own lifecycle
+--------------------------
+
+compilation-- compile the jsp code and converts into a servlet
+
+intialization---> intialize the jsp by calling a method jspInit()
+
+
+execution----> _jspService()
+
+cleaup or destroy ---> jspDestroy()
+
+
+Jsp Code consists  diff types
+-----------------------------
+
+jsp scripting elements ---> diff types of code to write the jsp pages
+
+Scriplets -- these are used to execute / represent any valid java code
+<%   %>
+
+expressions  -- These tages are used to evaluate any java expression
+<% String name = "praveen"; %>
+<%=name%>
+<%=4+10%>
+
+declartions  -- These tags are used to declare variables, methods, or any java
+valid declarations
+<% !
+
+int x;
+String  name;
+public int cube(int x){
+
+	return x*x*x;
+}
+
+
+ %>
+
+
+
+all the jsp code is written in tags
+
+directives--> jsp directives are messages that tells the web container how to translate
+the jsp page into a corresponding servlet
+
+<%@    %>
+
+scriptlet --> <%    %>---> Write any valid java code
+expressions-> <%=   %>---->Evaluate any java expression
+declarations-> <%!  %>-----> Declare any java declarations
+directives---> <%@  %>-----> message to container about the conversion of servlet
+   1.1 page ---> defines the attributes that need to apply for entire page
+         import
+	 contentType
+	 extends
+	 info
+	 buffer
+	language
+	isErrorPage
+	errorPage
+	isThreadSafe=true (Mulithreading ) 
+	session -- used to implement the session management
+
+   1.2 include  ---> Is used to include the output of file in the current page
+	<@include file="header.html" %>
+
+   1.3 taglib ---> used to define a tag library that defines many tags
+       <@taglib uri="http://www.myjsptags.com/tags" prefix="mytag" %>
+
+	<%=http://www.jsptags.com/tags/currentDate %>
+	<mytag:currentDate/>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

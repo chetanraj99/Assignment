@@ -1,0 +1,77 @@
+
+employee(eid,ename,dept,desg,mgr,doj,sal)
+
+SELECT */list_Of_Columns from <tablename> where [condition];
+
+select * from employee; ---> All the records from the table
+select eid,ename,dept from employee; ----> Displays only eid,ename,dept colm
+for all records from the table;
+
+
+CREATE -> USED TO create a table
+
+SYNTAX
+------
+
+
+Datatypes in Oracle
+--------------------
+1. Number
+2. varchar or varchar
+3. Date
+4. boolean
+5. json
+6. xml
+7. clob
+8. blob
+
+
+
+create table <tablename> (
+
+column1 datatype1,
+column2 datatype2,
+column3 datatype3,
+
+column  datatype);
+
+student(htno,name,m1,m2,m3,total,avg)
+
+10010
+CT10029
+
+create table Student(
+htno number(5),
+name varchar(20),
+m1 number(3), ---> 999
+m2 number(3),
+m3 number(3),
+total number(5), ---> 99999 
+average number(5,2)
+);
+
+__.__
+
+99.99
+
+number(7,2) ---> 9999.99
+number(3,1) ----> 9.9  --->
+
+
+desc <tablename> - this will describe the table
+
+desc employee --> shows the column names and its datatypes
+
+
+Alter command is used to change the structure
+
+ALTER TABLE <TABLE> ADD/DELETE/MODIFY COLUMNNAME DATATYPE(SIZE);
+
+ALTER TABLE EMPLOYEE ADD EXP NUMBER(3);
+
+
+
+
+
+
+

@@ -1,0 +1,216 @@
+Filters and Pipes
+-----------------
+
+1. grep -- searches for pattern in the file
+	grep "pattern" data.txt
+
+2. sort -- sorts the lines from your text 
+	sort data.txt
+
+3. head --- It will display n lines from the begining( default 10 lines)
+   we can have our own no lines
+
+	head -4 data.txt
+	
+
+4. tail -- It will display n lines from the last( 10 lines default)
+	tail -5 data.txt
+
+5. uniq ---> removes the adjacent duplicate lines from the file
+   
+	uniq data.txt
+
+6. tr ---> this command will coverts all lowercase letter to uppercase 
+    tr '[:lower:]' '[:upper:]' < data.txt
+
+7. cut : This command extrcts the specific number of colums / fileds from the 
+    file
+
+   ex> cut -d ',' -f 1,3 data.csv
+
+8. sed : stream editor for filtering and transforming the text from the files
+
+9. awk : this is used to extrac the data 
+
+Pipes
+-----
+The commands or tool which allows us to chain multiple commands together, by providing the
+output of one command as input to another command
+
+cat marks.csv 
+
+grep "India" data.txt
+
+sort data.txt
+
+cat marks.csv | grep "India" | sort
+
+
+Watch - is used to execute a command periodically and display the output in real time
+
+Error Handling
+--------------
+
+Syntax Errors -- Compile time errors
+
+Runtime Errors ---> these error will occur at runtime
+
+Process of handling the errors at runtime
+
+
+1. Exit codes -- 
+exit status  ----> 0
+any non negative number ---> un successful execution
+
+status of previous commands by using $?
+
+
+
+2. Handling Errors;
+   
+	Exit on Error: we can set our script to exit immediately if any command fails by adding
+	set -e at the beginning of script
+
+	#!/bin/bash
+	set -e
+	command1
+	command2
+
+	Trap Command:
+        use trap to catch signals and errors. This allows us to perform some cleanup actions
+        before exiting the script
+
+	#!/bin/bash
+	
+	cleanup(){
+		echo "some action is underway"
+	}
+
+	trap 'cleanup' ERR
+
+	command1
+	command2
+
+	Signals for Trap -- EXIT(0), ERR, SIGINT(2)
+
+	EXIT(0) : executes the command when the script exits
+	ERR : executes the command when a command in script returns a non zero exit
+	SIGINT(2): Executes the comand when the script receives an interrrupt signal ( Ctrl+c)
+
+
+
+errorexample1.sh
+---------------
+
+#!/bin/bash
+cleanup(){
+	echo "caught interuput signal"
+	exit 1
+}
+
+trap 'cleanup' SIGINT
+
+echo "press ctrl + c to demo interrupt signal"
+echo "waiting for 10 seconds"
+sleep 10
+
+echo "process completed successfully"
+
+
+errorexample2.sh
+----------------
+#!/bin/bash
+cleanup(){
+	echo "caught interuput signal and started performing cleaning"
+	echo "cleaning is completed"
+}
+
+trap 'cleanup' EXIT
+
+echo "process started "
+echo "waiting for process to complete"
+#exit 1
+echo "process completed successfully"
+
+
+Debugging In Linux
+-------------------
+
+Debugging is the process of identifying the errors in the program
+
+
+
+s1
+s2
+print 
+s3
+print
+s4
+print
+s5
+print
+s6
+s7
+
+
+In linux we have many debugging techniqeus
+-------------------------------------------
+
+1. set debugging mode
+
+	s#!/bin/bash
+	set -x
+	# remaining code 
+
+2. use echo statements
+	echo "some display message"
+
+3. check the exit status
+	command
+	echo "Exit status : $?"
+
+4. logging  - Redirect the exit status of every command into a backup file called
+   log file
+
+	exec & > script.log
+
+5. Use set -e
+
+	enable the exit immediately option to debug more easily
+
+
+6.ShellCheck -- Tool to analyze script for common errors and syntax issues and best practices
+
+  $ shellcheck abc.sh  --> analyze 
+
+
+7. Step through the script: use bash -X command to step through the script one line at a time
+    bash -x script.sh
+
+
+8. check syntax:
+
+   bash -n script.sh
+
+   
+	
+   
+
+
+	
+
+	
+
+
+
+
+
+
+
+
+
+
+
+
+
+

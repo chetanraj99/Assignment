@@ -1,0 +1,247 @@
+Java Reflection
+----------------
+Java Reflection is a feature that allows a Java program to inspect and manipulate its own structure, such as classes, methods, fields, and annotations, at runtime. This can be particularly useful for debugging, testing, or implementing frameworks that need to work with unknown classes at compile time.
+
+
+Key Components of Reflection
+------------------------------
+Class Object: 
+--------------
+Represents a class or interface and can be obtained using Class.forName(), ClassName.class, or object.getClass().
+
+Field Object: 
+-------------
+Represents a class's field and can be obtained using Class.getDeclaredField() or Class.getDeclaredFields().
+
+Method Object: 
+--------------
+Represents a class's method and can be obtained using Class.getDeclaredMethod() or Class.getDeclaredMethods().
+
+Constructor Object: 
+-------------------
+Represents a class's constructor and can be obtained using Class.getDeclaredConstructor() or Class.getDeclaredConstructors().
+
+Modifiers: 
+----------
+Reflection can be used to get and change the accessibility of fields, methods, and constructors.
+
+public class Person {
+    private String name;
+    private int age;
+
+    public Person() {}
+
+    public Person(String name, int age) {
+        this.name = name;
+        this.age = age;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public void setAge(int age) {
+        this.age = age;
+    }
+
+    public int getAge() {
+        return age;
+    }
+}
+
+public class ReflectionExample {
+    public static void main(String[] args) {
+        try {
+            Class<?> personClass = Class.forName("Person");
+
+            System.out.println("Class Name: " + personClass.getName());
+
+            Constructor<?>[] constructors = personClass.getDeclaredConstructors();
+            for (Constructor<?> constructor : constructors) {
+                System.out.println("Constructor: " + constructor);
+            }
+
+            Method[] methods = personClass.getDeclaredMethods();
+            for (Method method : methods) {
+                System.out.println("Method: " + method.getName());
+            }
+
+            Field[] fields = personClass.getDeclaredFields();
+            for (Field field : fields) {
+                System.out.println("Field: " + field.getName());
+            }
+        } catch (ClassNotFoundException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+2. Modifying Fields Using Reflection:
+--------------------------------------
+public class ReflectionModifyFieldExample {
+    public static void main(String[] args) {
+        try {
+            Person person = new Person("John Doe", 30);
+
+            Class<?> personClass = person.getClass();
+            Field nameField = personClass.getDeclaredField("name");
+            nameField.setAccessible(true);
+            nameField.set(person, "Jane Doe");
+
+            Field ageField = personClass.getDeclaredField("age");
+            ageField.setAccessible(true);
+            ageField.set(person, 25);
+
+            System.out.println("Modified name: " + person.getName());
+            System.out.println("Modified age: " + person.getAge());
+        } catch (Exception e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+Annotations
+------------
+Annotations in Java provide a way to add metadata to Java classes, methods, fields, and other program elements. Annotations are used for various purposes like configuring frameworks (e.g., Spring, Hibernate), code generation, and providing additional information to the compiler.
+
+Key Components of Annotations
+------------------------------
+Annotation Declaration: 
+Defines a new annotation type using @interface.
+
+Annotation Usage: 
+Attaches annotations to program elements using @.
+
+Retention Policy: 
+Specifies how long annotations are retained (SOURCE, CLASS, or RUNTIME).
+
+Target: 
+Specifies where an annotation can be applied (e.g., METHOD, FIELD, TYPE).
+
+Default Values: 
+Provides default values for annotation elements.
+
+Using Built-in Annotations:
+----------------------------
+import java.util.ArrayList;
+import java.util.List;
+
+public class BuiltInAnnotationExample {
+
+    @Override
+    public String toString() {
+        return "BuiltInAnnotationExample{}";
+    }
+
+    @Deprecated
+    public void oldMethod() {
+        System.out.println("This method is deprecated");
+    }
+
+    @SuppressWarnings("unchecked")
+    public void testMethod() {
+        List list = new ArrayList();
+        list.add("Test");
+    }
+
+    public static void main(String[] args) {
+        BuiltInAnnotationExample example = new BuiltInAnnotationExample();
+        example.oldMethod();
+        example.testMethod();
+        System.out.println(example);
+    }
+}
+
+
+
+Custom Annotation Declaration and Usage:
+----------------------------------------
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+public @interface MyAnnotation {
+    String value();
+}
+
+public class MyClass {
+    @MyAnnotation(value = "Hello, Annotation!")
+    public void myMethod() {
+        System.out.println("This is myMethod.");
+    }
+}
+
+public class AnnotationExample {
+    public static void main(String[] args) {
+        MyClass obj = new MyClass();
+        obj.myMethod();
+
+        // Accessing Annotation
+        try {
+            Method method = obj.getClass().getMethod("myMethod");
+            if (method.isAnnotationPresent(MyAnnotation.class)) {
+                MyAnnotation annotation = method.getAnnotation(MyAnnotation.class);
+                System.out.println("Annotation value: " + annotation.value());
+            }
+        } catch (NoSuchMethodException e) {
+            e.printStackTrace();
+        }
+    }
+}
+
+
+Combining Reflection and Annotations
+-------------------------------------
+Reflection can be used to inspect and manipulate annotations at runtime, which is particularly useful for building frameworks and libraries.
+
+import java.lang.annotation.Retention;
+import java.lang.annotation.RetentionPolicy;
+import java.lang.annotation.Target;
+import java.lang.annotation.ElementType;
+import java.lang.reflect.Method;
+
+@Retention(RetentionPolicy.RUNTIME)
+@Target(ElementType.METHOD)
+@interface RunMe {
+    int value() default 0;
+}
+
+class AnnotatedClass {
+    @RunMe(value = 5)
+    public void method1() {
+        System.out.println("method1");
+    }
+
+    @RunMe(value = 10)
+    public void method2() {
+        System.out.println("method2");
+    }
+}
+
+public class ReflectionAnnotationExample {
+    public static void main(String[] args) {
+        AnnotatedClass obj = new AnnotatedClass();
+
+        Method[] methods = obj.getClass().getDeclaredMethods();
+        for (Method method : methods) {
+            if (method.isAnnotationPresent(RunMe.class)) {
+                RunMe runMe = method.getAnnotation(RunMe.class);
+                System.out.println("Invoking " + method.getName() + " with value " + runMe.value());
+                try {
+                    method.invoke(obj);
+                } catch (Exception e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
+}
+
+

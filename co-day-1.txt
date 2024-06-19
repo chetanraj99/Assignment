@@ -1,0 +1,47 @@
+Network is interconnected machines
+networking is used to communicate the data
+
+Networking fundamental characteristics
+1. Delivery  --- Deliver data to the correct destination (Confidentiality)
+2. Accuracy ---- Accurate data deliver (Integrity)
+3. Timeliness  --- System must deliver the data accurately, confidentially
+int lesser time / timeliness
+
+4. Jitter  --- Delay in delivery
+
+
+
+Source (data)  -------------splited into small packets and these packets 
+were transfered over network ---------------> Destination
+
+Connection less protocols
+
+
+
+Sender -------------------------------------- Receiver
+
+to get some data from receiver
+to store some data into receiver
+
+192.168.100.20
+
+
+12ef:32f1:765a:123b--->ipv6
+
+
+
+class A ---> 1.0.0.0 to 127.255.255.255
+private ----> 10.0.0.0 to 10.255.255.255 
+
+class B----> 128.0.0.0 to 191.255.255.255 (65k hosts)
+private --> 172.16.0.0 to 172.31.255.255
+
+
+class C --> 192.0.0.0 to 223.255.255.255
+private--> 192.168.0.0 to 192.168.255.255
+
+
+
+
+
+

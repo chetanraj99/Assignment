@@ -1,0 +1,229 @@
+Q1.Given the following class definition, what issue might arise when using the addItem method?
+
+public class ShoppingCart {
+    private List<Item> items;
+
+    public void addItem(Item item) {
+        items.add(item);
+    }
+
+    public void removeItem(Item item) {
+        items.remove(item);
+    }
+
+    public List<Item> getItems() {
+        return items;
+    }
+}
+
+
+a) NullPointerException due to uninitialized items list
+b) ConcurrentModificationException when adding items (Correct Answer)
+c) Inheritance issues with the Item class
+d) Compilation error due to missing return statement
+
+
+
+Q2. Refactor the following code snippet to adhere to the Single Responsibility Principle:
+
+public class EmailService {
+    public void sendEmail(String recipient, String subject, String message) {
+        // Code to send email
+    }
+
+    public void logEmail(String recipient, String subject, String message) {
+        // Code to log email
+    }
+}
+
+Which of the following refactored versions adheres to the Single Responsibility Principle?
+a) Separating the email sending and logging into two different classes (Correct Answer)
+b) Adding error handling to the methods
+c) Combining email sending and logging into a single method
+d) No need for refactoring, the code already adheres to the principle
+
+
+Q3. Which design pattern is implemented in the following code snippet?
+public class Singleton {
+    private static Singleton instance;
+
+    private Singleton() {}
+
+    public static Singleton getInstance() {
+        if (instance == null) {
+            instance = new Singleton();
+        }
+        return instance;
+    }
+}
+
+a) Factory Method
+b) Observer
+c) Singleton (Correct Answer)
+d) Decorator
+
+
+Q4. Which of the following assertions would be appropriate to test the add method of the Calculator class?
+
+public class Calculator {
+    public int add(int a, int b) {
+        return a + b;
+    }
+}
+
+a) assertEquals(4, calc.add(2, 2)); (Correct Answer)
+b) assertTrue(calc.add(2, 2) == 4);
+c) assertNotNull(calc.add(2, 2));
+d) assertTrue(calc.add(2, 2) > 0);
+
+
+Q5. Rewrite the following code snippet to use dependency injection
+public class OrderService {
+    private EmailService emailService;
+
+    public OrderService() {
+        this.emailService = new EmailService();
+    }
+
+    public void placeOrder(Order order) {
+        // Code to place order
+        emailService.sendEmail("customer@example.com", "Order Confirmation", "Your order has been placed successfully.");
+    }
+}
+
+Q6. Which approach demonstrates proper dependency injection?
+a) Passing the EmailService object as an argument to the constructor (Correct Answer)
+b) Creating the EmailService object within the placeOrder method
+c) Using a static method to create an instance of EmailService
+d) Extending the EmailService class to customize functionality
+
+
+Q7. Consider the following class definition
+public class Product {
+    private String name;
+    private double price;
+    private int quantity;
+
+    public Product(String name, double price, int quantity) {
+        this.name = name;
+        this.price = price;
+        this.quantity = quantity;
+    }
+
+    public void setName(String name) {
+        this.name = name;
+    }
+
+    public String getName() {
+        return name;
+    }
+
+    public double getTotalPrice() {
+        return price * quantity;
+    }
+}
+
+Which of the following statements regarding the Product class is correct?
+a) The class violates the encapsulation principle.
+b) The class lacks a constructor.
+c) The class follows the single responsibility principle.
+d) The class should have a method to decrement the quantity of products (Correct Answer)
+
+
+Q8. Refactor the following code snippet to improve its design:
+public class FileHandler {
+    public void saveFile(File file) {
+        // Code to save file
+    }
+
+    public void deleteFile(File file) {
+        // Code to delete file
+    }
+
+    public void displayFileContent(File file) {
+        // Code to display file content
+    }
+}
+
+Which of the following refactorings best aligns with improving the class's design?
+a) Moving file operations to separate utility classes. (Correct Answer)
+b) Adding error handling to each method.
+c) Combining file saving and deletion into a single method.
+d) Creating separate classes for file saving, deletion, and content display.
+
+
+Q9. Identify the design pattern illustrated in the following code snippet
+public interface Shape {
+    void draw();
+}
+
+public class Circle implements Shape {
+    @Override
+    public void draw() {
+        System.out.println("Drawing Circle");
+    }
+}
+
+public class ShapeFactory {
+    public Shape getShape(String shapeType) {
+        if (shapeType == null) {
+            return null;
+        }
+        if (shapeType.equalsIgnoreCase("CIRCLE")) {
+            return new Circle();
+        }
+        return null;
+    }
+}
+
+a) Singleton
+b) Factory Method (Factory Method)
+c) Abstract Factory
+d) Builder
+
+
+Q10. Given the following JUnit test case, what assertion would verify if the removeItem method of the ShoppingCart class correctly removes an item?
+
+@Test
+public void testRemoveItem() {
+    ShoppingCart cart = new ShoppingCart();
+    Item item = new Item("Apple", 0.99);
+    cart.addItem(item);
+    cart.removeItem(item);
+    // Assertion needed here
+}
+
+
+Q11. Which assertion would be appropriate to verify that the item was removed from the cart?
+a) assertTrue(cart.getItems().isEmpty());
+b) assertEquals(0, cart.getItems().size()); (Correct Answer)
+c) assertNull(cart.getItems());
+d) assertNotNull(cart.getItems());
+
+
+Q12. What type of relationship in UML indicates that one class owns or is responsible for another class?
+a) Association
+b) Aggregation
+c) Composition (Correct Answer)
+d) Inheritance
+
+Q13. Test-Driven Development (TDD) follows which iterative development cycle?
+a) Plan, Do, Check, Act
+b) Define, Measure, Analyze, Improve, Control
+c) Red, Green, Refactor (Correct Answer)
+d) Requirements, Design, Implementation, Testing
+
+Q14. Which of the following is NOT a primary goal of Object-Oriented Analysis?
+a) Identifying objects and their relationships
+b) Capturing the behavior of the system
+c) Defining the database schema (Correct Answer)
+d) Modeling real-world concepts and scenarios
+
+Q15. Which design principle suggests that clients should not be forced to depend on interfaces they don't use?
+a) Open/Closed Principle
+b) Single Responsibility Principle
+c) Interface Segregation Principle (Correct Answer)
+d) Dependency Inversion Principle
+
+
+

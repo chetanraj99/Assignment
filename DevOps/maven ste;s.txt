@@ -1,0 +1,7 @@
+mkdir MavenPluginDemo
+cd MavenPluginDemo
+
+
+mvn archetype:generate -DgroupId=com.adp.example -DartifactId=MavenPluginDemo -DarchetypeArtifactId=maven-archetype-quickstart -DinteractiveMode=false
+
+

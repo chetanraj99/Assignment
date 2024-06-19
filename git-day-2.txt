@@ -1,0 +1,123 @@
+Open the cloud machine and open the command prompt
+
+
+c:/>git --version
+
+
+Version Control Systems
+-----------------------
+
+
+
+
+dev1 + dev2  + dev3 = project code
+
+repository ---> central repository
+
+
+Day-2
+
+dev1 made a change and pushed into central repository
+
+updated dev1 + dev2 + dev3  = Project code
+He made some changes to dev2 and dev3
+
+finally project is not working good 
+
+
+Problem-0 : Where to store all the devlopers code need to store
+Problem-1 : How to resolve / rollback the changes to get the previous code
+Problem-2: How to maintain the diff versions of the same code
+Problem-3 : Need the track of push and rollbacks
+
+
+Tools called Version Control Systems (VCS)
+-------------------------------------
+
+
+VCS is a tool or software that tracks the changes to files and directories over the time
+beside storing the data in the central repository.
+
+Will also provide the version of the systems
+
+
+these tools are used for collobaration of work.
+
+Types of VCS
+
+1. Centralized Version Control System
+    there is a one central server and all the data from the clients are stored and managed
+    in the same machine
+
+
+   Client-Server Architecutre
+
+   ex> SVN (Sub Version), Concurrency Version Systems (CVS)
+
+2. Distributed Version Control System
+
+   The data is distributed on both client and server
+   Data has replications 
+
+   Ex> Git, Mercurial, Bazaar
+
+
+Client (running locally ) --------------- Server (running remote)  (actual data will be store, it will be called as Hub)
+replication				  actual data
+
+Git
+
+client part (UI from where we will send our data to hub)
++ Server Part (Hub)  ---> stores the data online
+
+GitHub ......> Git (client)
+GitLab ------> Git 
+BitBucket ---> Git
+
+
+client ----> Git works will cli commands
+
+
+
+Local Machine (Git Client)-----send data to server----> GitHub(Server)
+
+1. git init
+
+2. git status
+
+3. git add f1,f2,f3 / . (all)
+
+4. git commit --> push data from staging to local repo
+
+5. git push -----> push data from local repo to git hub
+
+6. git merge ---> merge the current branch to another branch
+
+While working with Git, 
+
+git config --global user.name "username"
+git config --global user.email "email"
+
+git clone ---> create a working copy of repo
+
+
+cloning can be done from local repo or from a git hub
+
+git clone /path/to/repository
+git clone username@host:/path/to/repository
+
+
+git pull ---> to pull the remote repository to local machine
+
+
+
+Making Forking and Creating a pull Request	
+
+
+
+
+
+
+
+
+

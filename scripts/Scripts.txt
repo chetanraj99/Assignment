@@ -1,0 +1,74 @@
+Scripts
+-------
+
+test.sh
+-------
+#!/bin/bash
+echo "this is test"
+
+big.sh
+-------
+#!/bin/bash
+
+echo "enter first value"
+read a
+echo "enter second value"
+read b
+
+if [$a -gt $b]; then
+    echo "$a is bigger"
+else
+    echo "$b is bigger"
+fi
+
+
+forloop.sh
+----------
+
+#!/bin/bash
+echo "for in loop example"
+for item in {1..10}
+do
+	echo "$i"
+done
+
+echo "normal for loop"
+for ((i=1;i<=10;i++))
+do
+	echo "$i"
+done
+
+cities=("Hyderabad","Chennai","Mumbai","Pune")
+for city in "${cities[@]}"
+do
+	echo "$city"
+done
+
+
+whileloop.sh
+-------------
+#!/bin/bash
+
+echo "While loop example"
+count=1
+while [ $count -le 10 ]
+do
+	echo "$count"
+	((count++))
+done
+
+filesearch.sh
+----------------
+#!/bin/bash
+
+if [ $# -ne 1 ]; then
+	echo "please provide filename"
+	exit 1
+fi
+
+filename=$1
+if [ -e "$filename" ]; then
+	echo "$filename exits in the current directory"
+else
+	echo "$filename doesnot exits in the current directory"
+fi

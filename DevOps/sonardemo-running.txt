@@ -1,0 +1,4 @@
+sqp_c604eae003b9ff50fd01d0cbc5b813224f53fd29
+
+
+mvn clean verify sonar:sonar -Dsonar.projectKey=demo  -Dsonar.projectName='demoDsonar.host.url=http://localhost:9000 -Dsonar.token=sqp_c604eae003b9ff50fd01d0cbc5b813224f53fd29

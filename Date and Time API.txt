@@ -1,0 +1,207 @@
+Date and Time API
+------------------
+Java 8 introduced a comprehensive new Date and Time API that addresses many of the shortcomings of the old java.util.Date and java.util.Calendar classes. The new API is located in the java.time package and is designed to be intuitive, easy to use, and immutable.
+
+Advantages of the New API
+--------------------------
+Immutability: 
+The new date and time classes are immutable and thread-safe.
+
+Clarity: 
+The new API provides a clear distinction between machine time (e.g., Instant) and human time (e.g., LocalDate, LocalTime).
+
+Comprehensive: 
+It covers all common operations needed for date and time manipulation.
+
+Standardization: 
+It is based on the ISO-8601 calendar system, ensuring standardization and interoperability.
+
+Key Classes in the Java 8 Date and Time API
+-------------------------------------------
+LocalDate: 
+Represents a date (year, month, day) without time and timezone.
+
+LocalTime: 
+Represents a time (hours, minutes, seconds, nanoseconds) without date and timezone.
+
+LocalDateTime: 
+Combines date and time without timezone.
+
+ZonedDateTime: 
+Combines date and time with a timezone.
+
+OffsetDateTime: C
+ombines date and time with an offset from UTC/Greenwich.
+
+Period: 
+Represents a date-based amount of time (years, months, days).
+
+Duration: 
+Represents a time-based amount of time (hours, minutes, seconds, nanoseconds).
+
+Instant: 
+Represents a moment on the timeline in UTC.
+
+ZoneId: 
+Represents a time zone ID, such as Europe/Paris.
+
+DateTimeFormatter: 
+Provides various ways to format and parse date-time objects.
+
+LocalDate example
+------------------
+import java.time.LocalDate;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateExample {
+    public static void main(String[] args) {
+        // Current date
+        LocalDate currentDate = LocalDate.now();
+        System.out.println("Current Date: " + currentDate);
+
+        // Specific date
+        LocalDate specificDate = LocalDate.of(2023, 5, 17);
+        System.out.println("Specific Date: " + specificDate);
+
+        // Parse a date from a string
+        LocalDate parsedDate = LocalDate.parse("2024-05-17");
+        System.out.println("Parsed Date: " + parsedDate);
+
+        // Format a date to a string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy");
+        String formattedDate = currentDate.format(formatter);
+        System.out.println("Formatted Date: " + formattedDate);
+    }
+}
+
+LocalTime Example
+-----------------
+import java.time.LocalTime;
+
+public class LocalTimeExample {
+    public static void main(String[] args) {
+        // Current time
+        LocalTime currentTime = LocalTime.now();
+        System.out.println("Current Time: " + currentTime);
+
+        // Specific time
+        LocalTime specificTime = LocalTime.of(14, 30, 45);
+        System.out.println("Specific Time: " + specificTime);
+
+        // Parse a time from a string
+        LocalTime parsedTime = LocalTime.parse("08:30:00");
+        System.out.println("Parsed Time: " + parsedTime);
+
+        // Add hours, minutes, and seconds
+        LocalTime newTime = currentTime.plusHours(2).plusMinutes(30).plusSeconds(15);
+        System.out.println("New Time: " + newTime);
+    }
+}
+
+
+LocalDateTime Example
+----------------------
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
+
+public class LocalDateTimeExample {
+    public static void main(String[] args) {
+        // Current date and time
+        LocalDateTime currentDateTime = LocalDateTime.now();
+        System.out.println("Current DateTime: " + currentDateTime);
+
+        // Specific date and time
+        LocalDateTime specificDateTime = LocalDateTime.of(2023, 5, 17, 14, 30);
+        System.out.println("Specific DateTime: " + specificDateTime);
+
+        // Parse a date-time from a string
+        LocalDateTime parsedDateTime = LocalDateTime.parse("2023-05-17T14:30:00");
+        System.out.println("Parsed DateTime: " + parsedDateTime);
+
+        // Format a date-time to a string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm");
+        String formattedDateTime = currentDateTime.format(formatter);
+        System.out.println("Formatted DateTime: " + formattedDateTime);
+    }
+}
+
+
+ZonedDateTime Example
+---------------------
+import java.time.ZonedDateTime;
+import java.time.ZoneId;
+import java.time.format.DateTimeFormatter;
+
+public class ZonedDateTimeExample {
+    public static void main(String[] args) {
+        // Current date and time with timezone
+        ZonedDateTime currentZonedDateTime = ZonedDateTime.now();
+        System.out.println("Current ZonedDateTime: " + currentZonedDateTime);
+
+        // Specific date and time with timezone
+        ZonedDateTime specificZonedDateTime = ZonedDateTime.of(2023, 5, 17, 14, 30, 0, 0, ZoneId.of("Europe/Paris"));
+        System.out.println("Specific ZonedDateTime: " + specificZonedDateTime);
+
+        // Parse a zoned date-time from a string
+        ZonedDateTime parsedZonedDateTime = ZonedDateTime.parse("2023-05-17T14:30:00+01:00[Europe/Paris]");
+        System.out.println("Parsed ZonedDateTime: " + parsedZonedDateTime);
+
+        // Format a zoned date-time to a string
+        DateTimeFormatter formatter = DateTimeFormatter.ofPattern("dd/MM/yyyy HH:mm z");
+        String formattedZonedDateTime = currentZonedDateTime.format(formatter);
+        System.out.println("Formatted ZonedDateTime: " + formattedZonedDateTime);
+    }
+}
+
+
+Duration Example
+-----------------
+import java.time.Duration;
+import java.time.LocalTime;
+
+public class DurationExample {
+    public static void main(String[] args) {
+        // Duration between two times
+        LocalTime startTime = LocalTime.of(10, 0);
+        LocalTime endTime = LocalTime.of(12, 30);
+        Duration duration = Duration.between(startTime, endTime);
+        System.out.println("Duration: " + duration);
+
+        // Creating a duration
+        Duration twoHours = Duration.ofHours(2);
+        System.out.println("Two Hours Duration: " + twoHours);
+
+        // Adding a duration to a time
+        LocalTime newTime = startTime.plus(twoHours);
+        System.out.println("New Time: " + newTime);
+    }
+}
+
+
+Period Example
+---------------
+import java.time.LocalDate;
+import java.time.Period;
+
+public class PeriodExample {
+    public static void main(String[] args) {
+        // Period between two dates
+        LocalDate startDate = LocalDate.of(2023, 1, 1);
+        LocalDate endDate = LocalDate.of(2024, 1, 1);
+        Period period = Period.between(startDate, endDate);
+        System.out.println("Period: " + period);
+
+        // Creating a period
+        Period oneYear = Period.ofYears(1);
+        System.out.println("One Year Period: " + oneYear);
+
+        // Adding a period to a date
+        LocalDate newDate = startDate.plus(oneYear);
+        System.out.println("New Date: " + newDate);
+    }
+}
+
+
+
+
+

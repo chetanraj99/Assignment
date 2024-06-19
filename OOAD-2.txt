@@ -1,0 +1,70 @@
+Q6. Which of the following statements accurately describes abstraction in object-oriented programming?
+a) Abstraction allows hiding unnecessary details and showing only essential features of an object. (Correct Answer)
+b) Abstraction is achieved by directly accessing an object's attributes.
+c) Abstraction refers to the process of creating multiple instances of a class.
+d) Abstraction is a design pattern used to create objects.
+
+
+
+Q7. Which of the following best describes the concept of encapsulation in object-oriented programming?
+a) Combining data and methods that operate on the data into a single unit
+b) Hiding the implementation details of an object and exposing only necessary functionalities (Correct Answer)
+c) Allowing a subclass to inherit properties and behaviors from a superclass
+d) Dynamically selecting the appropriate method to invoke based on the object's type
+
+Q8. In Unified Modeling Language (UML), which diagram is used to represent the interactions between objects and the sequence of messages exchanged among them?
+a) Class diagram
+b) Object diagram
+c) Use case diagram
+d) Sequence diagram (Correct Answer)
+
+Q9. Which design principle suggests that classes should have only one reason to change?
+a) Open/Closed Principle
+b) Single Responsibility Principle (Correct Answer)
+c) Liskov Substitution Principle
+d) Interface Segregation Principle
+
+Q10. In the context of design patterns, which pattern is used to ensure a single instance of a class is created and provide a global point of access to that instance?
+a) Factory Method
+b) Singleton (Correct Answer)
+c) Observer
+d) Decorator
+
+Q11. What type of relationship in UML indicates that one class owns or is responsible for another class?
+a) Association
+b) Aggregation
+c) Composition (Correct Answer)
+d) Inheritance
+
+Q12. Test-Driven Development (TDD) follows which iterative development cycle?
+a) Plan, Do, Check, Act
+b) Define, Measure, Analyze, Improve, Control
+c) Red, Green, Refactor (Correct Answer)
+d) Requirements, Design, Implementation, Testing
+
+Q13. Which of the following is NOT a primary goal of Object-Oriented Analysis?
+a) Identifying objects and their relationships
+b) Capturing the behavior of the system
+c) Defining the database schema (Correct Answer)
+d) Modeling real-world concepts and scenarios
+
+Q14. Which of the following UML diagrams is used to illustrate the flow of control in a system, including decisions, loops, and parallel activities?
+a) Class diagram
+b) Activity diagram (Correct Answer)
+c) State diagram
+d) Sequence diagram
+
+Q15. Which design principle suggests that clients should not be forced to depend on interfaces they don't use?
+a) Open/Closed Principle
+b) Single Responsibility Principle
+c) Interface Segregation Principle (Correct Answer)
+d) Dependency Inversion Principle
+
+Q16. Which term describes a collection of interacting objects that work together to accomplish certain tasks or provide certain services?
+a) Class
+b) Object
+c) System (Correct Answer)
+d) Interface
+
+
+
